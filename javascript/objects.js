@@ -345,7 +345,7 @@ var Structure = function()
 } */
 
 //Player object
-var Player = function()
+/* var Player = function()
 {
 	this.id = Math.floor(Math.random()*1000000000);
 	this.name = "n/a";
@@ -562,7 +562,7 @@ var Player = function()
 		updateResources();
 		map[row][column].stack.push(villager);
 	}
-}
+} */
 
 //Game object
 var Game = function()
