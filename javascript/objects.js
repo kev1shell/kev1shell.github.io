@@ -1,7 +1,7 @@
 
 // !!THIS FILE IS NO LONGER USED!!
 
-//objects (they're like classes) (I think)
+//objects (they're like classes) (I think) Bazinga!
 
 /*
 //Unit/Structure costs"
