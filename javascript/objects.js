@@ -59,12 +59,14 @@ var Animal = function()
 }
 
 //Tile object
+/* 
 var Tile = function()
 {
 	this.type = "n/a";
 	this.stack = [];
 	
-}
+} 
+*/
 
 //Unit object
 var Unit = function()
