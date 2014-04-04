@@ -2,34 +2,34 @@
 //objects (they're like classes) (I think) bazinga!
 
 //Unit/Structure costs"
-villagerFoodCost = 4;
-villagerTimberCost = 0;
-villagerStoneCost = 0;
-villagerFoodUpKeep = 2;
+var villagerFoodCost = 4;
+var villagerTimberCost = 0;
+var villagerStoneCost = 0;
+var villagerFoodUpKeep = 2;
 
-warriorFoodCost = 4;
-warriorTimberCost = 2;
-warriorStoneCost = 1;
-warriorFoodUpKeep = 4;
+var warriorFoodCost = 4;
+var warriorTimberCost = 2;
+var warriorStoneCost = 1;
+var warriorFoodUpKeep = 4;
 
-farmFoodCost = 0;
-farmTimberCost = 2;
-farmStoneCost = 0;
+var farmFoodCost = 0;
+var farmTimberCost = 2;
+var farmStoneCost = 0;
 
-villageFoodCost = 0;
-villageTimberCost = 8;
-villageStoneCost = 4;
+var villageFoodCost = 0;
+var villageTimberCost = 8;
+var villageStoneCost = 4;
 
 //base unit stats
-villagerMaxMovementPoints = 4;
-villagerMaxHealth = 1;
-villagerDefense = 0;
-villagerAttack = 0;
+var villagerMaxMovementPoints = 4;
+var villagerMaxHealth = 1;
+var villagerDefense = 0;
+var villagerAttack = 0;
 
-warriorMaxMovementPoints = 2;
-warriorMaxHealth = 10;
-warriorDefense = 2;
-warriorAttack = 5;
+var warriorMaxMovementPoints = 2;
+var warriorMaxHealth = 10;
+var warriorDefense = 2;
+var warriorAttack = 5;
 
 //Resource Gathering Rates:
 var farmCollectionRate = 4;
