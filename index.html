@@ -5,7 +5,27 @@
 <head>
 	<title>VillageWars</title>
 	<h1 id="colorRibbon">color Player</h1>
+	<!-- Easeljs graphics package-->
 	<script src="http://code.createjs.com/easeljs-0.7.1.min.js"></script>
+	
+	<!-- objectGlobals -->
+	<script src="http://kev1shell.github.io/javascript/objectGlobals.js"></script>
+	
+	<!-- Tile class -->
+	<script src="http://kev1shell.github.io/javascript/tile.js"></script>
+	
+	<!-- Unit class -->
+	<script src="http://kev1shell.github.io/javascript/unit.js"></script>
+	
+	<!-- Structure class -->
+	<script src="http://kev1shell.github.io/javascript/structure.js"></script>
+	
+	<!-- Bank class -->
+	<script src="http://kev1shell.github.io/javascript/bank.js"></script>
+	
+	<!-- Player class -->
+	<script src="http://kev1shell.github.io/javascript/player.js"></script>
+	
 	<script src = "http://kev1shell.github.io/javascript/objects.js">
 		//objects (they're like classes) (I think)
 	</script>
@@ -67,6 +87,125 @@
 		
 		/*---------------------------------------------------------*/
 		/*-------------------general functions----------------------*/
+		
+		
+		function canBuild(object)
+		{
+			
+			if(object == "villager")
+			{
+				if(player.bank.food >= villagerFoodCost && player.bank.timber >= villagerTimberCost & player.bank.stone >= villagerStoneCost)
+				{
+					return true;
+				}
+				else
+				{
+					error = "Insufficient Resources! Villagers require: "+villagerFoodCost+" food, "+villagerTimberCost+" timber, and "+villagerStoneCost+" stone to build.";
+					return false;
+				}
+			}
+			else if(object == "warrior")
+			{
+				if(player.bank.food >= warriorFoodCost && player.bank.timber >= warriorTimberCost & player.bank.stone >= warriorStoneCost)
+				{
+					return true;
+				}
+				else
+				{
+					error = "Insufficient Resources! Warriors require: "+warriorFoodCost+" food, "+warriorTimberCost+" timber, and "+warriorStoneCost+" stone to build.";
+					return false;
+				}
+			}
+			else if(object == "farm")
+			{
+				
+				if(player.bank.food >= farmFoodCost && player.bank.timber >= farmTimberCost & player.bank.stone >= farmStoneCost)
+				{
+					if(player.numFarms < player.numVillages*2)
+					{
+						if(getStructureAt(selectedUnit.row, selectedUnit.column) == null)
+						{
+							var tile = map[selectedUnit.row][selectedUnit.column];
+							if(tile.type == "grass")
+							{
+								return true;
+							}
+							else
+							{
+								error = "Farms must be built on grass tiles";
+								return false;
+							}
+						}
+						else
+						{
+							error = "Another structure is in the way!";
+							return false;
+						}
+					}
+					else
+					{
+						error = "Not Enough Villages! You must have 1 village for every 2 farms.";
+						return false;
+					}
+				}
+				else
+				{
+					error = "Insufficient Resources! Farms require: "+farmTimberCost+" timber to build.";
+					return false;
+				}
+			}
+			else if(object == "village")
+			{
+				if(player.bank.food >= villageFoodCost && player.bank.timber >= villageTimberCost & player.bank.stone >= villageStoneCost)
+				{
+					if(player.numVillages < maxVillages)
+					{
+						if(getStructureAt(selectedUnit.row, selectedUnit.column) == null)
+						{
+							var tile = map[selectedUnit.row][selectedUnit.column];
+							if(tile.type == "grass")
+							{
+								return true;
+							}
+							else
+							{
+								error = "Villages must be built on grass tiles";
+								return false;
+							}
+						}
+						else
+						{
+							error = "Another structure is in the way!";
+							return false;
+						}
+					}
+					else
+					{
+						error = "Max village number reached! No more villages may be built!";
+						return false;
+					}
+				}
+				else
+				{
+					error = "Insufficient Resources! Villages require: "+villageFoodCost+" food, "+villageTimberCost+" timber, and "+villageStoneCost+" stone to build.";
+					return false;
+				}
+			}
+		}
+
+		function getStructureAt(row, column)
+		{
+			var tile = map[row][column];
+			
+			for(var i = 0; i < tile.stack.length; i++)
+			{
+				if(isUnit(tile.stack[i]) == false)
+				{
+					return tile.stack[i];
+				}
+			}
+			return null;
+		}
 		
 		function tileContainsEnemy(row, column)
 		{

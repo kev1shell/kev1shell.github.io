@@ -827,7 +827,7 @@ function handleBFMouseEvent(evt)
 	
 }
 
-function canBuild(object)
+/* function canBuild(object)
 {
 	
 	if(object == "villager")
@@ -943,4 +943,4 @@ function getStructureAt(row, column)
 		}
 	}
 	return null;
-}
+} */
