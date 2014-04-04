@@ -188,3 +188,131 @@ var Unit = function()
 	}
 
 }
+
+function displayBuildFarmButton(stage, color)
+{
+	if(stage.getChildByName("BuildFarmButton") != null)
+	{
+		stage.removeChild(stage.getChildByName("BuildFarmButton"));
+		stage.removeChild(stage.getChildByName("BFtext"));
+	}
+
+	var BuildFarmButton = new createjs.Shape();
+	BuildFarmButton.graphics.beginFill(color).drawRect(0, 0, 70, 18);
+	BuildFarmButton.x = 30 + stage.getChildByName("infoLine1").x + stage.getChildByName("infoLine1").getMeasuredWidth();
+	BuildFarmButton.y = 5 + stage.getChildByName("infoLine1").y;
+	BuildFarmButton.name = "BuildFarmButton";
+	BuildFarmButton.color = color;
+	stage.addChild(BuildFarmButton);
+	
+	BuildFarmButton.on("click", handleBFMouseEvent);
+	BuildFarmButton.on("mouseover", handleBFMouseEvent);
+	BuildFarmButton.on("mouseout", handleBFMouseEvent);
+	
+	//Build Farm button text
+	var BFtext = new createjs.Text("Build Farm", "bold 12px Arial", "black");
+	BFtext.x = 4 + BuildFarmButton.x;
+	BFtext.y = 1 + BuildFarmButton.y;
+	BFtext.name = "BFtext";
+	stage.addChild(BFtext);
+}
+
+function displayBuildVillageButton(stage, color)
+{
+	if(stage.getChildByName("BuildVillageButton") != null)
+	{
+		stage.removeChild(stage.getChildByName("BuildVillageButton"));
+		stage.removeChild(stage.getChildByName("BVtext"));
+	}
+
+	var BuildVillageButton = new createjs.Shape();
+	BuildVillageButton.graphics.beginFill(color).drawRect(0, 0, 78, 18);
+	BuildVillageButton.x = 10 + stage.getChildByName("BuildFarmButton").x + 70;
+	BuildVillageButton.y = stage.getChildByName("BuildFarmButton").y;
+	BuildVillageButton.name = "BuildVillageButton";
+	BuildVillageButton.color = color;
+	stage.addChild(BuildVillageButton);
+	
+	BuildVillageButton.on("click", handleBVMouseEvent);
+	BuildVillageButton.on("mouseover", handleBVMouseEvent);
+	BuildVillageButton.on("mouseout", handleBVMouseEvent);
+	
+	//Build Farm button text
+	var BVtext = new createjs.Text("Build Village", "bold 12px Arial", "black");
+	BVtext.x = 4 + BuildVillageButton.x;
+	BVtext.y = 1 + BuildVillageButton.y;
+	BVtext.name = "BVtext";
+	stage.addChild(BVtext);
+}
+
+function handleBVMouseEvent(evt)
+{
+	
+	var BuildVillageButton = stage.getChildByName("BuildVillageButton");
+	
+	if(evt.type == "click")
+	{
+		if(canBuild("village"))
+		{
+			//build village
+			player.createStructure(stage,map,"village", selectedUnit.row, selectedUnit.column);
+		
+			//tell everyone else you built this
+			var structure = player.structures[player.structures.length-1];
+			messageArray = ["createStructure",structure.type,player.id,structure.id,structure.row,structure.column];
+			updater(messageArray);
+		}
+		else
+		{
+			alert(error);
+		}
+	}
+	if(evt.type == "mouseover")
+	{
+		displayBuildVillageButton(stage, "blue");
+		stage.update();
+	}
+	if(evt.type == "mouseout")
+	{
+		displayBuildVillageButton(stage, "lightBlue");
+		stage.update();
+	}
+	
+}
+
+function handleBFMouseEvent(evt)
+{
+	
+	var BuildFarmButton = stage.getChildByName("BuildFarmButton");
+	
+	if(evt.type == "click")
+	{
+		if(canBuild("farm"))
+		{
+			//build farm
+			player.createStructure(stage,map,"farm", selectedUnit.row, selectedUnit.column);
+			
+			//tell everyone else you built this
+			var structure = player.structures[player.structures.length-1];
+			messageArray = ["createStructure","farm",player.id,structure.id,structure.row,structure.column];
+			updater(messageArray);
+		}
+		else
+		{
+			alert(error);
+		}
+	}
+	if(evt.type == "mouseover")
+	{
+		displayBuildFarmButton(stage, "blue");
+		stage.update();
+	}
+	if(evt.type == "mouseout")
+	{
+		displayBuildFarmButton(stage, "lightBlue");
+		stage.update();
+	}
+	
+}
+
+

@@ -574,7 +574,7 @@ this.nurnNum = 0;
 
 //button functions
 
-function displayBuildWarriorButton(stage, color)
+/* function displayBuildWarriorButton(stage, color)
 {
 	if(stage.getChildByName("BuildWarriorButton") != null)
 	{
@@ -826,7 +826,7 @@ function handleBFMouseEvent(evt)
 	}
 	
 }
-
+ */
 /* function canBuild(object)
 {
 	
