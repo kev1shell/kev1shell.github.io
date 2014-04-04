@@ -1,5 +1,5 @@
 
-//objects (they're like classes) (I think)
+//objects (they're like classes) (I think) bazinga!
 
 //Unit/Structure costs"
 villagerFoodCost = 4;
