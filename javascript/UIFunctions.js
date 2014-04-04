@@ -305,4 +305,112 @@ function displayTurnCounterElement(color)
 	updateTurnNum();
 }
 
+/*--------------------------------------------------------------*/
+/*-------------------mouse event functions----------------------*/
+
+//handles End turn mouse events
+function handleETEMouseEvent(evt)
+{
+	if(evt.type == "click" && player.onTurn == true)
+	{
+		infoText = "Turn Ended";
+		updateInfoText();
+		
+		//startTurn();
+		endTurn();
+		var messageArray = ["endTurn", player.color];
+		updater(messageArray);
+	}
+	if(evt.type == "mouseover" && player.onTurn == true)
+	{
+		displayEndTurnElement("red");
+		stage.update();
+	}
+	if(evt.type == "mouseout" && player.onTurn == true)
+	{
+		displayEndTurnElement("salmon");
+		stage.update();
+	}
+}
+
+//handles map mouse events.
+function handleMapMouseEvent(evt) 
+{
+	//output.text = "evt.target: "+evt.target+", evt.type: "+evt.type;
+	
+	if(evt.type == "click")
+	{
+		var x = evt.stageX - evt.target.x;
+		var y = evt.stageY - evt.target.y;
+		
+		var row = Math.floor(y/24);
+		var column = Math.floor(x/24);
+		
+		//infoText = "Tile:(" + row + "," + column + ")";
+		//updateInfoText();
+		
+		if(selectedObject == null)
+		{
+			//nothing is selected
+			//select object
+			selectObject(row,column);
+		}
+		else
+		{
+			//something is selected
+			if(isUnit(selectedObject) == true)
+			{
+				//if selectedObject is a unit
+				unitHandler(row,column);
+			}
+			else
+			{
+				//if selectedObject is not a unit
+				if(selectedObject.row != row || selectedObject.column != column)
+				{
+					//if selectedObject is not at (row, column)
+					deSelectAll();
+				}
+			}
+		}
+		
+	}
+	
+	//stage.update();
+}
+
+/*-------------------------------------------------------------*/
+/*-------------------image load functions----------------------*/
+
+//loads the resource element image
+function handleRELoad()
+{
+	bitmap2 = new createjs.Bitmap(resourceElement);
+	bitmap2.x = 0;
+	bitmap2.y = 0;
+	stage.addChild(bitmap2);
+	updateResources();
+	stage.update();
+}
+
+//loads the map image
+function handleMapLoad()
+{
+	bitmap = new createjs.Bitmap(mapElement);
+	bitmap.x = 0;
+	bitmap.y = 50;
+	
+	var mapBackground = new createjs.Shape();
+	mapBackground.graphics.beginFill("white").drawRect(0, 0, 840, 432);
+	mapBackground.x = bitmap.x;
+	mapBackground.y = bitmap.y;
+	mapBackground.name = "mapBackground";
+	mapBackground.on("click", handleMapMouseEvent);
+	
+	stage.addChild(mapBackground);
+	stage.addChild(bitmap);
+	
+	stage.update();
+}
+
 /*----------------------------------------------------------*/
