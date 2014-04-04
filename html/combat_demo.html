@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head><title>VillageWars</title></head>
+<body>
+<h1>- Combat demo page -</h1>
+
+<!--Global variables-->
+<script>
+//These values simulate the stats from two units, 'Red' and 'Blue'
+var Red_a = 5;
+var Blue_d = 5;
+</script>
+
+<!--HTML Buttons and displays-->
+<p id="demo">Click the button to display a random number.</p>
+
+<button onclick="displayDiceFunction()">test rollDice()</button>
+
+<p id="demo2">Click the button to display a random number.</p>
+
+<button onclick="displayCoinFunction()">test flipCoin()</button>
+
+<p id="testing">Click this button to simulate a single battle (attack/defense values set to 5)</p>
+
+<button onclick="displayCombat()">test Combat()</button>
+
+
+<script>
+function displayDiceFunction()
+{
+document.getElementById("demo").innerHTML=rollDice();
+}
+</script>
+
+<script>
+function displayCoinFunction(){
+	var headscounter = 0;
+	for (var i = 0; i < 1000; i++){
+		if (flipCoin() == 1)
+			headscounter++;
+	}
+	document.getElementById("demo2").innerHTML="Heads: "+headscounter/10+"% of 1000 flips";
+}
+</script>
+
+<script>
+function displayCombat()
+{
+document.getElementById("testing").innerHTML="Winner is: "+Combat(Red_a,Blue_d);
+}
+</script>
+
+<!--Dice-rolling helper function-->
+<script>
+	function rollDice(){ //out of function scope for use with displayDiceFunction()
+		return Math.floor((Math.random()*6)+1);
+	}
+</script>
+
+<!--Alternate coin-flipping helper function-->
+<script>
+	function flipCoin(){
+		return Math.floor((Math.random()*2)+1);
+	}
+</script>
+
+<!--Combat function-->
+<script>
+function Combat(Red_a, Blue_d){
+ //-----Combat-specific helper function-----
+	function removeMax(dice){ 
+	dice.sort();
+	dice.reverse();
+	return dice.splice(0,1);
+	}
+	
+	//uncomment for self-contained use
+	//function rollDice(){ 
+	//	return Math.floor((Math.random()*6)+1);
+	//}
+
+ //-----Local variables-----
+	Red_health = 20; //these values imitate a unit's health
+	Blue_health = 20; //and should be removed when used/adapted for use with actual units
+
+	var RedsDice = [];
+	var BluesDice = [];
+	var numComparisons = Math.min(Red_a, Blue_d);
+
+ //-----Combat calculations-----
+	while (true){
+		for (var i=0;i<Red_a;i++){
+			RedsDice[i] = rollDice();
+			//RedsDice[i] = flipCoin();
+		}
+		for (var i=0;i<Blue_d;i++){
+			BluesDice[i] = rollDice();
+			//BluesDice[i] = flipCoin();
+		}
+		
+		//alert("RedsDice = ["+RedsDice+"] BluesDice = ["+BluesDice+"]");
+		
+		for (var i=0; i<numComparisons; i++){//compare one die from each set until no pairs are left
+			var RedMax = removeMax(RedsDice);
+			var BlueMax = removeMax(BluesDice);
+			if ((RedMax <= 3 && RedMax >= BlueMax) || (RedMax > 3 && RedMax > BlueMax)) // 'fair chance' method
+			//if (RedMax > BlueMax) // 'defender's advantage' method
+			//if (RedMax == 2) //for use with flipCoin()
+				Blue_health--;
+			else
+				Red_health--;
+			
+			if (Red_health == 0){ //If Red is defeated...
+				return "Blue";
+			}
+			if (Blue_health == 0){ //If Blue is defeated...
+				return "Red";
+			}	
+		} 
+	}
+} //end of Combat() function
+</script>
+
+<!--Statistics-collecting test function-->
+<script>
+function testResults (form) {
+    var ra = form.Reds_Attack.value;
+	var bd = form.Blues_Defense.value;
+	var iter = form.iterations.value;
+	var rcounter = 0;
+	var bcounter = 0;
+	for (var i = 0; i < form.iterations.value; i++){
+		var winner = Combat(ra,bd);
+		if (winner == "Red")
+			rcounter++;
+		else 
+			bcounter++;
+
+	}
+	var rresult = (rcounter/iter)*100;
+	var bresult = (bcounter/iter)*100;
+    alert ("Red won "+rresult+"% of battles.\nBlue won "+bresult+"% of battles.");
+}
+</script>
+
+<!--HTML display for statistics function-->
+<form NAME="myform" ACTION="" METHOD="GET">
+<br> Combat simulator <br>
+<p>Red's Attack: <INPUT TYPE="text" NAME="Reds_Attack" VALUE="5"></p>
+<p>Blue's Defense: <INPUT TYPE="text" NAME="Blues_Defense" VALUE="5"></p>
+<p>#Iterations: <INPUT TYPE="text" NAME="iterations" VALUE="100"></p>
+<INPUT TYPE="button" NAME="submit" Value="Click" onClick="testResults(this.form)">
+</form>
+
+
+</body>
+</html>

@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html>
+<style src="css/UIclasses.css"></style>
+<style>h1{color:black;}</style>
+<head>
+	<title>VillageWars</title>
+	<h1 id="colorRibbon">color Player</h1>
+	<script src="http://code.createjs.com/easeljs-0.7.1.min.js"></script>
+	<script src = "https://git.cloudhost.io/eversity504/villagewars/raw/clientDevelopment/javascript/objects.js">
+		//objects (they're like classes) (I think)
+	</script>
+	<script src = "http://googledrive.com/host/0B0t-xySeqXPfYVBpZHU5dHNOQ3M">
+		//maps (they're like maps) (I think)
+	</script>
+	<script src = "/socket.io/socket.io.js"></script>
+	<script>
+		/*-------------------global variables----------------------*/
+		
+		var socket = io.connect('http://' + document.location.host);
+
+		
+		//player variable which is used quite a lot
+		//by any function that needs player data
+		var player = new Player();			
+		
+		//array of all players in the game.
+		var players = [player];
+		
+		//player's color set to blue here for test purposes
+		player.color = "blue";
+		player.onTurn = false;
+		
+		//2D array of tile objects representing the
+		//current state of the game "board"
+		var map = loadSurvivorIslandMap();
+		
+		//String variable used to easily change the
+		//text of the info box title
+		//updateInfoText must be called when this is changed
+		var infoText = "Begin your turn";
+		
+		//variable representing the current turn
+		var turnNum = 0;
+		
+		//array of stage objects corresponding to
+		//the blue boxes displayed for unit movement
+		var movementSquares = [];
+		
+		//this is essentially a pointer to an object
+		//that is currently "selected"
+		//it could be a unit, structure, or tile.
+		var selectedObject = null;
+		
+		//this is essentially a pointer to a unit
+		//that is currently "selected"
+		var selectedUnit = null;
+		
+		//Easeljs graphics objects. stage is used
+		//and passed around extensively to draw stuff
+		var canvas, stage;
+		
+		//image objects for the UI element. we might
+		//be to make these local to the functions that
+		//need them later.
+		var mapElement, bitmap;
+		var resourceElement, bitmap2;
+		
+		/*---------------------------------------------------------*/
+		/*-------------------general functions----------------------*/
+		
+		function tileContainsEnemy(row, column)
+		{
+			var tile = map[row][column];
+			if(tile.stack.length > 0)
+			{
+				if(tile.stack[i].color != player.color)
+				{
+					return true; 
+				}
+			}
+			return false;
+		}
+		
+		function getEnemyAt(row,column)
+		{
+			var tile = map[row][column];
+			if(tile.stack.length > 0)
+			{
+				for(var i = 0; i < tile.stack.length; i++)
+				{
+					var object = tile.stack[i];
+					if(i == tile.stack.length-1 && object.color != player.color)
+					{
+						return object;
+					}
+					else
+					{
+						if(isUnit(object) && object.color != player.color)
+						{
+							return object;
+						} 
+					}
+				}
+			}
+			return null;
+		}
+		
+		function combaty(attackingUnit, defendingUnit)
+		{
+			while( attackingUnit.health > 0 && defendingUnit.health > 0)
+			{
+				defendingUnit.health -= attackingUnit.attack - defendingUnit.defense;
+				if(defendingUnit.health > 0)
+				{
+					attackingUnit.health -= defendingUnit.attack - attackingUnit.defense;
+				}	
+			}
+			if(defendingUnit.health > 0)
+			{
+				return defendingUnit;
+			}
+			else
+			{
+				return attackingUnit;
+			}
+		}
+		
+		function combat(unitA, unitB)
+		{ 
+			//-----Combat-specific helper functions-----
+			function removeMax(dice){ //removes and returns the max value from the array
+				dice.sort();
+				dice.reverse();
+				return dice.splice(0,1);
+			}
+		
+			function rollDice(){ 
+				return Math.floor((Math.random()*6)+1);
+			}
+
+			//-----Local variables-----
+			var redAttack = unitA.attack;
+			var blueDefense = unitB.defense;
+			
+			var RedsDice = [];
+			var BluesDice = [];
+			var numComparisons = Math.min(redAttack, blueDefense);
+
+			//-----Combat calculations-----
+			while (true){
+				for (var i=0;i<redAttack;i++){
+					RedsDice[i] = rollDice();
+					//RedsDice[i] = flipCoin();
+				}
+				for (var i=0;i<blueDefense;i++){
+					BluesDice[i] = rollDice();
+					//BluesDice[i] = flipCoin();
+				}
+				
+				//alert("RedsDice = ["+RedsDice+"] BluesDice = ["+BluesDice+"]");
+				
+				for (var i=0; i<numComparisons; i++){//compare one die from each set until no pairs are left
+					var RedMax = removeMax(RedsDice);
+					var BlueMax = removeMax(BluesDice);
+					if ((RedMax <= 3 && RedMax >= BlueMax) || (RedMax > 3 && RedMax > BlueMax)) // 'fair chance' method
+					//if (RedMax > BlueMax) // 'defender's advantage' method
+					//if (RedMax == 2) //for use with flipCoin()
+						unitB.health--;
+					else
+						unitA.health--;
+					
+					if (unitA.health == 0){ //If Red is defeated...
+						//return "Blue";
+						//unitA.remove();
+						return unitB;
+					}
+					if (unitB.health == 0){ //If Blue is defeated...
+						//return "Red";
+						//unitB.remove();
+						return unitA;
+					}	
+				} 
+			}
+		} //end of Combat() function
+		
+		//removes movementSquares from the movementSquares array and the stage
+		function killRandomUnit()
+		{
+			var index = Math.floor(Math.random()*player.units.length);
+			var unit = player.units[index];
+			
+			unit.remove();
+			var messageArray = ["remove", unit.id,unit.row,unit.column];
+			updater(messageArray);
+			alert("Your villages starving! you have lost a "+unit.type+"!");
+		}
+		
+		function removeMovementSquares()
+		{
+			while(movementSquares.length > 0)
+			{
+				stage.removeChild(movementSquares[0]);
+				movementSquares.splice(0,1);
+			}
+		}
+		
+		//returns true if object is a unit, false otherwise
+		function isUnit(object)
+		{
+			if(object.type != null)
+			{
+				if(object.type == "villager" || object.type == "warrior")
+				{
+					return true;
+				}
+			}
+			
+			return false;
+		}
+		
+		//Whenever a unit is moved this function should be called
+		function moveUnit(unit,row,column)
+		{
+			
+			if(unit == null)
+			{
+				return;
+			}
+			
+			var oldRow = unit.row;
+			var oldColumn = unit.column;
+			unit.move(stage, map, row, column);
+			//send the move to other clients
+			var messageArray = ["move",unit.id,unit.row,unit.column,oldRow,oldColumn];
+			updater(messageArray);
+		}
+		
+		function moveSelectedUnit(row,column)
+		{
+			//selectedUnit.move(stage, map, row, column);
+			moveUnit(selectedUnit,row,column);
+			selectedUnit.displayInfo(stage, player);
+			displaySelectBox(row,column);
+			removeMovementSquares();
+		}
+		
+		//handles the nity gritty of unit movement
+		var flag = 0;
+		function unitHandler(row,column)
+		{
+			flag = 1;
+			if(selectedUnit.row != row || selectedUnit.column != column)
+			{
+				var distance = getDistance(row, column, selectedUnit.row, selectedUnit.column);
+				if(distance < 2 && selectedUnit.movementPoints > 0 && selectedUnit.color == player.color && player.onTurn == true)
+				{
+					var tile = map[row][column];
+					if(tile.type != "water" && tile.type != "mountains")
+					{
+						var enemyObject = getEnemyAt(row,column);
+						
+						if(enemyObject == null)
+						{
+							//no worries here
+							moveSelectedUnit(row,column);
+						
+							if(selectedUnit.movementPoints > 0)
+							{
+								displayMovementSquares(selectedUnit.row,selectedUnit.column);
+							}
+							else
+							{
+								removeMovementSquares();
+								stage.update();
+							}
+						}
+						else
+						{
+							//Enemy sighted!
+							
+							
+							if(selectedUnit.type == "warrior")
+							{
+								//its fight'n time!
+								
+								while(enemyObject != null && selectedUnit != null)
+								{
+									if(isUnit(enemyObject) == true)
+									{
+										var survivor = combaty(selectedUnit, enemyObject);
+										if(survivor.id == selectedUnit.id)
+										{
+											//remove enemy object
+											enemyObject.remove();
+											
+											//remove this object from all clients
+											var messageArray = ["remove", enemyObject.id,enemyObject.row,enemyObject.column];
+											updater(messageArray);
+											
+											/*
+											message format:
+											{"updateUnit",row,column,unit.id,unit.movementPoints,
+											unit.maxMovementPoints,unit.health,unit.maxHealth,unit.attack,unit.defense}
+											*/
+											
+											//update surviving unit's stats on all clients
+											messageArray = 
+											["updateUnit",selectedUnit.row,selectedUnit.column,selectedUnit.id,
+											selectedUnit.movementPoints,selectedUnit.maxMovementPoints,
+											selectedUnit.health,selectedUnit.maxHealth,selectedUnit.attack,
+											selectedUnit.defense];
+											
+											updater(messageArray);
+										}
+										else
+										{
+											//remove selected unit
+											selectedUnit.remove();
+											
+											//remove selected unit from all clients
+											var messageArray = ["remove", selectedUnit.id,selectedUnit.row,selectedUnit.column];
+											updater(messageArray);
+											
+											//update surviving unit's stats on all clients
+											messageArray = 
+											["updateUnit",selectedUnit.row,selectedUnit.column,selectedUnit.id,
+											selectedUnit.movementPoints,selectedUnit.maxMovementPoints,
+											selectedUnit.health,selectedUnit.maxHealth,selectedUnit.attack,
+											selectedUnit.defense];
+											
+											updater(messageArray);
+											
+											//deselected all
+											deSelectAll();
+										}
+									}
+									else
+									{
+										enemyObject.remove();
+										var messageArray = ["remove", enemyObject.id,enemyObject.row,enemyObject.column];
+										updater(messageArray);
+									}
+									enemyObject = getEnemyAt(row,column);
+								}
+								//enemyObject.remove();
+								moveSelectedUnit(row,column);
+								selectedUnit.movementPoints = 0;
+								removeMovementSquares();
+								stage.update();
+							}
+							
+						}
+					}
+				}
+				else
+				{
+					deSelectAll();
+				}
+			}
+		}
+		
+		//returns the distance between two tiles.
+		function getDistance(row1,column1,row2,column2)
+		{
+			var drow = row1 - row2;
+			var dcolumn = column1 - column2;
+			var distance = Math.sqrt(drow*drow + dcolumn*dcolumn);
+			
+			return distance
+		}
+		
+		function endTurn()
+		{
+			
+			deSelectAll();
+			player.onTurn = false;
+			displayTurnCounterElement("salmon");
+			displayEndTurnElement("lightSlateGrey");
+			infoText = "Turn Ended, Waiting for other players...";
+			updateInfoText();
+			
+		}
+		
+		//this is mainly a place holder
+		function startTurn()
+		{
+			//deSelect units
+			deSelectAll();
+			player.onTurn = true;
+			
+			displayEndTurnElement("salmon");
+			displayTurnCounterElement("lightGreen");
+			
+			infoText = "Begin your turn"
+			updateInfoText();
+			
+			//refresh movement points
+			for(var j=0;j<players.length;j++)
+			{
+				var playa = players[j];
+				for(var i = 0; i < playa.units.length;i++)
+				{
+					playa.units[i].movementPoints = playa.units[i].maxMovementPoints;
+				}
+			}
+			
+			//update resources
+			player.bank.food += player.bank.foodRate;
+			if(player.bank.food <= 0)
+			{
+				//PLAYER IS STARVING!!
+				player.bank.food = 0;
+				
+				killRandomUnit();
+			}
+			player.bank.timber += player.bank.timberRate;
+			player.bank.stone += player.bank.stoneRate;
+			
+			updateResources();
+			
+			//increment turn counter
+			turnNum++;
+			updateTurnNum();
+			
+			//do some other shit maybe
+			
+		}
+		
+		//removes all selection and movement graphics
+		//and resets all selection pointers to null
+		function deSelectAll()
+		{
+			selectedObject = null;
+			selectedUnit = null;
+			
+			stage.removeChild(stage.getChildByName("infoLine1"));
+			stage.removeChild(stage.getChildByName("infoLine2"));
+			stage.removeChild(stage.getChildByName("infoLine3"));
+			stage.removeChild(stage.getChildByName("infoLine4"));
+			stage.removeChild(stage.getChildByName("selectSquare"));
+			stage.removeChild(stage.getChildByName("BFtext"));
+			stage.removeChild(stage.getChildByName("BuildFarmButton"));
+			stage.removeChild(stage.getChildByName("BVtext"));
+			stage.removeChild(stage.getChildByName("BuildVillageButton"));
+			stage.removeChild(stage.getChildByName("buildVillagertext"));
+			stage.removeChild(stage.getChildByName("BuildVillagerButton"));
+			stage.removeChild(stage.getChildByName("buildWarriortext"));
+			stage.removeChild(stage.getChildByName("BuildWarriorButton"));
+			
+			removeMovementSquares();
+			
+			infoText = "";
+			updateInfoText();
+			
+			stage.update();
+		}
+		
+		//selects an object if any, at the specified location
+		//if successful, the 'selectedObject' pointer will
+		//point to the newly selected object. if that object is
+		//a unit, 'selectedUnit' will also point to it.
+		function selectObject(row,column)
+		{
+			var tile = map[row][column];
+			
+			if(tile.stack.length == 0)
+			{
+				//no objects in the stack
+				//display tile type
+				infoText = tile.type;
+				updateInfoText();
+			}
+			else if(tile.stack.length == 1)
+			{
+				//only one object is in the tile's stack
+				//Select this object
+				selectedObject = tile.stack[0];
+				displaySelectBox(row,column);
+				selectedObject.displayInfo(stage, player);
+				
+				if(isUnit(tile.stack[0]) == true)
+				{
+					//the only object in the stack is a unit
+					
+					//select unit
+					selectedUnit = tile.stack[0];
+					
+					if(selectedUnit.movementPoints > 0 && selectedUnit.color == player.color && player.onTurn == true)
+					{
+						displayMovementSquares(row,column);
+					}
+					
+				}
+				else
+				{
+					//the only object in the stack is not a unit
+					//the object must be a structure
+					selectedUnit = null;
+
+				}
+			}
+			else
+			{
+				//select first unit on stack
+				for(var i=0;i<tile.stack.length;i++)
+				{
+					if(isUnit(tile.stack[i]) == true)
+					{
+						selectedObject = tile.stack[i];
+						selectedUnit = tile.stack[i];
+						displaySelectBox(row,column);
+						selectedObject.displayInfo(stage, player);
+						
+						if(selectedUnit.movementPoints > 0 && selectedUnit.color == player.color)
+						{
+							displayMovementSquares(row,column);
+						}
+						
+						i = tile.stack.length;
+					}
+				}
+				//selectedObject = tile;
+			}
+		}
+		
+		/*---------------------------------------------------------*/
+		/*-------------------update functions----------------------*/
+		
+		//updates turn counter
+		function updateTurnNum()
+		{	
+			
+			if(stage.getChildByName("TCtext") != null)
+			{
+				stage.removeChild(stage.getChildByName("TCtext"));
+			}
+			
+			var TCtext = new createjs.Text(turnNum, "bold 14px Arial", "black");
+			TCtext.x = 704;
+			TCtext.y = 20;
+			TCtext.name = "TCtext";
+			stage.addChild(TCtext);
+			
+			stage.update();
+			
+		}
+		
+		//updates info text
+		function updateInfoText()
+		{			
+			//info title
+			if(stage.getChildByName("IEtext") == null)
+			{
+				var IEtext = new createjs.Text(infoText, "bold 14px Arial", "black");
+				IEtext.x = 340;
+				IEtext.y = 13;
+				IEtext.name = "IEtext";
+				stage.addChild(IEtext);
+			}
+			else
+			{
+				stage.getChildByName("IEtext").text = infoText;
+			}
+			
+			stage.update();
+		}
+		
+		//updates resource text
+		function updateResources()
+		{
+			//food text
+			if(stage.getChildByName("REfoodNum") == null)
+			{
+				var REfoodNum = new createjs.Text(player.bank.food, "bold 14px Arial", "black");
+				REfoodNum.x = 31;
+				REfoodNum.y = 3;
+				REfoodNum.name = "REfoodNum";
+				stage.addChild(REfoodNum);
+				
+				var foodRateColor = "black";
+				var extraPlus = "";
+				if(player.bank.foodRate > 0)
+				{
+					foodRateColor = "green";
+					extraPlus = "+";
+				}
+				else if(player.bank.foodRate < 0)
+				{
+					foodRateColor = "red";
+				}
+				
+				var REfoodRate = new createjs.Text("(" + extraPlus + player.bank.foodRate + ")", "bold 14px Arial", foodRateColor);
+				REfoodRate.x = REfoodNum.x + REfoodNum.getMeasuredWidth() + 2; 
+				REfoodRate.y = REfoodNum.y;
+				REfoodRate.name = "REfoodRate";
+				stage.addChild(REfoodRate);
+			}
+			else
+			{
+				stage.getChildByName("REfoodNum").text = player.bank.food;
+				
+				var extraPlus = "";
+				if(player.bank.foodRate > 0)
+				{
+					stage.getChildByName("REfoodRate").color = "green";
+					extraPlus = "+";
+				}
+				else if(player.bank.foodRate < 0)
+				{
+					stage.getChildByName("REfoodRate").color = "red";
+				}
+				stage.getChildByName("REfoodRate").text = "(" + extraPlus + player.bank.foodRate + ")";
+				stage.getChildByName("REfoodRate").x = stage.getChildByName("REfoodNum").x + stage.getChildByName("REfoodNum").getMeasuredWidth() + 2;
+			}
+			
+			//timber text
+			if(stage.getChildByName("REtimberNum") == null)
+			{
+				var REtimberNum = new createjs.Text(player.bank.timber + " (+" + player.bank.timberRate + ")", "bold 14px Arial", "black");
+				REtimberNum.x = 130;
+				REtimberNum.y = 3;
+				REtimberNum.name = "REtimberNum";
+				stage.addChild(REtimberNum);
+			}
+			else
+			{
+				stage.getChildByName("REtimberNum").text = player.bank.timber + " (+" + player.bank.timberRate + ")";
+			}
+			
+			//stone text
+			if(stage.getChildByName("REstoneNum") == null)
+			{
+				var REstoneNum = new createjs.Text(player.bank.stone + " (+" + player.bank.stoneRate + ")", "bold 14px Arial", "black");
+				REstoneNum.x = 235;
+				REstoneNum.y = 3;
+				REstoneNum.name = "REstoneNum";
+				stage.addChild(REstoneNum);
+			}
+			else
+			{
+				stage.getChildByName("REstoneNum").text = player.bank.stone + " (+" + player.bank.stoneRate + ")";
+			}
+			
+			//farm counter text
+			if(stage.getChildByName("REfarmNum") == null)
+			{
+				var REfarmNum = new createjs.Text(player.numFarms, "bold 14px Arial", "black");
+				REfarmNum.x = 31;
+				REfarmNum.y = 24;
+				REfarmNum.name = "REfarmNum";
+				stage.addChild(REfarmNum);
+			}
+			else
+			{
+				stage.getChildByName("REfarmNum").text = player.numFarms;
+			}
+			
+			//villager counter text
+			if(stage.getChildByName("REvillagerNum") == null)
+			{
+				var REvillagerNum = new createjs.Text(player.numVillagers, "bold 14px Arial", "black");
+				REvillagerNum.x = 130;
+				REvillagerNum.y = 24;
+				REvillagerNum.name = "REvillagerNum";
+				stage.addChild(REvillagerNum);
+			}
+			else
+			{
+				stage.getChildByName("REvillagerNum").text = player.numVillagers;
+			}
+			
+			//warrior text
+			if(stage.getChildByName("REwarriorNum") == null)
+			{
+				var REwarriorNum = new createjs.Text(player.numWarriors, "bold 14px Arial", "black");
+				REwarriorNum.x = 235;
+				REwarriorNum.y = 24;
+				REwarriorNum.name = "REwarriorNum";
+				stage.addChild(REwarriorNum);
+			}
+			else
+			{
+				stage.getChildByName("REwarriorNum").text = player.numWarriors;
+			}
+			
+			stage.update();
+		}
+		
+		
+		/*----------------------------------------------------------*/
+		/*-------------------display functions----------------------*/
+		
+		//displays movement squares around the specified tile.
+		//only displays squares on tiles that can be moved to.
+		function displayMovementSquares(row,column)
+		{
+			
+			for(var r = row-1; r < row+2; r++)
+			{
+				for(var c = column-1; c < column+2; c++) //lol "c++"
+				{
+					var tile = map[r][c];
+					var enemyObject = getEnemyAt(r,c);
+					if(tile.type != "mountains" && tile.type != "water" && (r != row || c != column))
+					{
+						var movementSquare = new createjs.Shape();
+						if(enemyObject == null)
+						{
+							movementSquare.graphics.beginStroke("blue").drawRect(0, 0, 24, 24);
+						}
+						else
+						{
+							movementSquare.graphics.beginStroke("red").drawRect(0, 0, 24, 24);
+						}
+						movementSquare.x = 24*c;
+						movementSquare.y = 50 + 24*r;
+						movementSquare.name = "movementSquare"+movementSquares.length;
+						stage.addChild(movementSquare);
+						movementSquares.push(movementSquare);
+					}
+				}
+			}
+			stage.update();
+		}
+		
+		//Displays selection box
+		function displaySelectBox(row,column)
+		{
+			if(stage.getChildByName("selectSquare") != null)
+			{
+				stage.getChildByName("selectSquare").x = 24*column;
+				stage.getChildByName("selectSquare").y = 50 + 24*row;
+			}
+			else
+			{
+				var selectSquare = new createjs.Shape();
+				selectSquare.graphics.beginStroke("Black").drawRect(0, 0, 24, 24);
+				selectSquare.x = 24*column;
+				selectSquare.y = 50 + 24*row;
+				selectSquare.name = "selectSquare";
+				stage.addChild(selectSquare);
+			}
+			stage.update();
+		}
+		
+		//displays resource element image
+		function displayResourceElement()
+		{
+			//resource element 
+			resourceElement = new Image();
+			resourceElement.onload = handleRELoad;
+			resourceElement.src = "http://students.cse.tamu.edu/tjb33/assets/sprites/ui/ResourceElement.png";
+		}
+		
+		//displays info box square
+		function displayInfoElement()
+		{
+			//info element
+			var IEsquare = new createjs.Shape();
+			IEsquare.graphics.beginStroke("Black").drawRect(0, 0, 350, 43);
+			IEsquare.x = 325;
+			IEsquare.y = 0;
+			stage.addChild(IEsquare);
+			updateInfoText();
+		}
+		
+		//displays map image
+		function displayMapElement()
+		{
+			//map element
+			mapElement = new Image();
+			mapElement.onload = handleMapLoad;
+			mapElement.src = "http://students.cse.tamu.edu/tjb33/assets/maps/survivorIsland3.png";
+		}
+		
+		//displays end turn button with the specified color
+		function displayEndTurnElement(color)
+		{
+			//end turn element
+			if(stage.getChildByName("ETsquare") != null)
+			{
+				stage.removeChild(stage.getChildByName("ETsquare"));
+				stage.removeChild(stage.getChildByName("ETtext"));
+			}
+			
+			var ETsquare = new createjs.Shape();
+			ETsquare.graphics.beginFill(color).drawRect(0, 0, 100, 43);
+			ETsquare.x = 740;
+			ETsquare.y = 0;
+			ETsquare.name = "ETsquare";
+			
+			ETsquare.on("click", handleETEMouseEvent);
+			ETsquare.on("mouseover", handleETEMouseEvent);
+			ETsquare.on("mouseout", handleETEMouseEvent);
+			
+			stage.addChild(ETsquare);
+			
+			//end turn text
+			var ETtext = new createjs.Text("End Turn", "bold 20px Arial", "black");
+			ETtext.x = 745;
+			ETtext.y = 10;
+			ETtext.name = "ETtext";
+			stage.addChild(ETtext);
+		}
+		
+		//displays turn counter stuff
+		function displayTurnCounterElement(color)
+		{
+			if(stage.getChildByName("TCsquare") != null)
+			{
+				stage.removeChild(stage.getChildByName("TCsquare"));
+				stage.removeChild(stage.getChildByName("TCtital"));
+			}
+			
+			//turn counter
+			var TCsquare = new createjs.Shape();
+			TCsquare.graphics.beginFill(color).drawRect(0, 0, 40, 43);
+			TCsquare.x = stage.getChildByName("ETsquare").x - 40;
+			TCsquare.y = 0;
+			TCsquare.name = "TCsquare";
+			stage.addChild(TCsquare);
+			
+			//turn counter tital
+			var TCtital = new createjs.Text("Turn", "bold 14px Arial", "black");
+			TCtital.x = 704;
+			TCtital.y = 5;
+			TCtital.name = "TCtital";
+			stage.addChild(TCtital);
+			
+			updateTurnNum();
+		}
+		
+		/*----------------------------------------------------------*/
+		/*-------------------init function--------------------------*/
+		
+		//everything starts here
+		function init()
+		{
+			
+			//graphics stage set-up
+			stage = new createjs.Stage("demoCanvas");
+			stage.autoClear = true;
+			stage.enableMouseOver();
+			 
+			displayResourceElement();
+			
+			displayInfoElement();
+			
+			displayMapElement();
+			
+			displayEndTurnElement("lightSlateGrey");
+			
+			displayTurnCounterElement("salmon");
+			
+			stage.update();
+		}
+		
+		/*--------------------------------------------------------------*/
+		/*-------------------mouse event functions----------------------*/
+		
+		//handles End turn mouse events
+		function handleETEMouseEvent(evt)
+		{
+			if(evt.type == "click" && player.onTurn == true)
+			{
+				infoText = "Turn Ended";
+				updateInfoText();
+				
+				//startTurn();
+				endTurn();
+				var messageArray = ["endTurn", player.color];
+				updater(messageArray);
+			}
+			if(evt.type == "mouseover" && player.onTurn == true)
+			{
+				displayEndTurnElement("red");
+				stage.update();
+			}
+			if(evt.type == "mouseout" && player.onTurn == true)
+			{
+				displayEndTurnElement("salmon");
+				stage.update();
+			}
+		}
+		
+		//handles map mouse events.
+		function handleMapMouseEvent(evt) 
+		{
+			//output.text = "evt.target: "+evt.target+", evt.type: "+evt.type;
+			
+			if(evt.type == "click")
+			{
+				var x = evt.stageX - evt.target.x;
+				var y = evt.stageY - evt.target.y;
+				
+				var row = Math.floor(y/24);
+				var column = Math.floor(x/24);
+				
+				//infoText = "Tile:(" + row + "," + column + ")";
+				//updateInfoText();
+				
+				if(selectedObject == null)
+				{
+					//nothing is selected
+					//select object
+					selectObject(row,column);
+				}
+				else
+				{
+					//something is selected
+					if(isUnit(selectedObject) == true)
+					{
+						//if selectedObject is a unit
+						unitHandler(row,column);
+					}
+					else
+					{
+						//if selectedObject is not a unit
+						if(selectedObject.row != row || selectedObject.column != column)
+						{
+							//if selectedObject is not at (row, column)
+							deSelectAll();
+						}
+					}
+				}
+				
+			}
+			
+			//stage.update();
+		}
+		
+		/*-------------------------------------------------------------*/
+		/*-------------------image load functions----------------------*/
+		
+		//loads the resource element image
+		function handleRELoad()
+		{
+			bitmap2 = new createjs.Bitmap(resourceElement);
+			bitmap2.x = 0;
+			bitmap2.y = 0;
+			stage.addChild(bitmap2);
+			updateResources();
+			stage.update();
+		}
+		
+		//loads the map image
+		function handleMapLoad()
+		{
+			bitmap = new createjs.Bitmap(mapElement);
+			bitmap.x = 0;
+			bitmap.y = 50;
+			
+			var mapBackground = new createjs.Shape();
+			mapBackground.graphics.beginFill("white").drawRect(0, 0, 840, 432);
+			mapBackground.x = bitmap.x;
+			mapBackground.y = bitmap.y;
+			mapBackground.name = "mapBackground";
+			mapBackground.on("click", handleMapMouseEvent);
+			
+			stage.addChild(mapBackground);
+			stage.addChild(bitmap);
+			
+			stage.update();
+		}
+		
+		/*----------------------------------------------------------*/
+	
+		function updater(Array)
+		{
+			socket.emit('updater',Array);
+		}
+
+		function reciever(message)
+		{
+			//alert(message);
+			var input = message;
+			//alert(Passer);
+			
+			if(input[0] == "login")
+			{
+				onLoginCommand(input);
+			}
+			else if(input[0] == "move")
+			{
+				//alert('move');
+				moveCommand(input);
+				
+			}
+			else if(input[0] == "createUnit")
+			{
+				createUnitCommand(input);
+			}
+			else if(input[0] == "createStructure")
+			{
+				createStructureCommand(input);
+			}
+			else if(input[0] == "remove")
+			{
+				removeObjectCommand(input);
+			}
+			else if(input[0] == "endTurn")
+			{
+				endTurnCommand(input);
+			}
+			else if(input[0] == "updateUnit")
+			{
+				updateUnitCommand(input);
+			}
+		}
+		
+		function updateUnitCommand(input)
+		{
+			/*
+			message format:
+			{"updateUnit",row,column,unit.id,unit.movementPoints,
+			unit.maxMovementPoints,unit.health,unit.maxHealth,unit.attack,unit.defense}
+			*/
+			
+			//set up stat vars
+			var unit = null;
+			var row = input[1];
+			var column = input[2];
+			var unitID = input[3];
+			var unitMP = input[4];
+			var unitMaxMP = input[5];
+			var unitHealth = input[6];
+			var unitMaxHealth = input[7];
+			var unitAttack = input[8];
+			var unitDefense = input[9];
+			
+			//find unit
+			var tile = map[row][column];
+			
+			for(var i=0;i<tile.stack.length;i++)
+			{
+				if(tile.stack[i].id == unitID)
+				{
+					unit = tile.stack[i];
+					//update unit stats
+					unit.movementPoints = unitMP;
+					unit.maxMovementPoints = unitMaxMP;
+					unit.health = unitHealth;
+					unit.maxHealth = unitMaxHealth;
+					unit.attack = unitAttack;
+					unit.defense = unitDefense;
+					break;
+				}
+			}
+		}
+		
+		function endTurnCommand(input)
+		{
+			//message format: ["endTurn",pastPlayerColor]
+			var color = input[1];
+			if(color == "blue")
+			{
+				if(player.color == "red")
+				{
+					startTurn();
+				}
+			}
+			else if(color == "red")
+			{
+				if(player.color == "blue")
+				{
+					startTurn();
+				}
+			}
+		}
+		
+		function removeObjectCommand(input)
+		{
+			//message format: ["remove", object.id, object.row, object.column]
+			var objectID = input[1];
+			var row = input[2];
+			var column = input[3];
+			
+			var tile = map[row][column];
+			//find object
+			for(var i=0;i<tile.stack.length;i++)
+			{
+				if(tile.stack[i].id == objectID)
+				{
+					//remove object
+					tile.stack[i].remove();
+				}
+			}
+		}
+		
+		function createStructureCommand(input)
+		{
+			//message format: ["createStructure","farm",player.id,structure.id,structure.row,structure.column];
+			var structureType = input[1];
+			var playerID = input[2];
+			var structureID = input[3];
+			var row = input[4];
+			var column = input [5];
+			
+			//find player:
+			for(var i=0;i<players.length;i++)
+			{
+				if(players[i].id == playerID)
+				{
+					//create the structure
+					players[i].createStructure(stage,map,structureType,row,column);
+					players[i].structures[players[i].structures.length-1].id = structureID;
+				}
+			}
+			
+		}
+		
+		function onLoginCommand(input)
+		{
+			//alert('someone has logged in');
+			//message format: ["login",player.id,player.color,player.name];
+			var newPlayer = new Player();
+			newPlayer.id = input[1];
+			newPlayer.color = input[2];
+			newPlayer.name = input[3];
+			
+			//make sure new player is not in players array:
+			for(var i=0;i<players.length;i++)
+			{
+				if(players[i].id == newPlayer.id)
+				{
+					return;
+				}
+			}
+			players.push(newPlayer);
+			
+			//Echo back this player's data:
+			messageArray = ["login",player.id,player.color,player.name];
+			updater(messageArray);
+			
+			//Echo back all this player's units
+			for(var i=0;i<player.units.length;i++)
+			{
+				var unit = player.units[i];
+				messageArray = ["createUnit",unit.type,player.id,unit.id,unit.row,unit.column];
+				updater(messageArray);
+			}
+		}
+		
+		function createUnitCommand(input)
+		{
+			//message format: ["createUnit",unit.type,player.id,unit.id,row,column];
+			
+			unitType = input[1];
+			playerID = input[2];
+			unitID = input[3];
+			unitRow = input[4];
+			unitColumn = input[5];
+			
+			//find player:
+			for(var i=0;i<players.length;i++)
+			{
+				if(players[i].id == playerID)
+				{
+					//create the unit
+					players[i].createUnit(stage,map,unitType,unitRow,unitColumn);
+					players[i].units[players[i].units.length-1].id = unitID;
+				}
+			}
+		}
+		
+		function moveCommand(input)
+		{
+			//alert(input);
+			var unitID = input[1];
+			newRow = input[2];
+			newColumn = input[3];
+			row = input[4];
+			column = input[5];
+			
+			//get unit at row column
+			var tile = map[row][column];
+			var unit = null;
+			for(var i=0;i<tile.stack.length;i++)
+			{
+				if(tile.stack[i].id == unitID)
+				{
+					unit = tile.stack[i];
+					i = tile.stack.length;
+				}
+			}
+			if(unit != null)
+			{
+				unit.move(stage,map,newRow,newColumn);
+			}
+		}
+		
+		function login(message)
+		{
+			//alert(message);
+			if(message == 1)
+			{			
+				//this is player 1 (blue)
+				player.color = "blue";
+				player.onTurn = true;
+				displayEndTurnElement("salmon");
+				displayTurnCounterElement("lightGreen");
+				player.createUnit(stage,map,"villager",5,4);
+				
+				//update color ribbon:
+				document.getElementById("colorRibbon").style.color = player.color;
+				document.getElementById("colorRibbon").innerHTML = player.color+" player";
+				
+				//sendLogin data:
+				messageArray = ["login",player.id,player.color,player.name];
+				updater(messageArray);
+				
+			}
+			else if(message == 2)
+			{
+				//this is player 2 (red)
+				player.color = "red";
+				player.createUnit(stage,map,"villager",5,33);
+				
+				//update info text
+				infoText = "Waiting for other players...";
+				updateInfoText();
+				
+				//update color ribbon:
+				document.getElementById("colorRibbon").style.color = player.color;
+				document.getElementById("colorRibbon").innerHTML = player.color+" player";
+				
+				//sendLogin data:
+				messageArray = ["login",player.id,player.color,player.name];
+				updater(messageArray);
+			}
+		}
+		
+		socket.on('update',reciever);
+		
+		socket.on('ExternalLogin',function(message)
+		{
+			//alert('someone has joined the game!');
+		}
+		);
+		
+		socket.on('welcome',login);
+		
+	</script>
+	
+	<p id="testOutput"></p>
+	<script>
+		function onTileClick()
+		{
+			document.getElementById("testOutput").innerHTML = "TIMMAH!";
+		}
+	</script>
+</head>
+<body onLoad="init();">
+	<canvas id="demoCanvas" width="850" height="500">
+		alternate content
+	</canvas>
+</body>
+</html>

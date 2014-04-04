@@ -1,0 +1,21 @@
+<style>
+	h1 {color:red;}
+	img.food
+	{
+		width:32px;
+		height:32px;
+		background:url(food_icon.png) 0 0;
+	}
+	img.timber
+	{
+		width:32px;
+		height:32px;
+		background:url(timber_icon.png) 0 0;
+	}
+	img.stone
+	{
+		width:32px;
+		height:32px;
+		background:url(stone_icon.png) 0 0;
+	}
+</style>
