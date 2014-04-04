@@ -1,6 +1,7 @@
 
 //objects (they're like classes) (I think) bazinga!
 
+/*
 //Unit/Structure costs"
 var villagerFoodCost = 4;
 var villagerTimberCost = 0;
@@ -41,6 +42,8 @@ var maxVillages = 3;
 
 //error string
 var error = "";
+
+*/
 
 //test class
 var Animal = function()
