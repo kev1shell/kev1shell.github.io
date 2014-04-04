@@ -68,7 +68,8 @@ var Tile = function()
 } 
 */
 
-//Unit object
+/*
+ //Unit object
 var Unit = function()
 {
 	this.id = Math.floor(Math.random()*1000000000);
@@ -257,7 +258,8 @@ var Unit = function()
 		
 	}
 
-}
+} 
+*/
 
 //Structure object
 var Structure = function()
