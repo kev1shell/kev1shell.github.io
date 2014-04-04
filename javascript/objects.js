@@ -334,7 +334,7 @@ var Structure = function()
 } */
 
 //Bank object
-var Bank = function()
+/* var Bank = function()
 {
 	this.food = 10 + villageFoodCost + villagerFoodCost;
 	this.timber = villageTimberCost + villagerTimberCost;
@@ -342,7 +342,7 @@ var Bank = function()
 	this.foodRate = 0;
 	this.timberRate = 0;
 	this.stoneRate = 0;
-}
+} */
 
 //Player object
 var Player = function()
