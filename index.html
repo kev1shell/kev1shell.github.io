@@ -200,6 +200,21 @@
 				messageArray = ["login",player.id,player.color,player.name];
 				updater(messageArray);
 			}
+			else if(message > 2)
+			{
+				//spectate mode
+				
+				//update info text
+				infoText = "spectating";
+				updateInfoText();
+				
+				//update color ribbon:
+				document.getElementById("colorRibbon").innerHTML = "Spectating";
+				
+				//sendLogin data:
+				messageArray = ["login",player.id,player.color,player.name];
+				updater(messageArray);
+			}
 		}
 		
 		socket.on('update',reciever);
