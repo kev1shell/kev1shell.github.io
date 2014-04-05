@@ -455,7 +455,7 @@ function startTurn()
 	
 	//update resources
 	player.bank.food += player.bank.foodRate;
-	if(player.bank.food <= 0)
+	if(player.bank.food < 0)
 	{
 		//PLAYER IS STARVING!!
 		player.bank.food = 0;
