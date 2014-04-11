@@ -17,6 +17,7 @@ var Button = function(_name, _x, _y,_width,_height)
 	this.fontColor = "black";
 	this.onClick = null;
 	this.draw = draw;
+	this.handleButtonEvent = handleButtonEvent;
 	
 	function draw()
 	{
@@ -50,9 +51,9 @@ var Button = function(_name, _x, _y,_width,_height)
 		stage.update();
 	}
 	
-	function handleButtonEvent(evt,source)
+	function handleButtonEvent(evt)
 	{
-		infoText = source.text;
+		infoText = evt.type;
 		updateInfoText();
 		
 		/*
