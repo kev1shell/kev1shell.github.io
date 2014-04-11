@@ -333,6 +333,9 @@ function handleETEMouseEvent(evt)
 {
 	if(evt.type == "click" && player.onTurn == true)
 	{
+		displayEndTurnElement("red");
+		stage.update();
+		
 		infoText = "Turn Ended";
 		updateInfoText();
 		
@@ -340,9 +343,6 @@ function handleETEMouseEvent(evt)
 		endTurn();
 		var messageArray = ["endTurn", player.color];
 		updater(messageArray);
-		
-		displayEndTurnElement("red");
-		stage.update();
 	}
 	if(evt.type == "mouseover" && player.onTurn == true)
 	{
@@ -356,7 +356,7 @@ function handleETEMouseEvent(evt)
 	}
 	if(evt.type == "mousedown" && player.onTurn == true)
 	{
-		displayEndTurnElement("salmon");
+		displayEndTurnElement("darkRed");
 		stage.update();
 	}
 }
