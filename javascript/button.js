@@ -29,8 +29,8 @@ var Button = function(_name, _x, _y,_width,_height)
 		//button shape
 		this.shape = new createjs.Shape();
 		this.shape.graphics.beginFill(this.mouseOutColor).drawRoundRect(0, 0, this.width, this.height, this.cornerRadius);
-		this.shape.x = x;
-		this.shape.y = y;
+		this.shape.x = this.x;
+		this.shape.y = this.y;
 		this.shape.name = this.name;
 		stage.addChild(this.shape);
 		
@@ -46,5 +46,6 @@ var Button = function(_name, _x, _y,_width,_height)
 		this.textShape.name = this.name+"-Text";
 		stage.addChild(this.textShape);
 		
+		stage.update();
 	}
 }
