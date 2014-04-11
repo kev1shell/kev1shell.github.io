@@ -278,7 +278,7 @@ function displayEndTurnElement(color)
 	}
 	
 	var ETsquare = new createjs.Shape();
-	ETsquare.graphics.beginFill(color).drawRoundRect(0, 0, 100, 43);
+	ETsquare.graphics.beginFill(color).drawRoundRect(0, 0, 100, 43,2);
 	ETsquare.x = 740;
 	ETsquare.y = 0;
 	ETsquare.name = "ETsquare";
