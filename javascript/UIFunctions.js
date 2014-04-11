@@ -332,6 +332,9 @@ function displayTurnCounterElement(color)
 //handles End turn mouse events
 function handleETEMouseEvent(evt)
 {
+	infoText = evt.type;
+	updateInfoText();
+	
 	if(evt.type == "click" || evt.type == "mouseup" && player.onTurn == true)
 	{
 		displayEndTurnElement("red");
@@ -357,6 +360,7 @@ function handleETEMouseEvent(evt)
 	}
 	if(evt.type == "mousedown" && player.onTurn == true)
 	{
+		
 		displayEndTurnElement("darkRed");
 		stage.update();
 	}
