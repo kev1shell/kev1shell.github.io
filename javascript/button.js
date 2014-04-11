@@ -41,8 +41,8 @@ var Button = function(_name, _x, _y,_width,_height)
 		
 		//button text shape
 		this.textShape = new createjs.Text(this.text, "bold 20px "+this.fontType, this.fontColor);
-		this.textShape.x = 1+this.x;
-		this.textShape.y = 1+this.y;
+		this.textShape.x = 5+this.x;
+		this.textShape.y = 2+this.y;
 		this.textShape.name = this.name+"-Text";
 		stage.addChild(this.textShape);
 		
