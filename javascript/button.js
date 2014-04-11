@@ -40,7 +40,8 @@ var Button = function(_name, _x, _y,_width,_height)
 		//this.shape.on("pressup", handleETEMouseEvent);
 		
 		//button text shape
-		this.textShape = new createjs.Text(this.text, "bold 20px "+this.fontType, this.fontColor);
+		var fontSize = math.floor(this.textShape.getBounds().height - 4);
+		this.textShape = new createjs.Text(this.text, "bold "+fontSize+"px "+this.fontType, this.fontColor);
 		this.textShape.x = this.x + this.width/2 - this.textShape.getBounds().width/2;
 		this.textShape.y = 2+this.y;
 		this.textShape.name = this.name+"-Text";
