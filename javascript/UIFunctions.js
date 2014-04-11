@@ -287,6 +287,7 @@ function displayEndTurnElement(color)
 	ETsquare.on("mouseover", handleETEMouseEvent);
 	ETsquare.on("mouseout", handleETEMouseEvent);
 	ETsquare.on("mousedown", handleETEMouseEvent);
+	ETsquare.on("mouseup", handleETEMouseEvent);
 	
 	stage.addChild(ETsquare);
 	
