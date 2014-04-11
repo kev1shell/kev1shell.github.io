@@ -34,10 +34,10 @@ var Button = function(_name, _x, _y,_width,_height)
 		this.shape.name = this.name;
 		stage.addChild(this.shape);
 		
-		//this.shape.on("mouseover", handleETEMouseEvent);
-		//this.shape.on("mouseout", handleETEMouseEvent);
-		//this.shape.on("mousedown", handleETEMouseEvent);
-		//this.shape.on("pressup", handleETEMouseEvent);
+		this.shape.on("mouseover", handleButtonEvent);
+		this.shape.on("mouseout", handleButtonEvent);
+		this.shape.on("mousedown", handleButtonEvent);
+		this.shape.on("pressup", handleButtonEvent);
 		
 		//button text shape
 		var fontSize = Math.floor(this.height - 2*this.height/5);
@@ -49,4 +49,47 @@ var Button = function(_name, _x, _y,_width,_height)
 		
 		stage.update();
 	}
+	
+	function handleButtonEvent(evt)
+	{
+		infoText = evt.type;
+		updateInfoText();
+		
+		/*
+		if(evt.type == "pressup" && player.onTurn == true)
+		{
+			displayEndTurnElement("red");
+			stage.update();
+			
+			infoText = "Turn Ended";
+			updateInfoText();
+			
+			//startTurn();
+			endTurn();
+			var messageArray = ["endTurn", player.color];
+			updater(messageArray);
+		}
+		if(evt.type == "mouseover" && player.onTurn == true)
+		{
+			displayEndTurnElement("red");
+			stage.update();
+		}
+		if(evt.type == "mouseout" && player.onTurn == true)
+		{
+			displayEndTurnElement("salmon");
+			stage.update();
+		}
+		if(evt.type == "mousedown" && player.onTurn == true)
+		{
+			
+			displayEndTurnElement("darkRed");
+			stage.update();
+		}
+		*/
+	}
 }
+
+
+
+
+
