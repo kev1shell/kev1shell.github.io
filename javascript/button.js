@@ -53,9 +53,11 @@ var Button = function(_name, _x, _y,_width,_height)
 	
 	function handleButtonEvent(evt)
 	{
-		infoText = this.text;
+		
+		infoText = evt.type;
 		updateInfoText();
 		
+		return evt;
 		/*
 		if(evt.type == "pressup" && player.onTurn == true)
 		{
