@@ -43,7 +43,7 @@ var Button = function(_name, _x, _y,_width,_height)
 		var fontSize = this.height - 20;
 		this.textShape = new createjs.Text(this.text, "bold "+fontSize+"px "+this.fontType, this.fontColor);
 		this.textShape.x = this.x + this.width/2 - this.textShape.getBounds().width/2;
-		this.textShape.y = 2+this.y;
+		this.textShape.y = 5+this.y;
 		this.textShape.name = this.name+"-Text";
 		stage.addChild(this.textShape);
 		
