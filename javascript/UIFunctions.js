@@ -164,6 +164,22 @@ function updateResources()
 	stage.update();
 }
 
+/*----------------------------------------------------------*/
+/*-------------------display screen----------------------*/
+function displayGameScreen()
+{
+	displayResourceElement();
+			
+	displayInfoElement();
+	
+	displayMapElement();
+	
+	displayEndTurnElement("lightSlateGrey");
+	
+	displayTurnCounterElement("salmon");
+	
+	stage.update();
+}
 
 /*----------------------------------------------------------*/
 /*-------------------display functions----------------------*/
