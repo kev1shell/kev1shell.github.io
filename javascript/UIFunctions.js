@@ -336,7 +336,7 @@ function handleETEMouseEvent(evt)
 	infoText = evt.type;
 	updateInfoText();
 	
-	if(evt.type == "click" || evt.type == "mouseup" && player.onTurn == true)
+	if(evt.type == "click" || evt.type == "mouseup" || evt.type == "pressup" && player.onTurn == true)
 	{
 		displayEndTurnElement("red");
 		stage.update();
