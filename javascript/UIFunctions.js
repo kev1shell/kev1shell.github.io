@@ -286,6 +286,7 @@ function displayEndTurnElement(color)
 	ETsquare.on("click", handleETEMouseEvent);
 	ETsquare.on("mouseover", handleETEMouseEvent);
 	ETsquare.on("mouseout", handleETEMouseEvent);
+	ETsquare.on("mousedown", handleETEMouseEvent);
 	
 	stage.addChild(ETsquare);
 	
@@ -339,6 +340,9 @@ function handleETEMouseEvent(evt)
 		endTurn();
 		var messageArray = ["endTurn", player.color];
 		updater(messageArray);
+		
+		displayEndTurnElement("red");
+		stage.update();
 	}
 	if(evt.type == "mouseover" && player.onTurn == true)
 	{
@@ -346,6 +350,11 @@ function handleETEMouseEvent(evt)
 		stage.update();
 	}
 	if(evt.type == "mouseout" && player.onTurn == true)
+	{
+		displayEndTurnElement("salmon");
+		stage.update();
+	}
+	if(evt.type == "mousedown" && player.onTurn == true)
 	{
 		displayEndTurnElement("salmon");
 		stage.update();
