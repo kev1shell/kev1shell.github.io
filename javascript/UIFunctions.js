@@ -14,7 +14,7 @@ function updateTurnNum()
 	}
 	
 	var TCtext = new createjs.Text(turnNum, "bold 14px Arial", "black");
-	TCtext.x = 704;
+	TCtext.x = stage.getChildByName("TCtital").x + 1;
 	TCtext.y = 20;
 	TCtext.name = "TCtext";
 	stage.addChild(TCtext);
@@ -309,14 +309,14 @@ function displayTurnCounterElement(color)
 	//turn counter
 	var TCsquare = new createjs.Shape();
 	TCsquare.graphics.beginFill(color).drawRoundRect(0, 0, 40, 43, 10);
-	TCsquare.x = stage.getChildByName("ETsquare").x - 40;
+	TCsquare.x = stage.getChildByName("ETsquare").x - 45;
 	TCsquare.y = 0;
 	TCsquare.name = "TCsquare";
 	stage.addChild(TCsquare);
 	
 	//turn counter tital
 	var TCtital = new createjs.Text("Turn", "bold 14px Arial", "black");
-	TCtital.x = 704;
+	TCtital.x = stage.getChildByName("TCsquare").x + 5;
 	TCtital.y = 5;
 	TCtital.name = "TCtital";
 	stage.addChild(TCtital);
