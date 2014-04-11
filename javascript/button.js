@@ -53,7 +53,7 @@ var Button = function(_name, _x, _y,_width,_height)
 	
 	function handleButtonEvent(evt)
 	{
-		infoText = evt.type;
+		infoText = this.text;
 		updateInfoText();
 		
 		/*
