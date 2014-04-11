@@ -1,4 +1,7 @@
 //button class
+
+var Event = null;
+
 var Button = function(_name, _x, _y,_width,_height)
 {
 	this.name = _name; 
@@ -57,7 +60,7 @@ var Button = function(_name, _x, _y,_width,_height)
 		infoText = evt.type;
 		updateInfoText();
 		
-		return evt;
+		Event = evt;
 		/*
 		if(evt.type == "pressup" && player.onTurn == true)
 		{
