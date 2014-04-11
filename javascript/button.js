@@ -50,9 +50,9 @@ var Button = function(_name, _x, _y,_width,_height)
 		stage.update();
 	}
 	
-	function handleButtonEvent(evt)
+	function handleButtonEvent(evt,source)
 	{
-		infoText = evt.type;
+		infoText = source.text;
 		updateInfoText();
 		
 		/*
