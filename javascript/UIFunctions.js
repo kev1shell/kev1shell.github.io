@@ -333,8 +333,6 @@ function displayTurnCounterElement(color)
 //handles End turn mouse events
 function handleETEMouseEvent(evt)
 {
-	infoText = evt.type;
-	updateInfoText();
 	
 	if(evt.type == "click" || evt.type == "mouseup" || evt.type == "pressup" && player.onTurn == true)
 	{
