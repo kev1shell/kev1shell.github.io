@@ -188,7 +188,7 @@ function displayDemoMainMenu()
 	
 	backgroundImage.onload = function()
 							{
-								var backgroundShape = new creatjs.Bitmap(this);
+								var backgroundShape = new createjs.Bitmap(this);
 								backgroundShape.x = 0;
 								backgroundShape.y = 0;
 								backgroundShape.name = "demoMainBackground";
