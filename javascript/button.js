@@ -24,13 +24,18 @@ var Button = function(_name, _x, _y,_width,_height)
 		var inputFilter = null;
 		inputFilter = typeof(input);
 		
+		var color = this.mouseOutColor;
+		
 		if(inputFilter == "undefined")
 		{
 			infoText = "TIMMAH!";
 			updateInfoText();
+			
 		}
-		return;
-		if(typeof(color)==='undefined') color = this.mouseOutColor;
+		else
+		{
+			color = input;
+		}
 		
 		if(stage.getChildByName(this.name) != null)
 		{
