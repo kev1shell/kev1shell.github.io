@@ -19,6 +19,12 @@ var Button = function(_name, _x, _y,_width,_height)
 	this.draw = draw;
 	this.handleButtonEvent = handleButtonEvent;
 	
+	function derp()
+	{
+		infoText = "derp";
+		updateInfoText();
+	}
+	
 	function draw(input)
 	{
 		var inputFilter = null;
@@ -36,7 +42,7 @@ var Button = function(_name, _x, _y,_width,_height)
 		{
 			color = input;
 		}
-		
+		return;
 		if(stage.getChildByName(this.name) != null)
 		{
 			stage.removeChild(stage.getChildByName(this.name));
