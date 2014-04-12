@@ -1,7 +1,4 @@
 //button class
-
-var Test = null;
-
 var Button = function(_name, _x, _y,_width,_height)
 {
 	this.name = _name; 
@@ -24,15 +21,9 @@ var Button = function(_name, _x, _y,_width,_height)
 	
 	function draw(color)
 	{
-		Test = typeof(color);
+		var type = typeof(color);
 		
-		if(Test == "undefined")
-		{
-			infoText = "TIMMAH!";
-			updateInfoText();
-		}
-		return;
-		if(typeof(color)==='undefined') color = this.mouseOutColor;
+		if(type == "undefined") color = this.mouseOutColor;
 		
 		if(stage.getChildByName(this.name) != null)
 		{
