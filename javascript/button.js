@@ -63,7 +63,7 @@ var Button = function(_name, _x, _y,_width,_height)
 		
 		
 		infoText = evt.type;
-		displayInfoText();
+		updateInfoText();
 		
 		if(evt.type == "pressup")
 		{
