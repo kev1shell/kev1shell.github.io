@@ -13,6 +13,7 @@ var Button = function(_name, _x, _y,_width,_height)
 	this.height = _height;
 	this.shape = null;
 	this.textShape = null;
+	this.outlineshape = null;
 	this.fontType = "Arial";
 	this.fontColor = "black";
 	this.onClick = null;
@@ -30,6 +31,7 @@ var Button = function(_name, _x, _y,_width,_height)
 		{
 			stage.removeChild(stage.getChildByName(this.name));
 			stage.removeChild(stage.getChildByName(this.name+"-Text"));
+			stage.removeChild(stage.getChildByName(this.name+"-Outline"));
 		}
 		
 		//button shape
@@ -41,6 +43,7 @@ var Button = function(_name, _x, _y,_width,_height)
 		this.shape.parentButton = this;
 		stage.addChild(this.shape);
 		
+		//event listeners
 		this.shape.on("mouseover", handleButtonEvent);
 		this.shape.on("mouseout", handleButtonEvent);
 		this.shape.on("mousedown", handleButtonEvent);
@@ -53,6 +56,15 @@ var Button = function(_name, _x, _y,_width,_height)
 		this.textShape.y = -this.height/15 + this.y + this.height/2 - this.textShape.getBounds().height/2;
 		this.textShape.name = this.name+"-Text";
 		stage.addChild(this.textShape);
+		
+		//button outline
+		this.outlineshape = new createjs.Shape();
+		this.outlineshape.graphics.beginStroke("Black").drawRoundRect(0, 0, this.width, this.height, this.cornerRadius);
+		this.outlineshape.x = this.x;
+		this.outlineshape.y = this.y;
+		this.outlineshape.name = this.name+"-Outline";
+		this.outlineshape.parentButton = this;
+		stage.addChild(this.outlineshape);
 		
 		stage.update();
 	}

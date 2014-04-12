@@ -181,6 +181,11 @@ function displayGameScreen()
 	stage.update();
 }
 
+function displayDemoMainMenu()
+{
+	
+}
+
 /*----------------------------------------------------------*/
 /*-------------------display functions----------------------*/
 
