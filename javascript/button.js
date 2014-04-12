@@ -21,15 +21,15 @@ var Button = function(_name, _x, _y,_width,_height)
 	
 	function draw(input)
 	{
-		var inputFilter = null;
-		var color = this.mouseOutColor;
-		inputFilter = typeof(input);
+		var derp = null;
+		derp = typeof(input);
 		
-		if(inputFilter != "undefined")
+		if(derp == "undefined")
 		{
-			color = input;
+			infoText = "TIMMAH!";
+			updateInfoText();
 		}
-		
+		return;
 		if(typeof(color)==='undefined') color = this.mouseOutColor;
 		
 		if(stage.getChildByName(this.name) != null)
