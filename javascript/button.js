@@ -1,7 +1,4 @@
 //button class
-
-var flag = 0;
-
 var Button = function(_name, _x, _y,_width,_height)
 {
 	this.name = _name; 
@@ -22,30 +19,12 @@ var Button = function(_name, _x, _y,_width,_height)
 	this.draw = draw;
 	this.handleButtonEvent = handleButtonEvent;
 	
-	function derp()
+	function draw(color)
 	{
-		infoText = "derp";
-		updateInfoText();
-	}
-	
-	function draw(input)
-	{
-		var inputFilter = null;
-		inputFilter = typeof(input);
-		
-		var color = this.mouseOutColor;
-		
-		if(inputFilter == "undefined")
+		if(typeof(color) == "undefined")
 		{
-			infoText = "TIMMAH!";
-			updateInfoText();
-			
+			color = this.mouseOutColor;
 		}
-		else
-		{
-			//color = input;
-		}
-		flag = 1;
 		
 		if(stage.getChildByName(this.name) != null)
 		{
@@ -53,28 +32,19 @@ var Button = function(_name, _x, _y,_width,_height)
 			stage.removeChild(stage.getChildByName(this.name+"-Text"));
 		}
 		
-		flag = 2;
 		//button shape
 		this.shape = new createjs.Shape();
-		flag = 2.1;
 		this.shape.graphics.beginFill(color).drawRoundRect(0, 0, this.width, this.height, this.cornerRadius);
-		flag = 2.2;
 		this.shape.x = this.x;
-		flag = 2.3;
 		this.shape.y = this.y;
-		flag = 2.4;
 		this.shape.name = this.name;
-		flag = 2.5;
 		this.shape.parentButton = this;
-		flag = 2.6;
 		stage.addChild(this.shape);
 		
-		flag = 3;
-		
-		//this.shape.on("mouseover", handleButtonEvent);
-		//this.shape.on("mouseout", handleButtonEvent);
-		//this.shape.on("mousedown", handleButtonEvent);
-		//this.shape.on("pressup", handleButtonEvent);
+		this.shape.on("mouseover", handleButtonEvent);
+		this.shape.on("mouseout", handleButtonEvent);
+		this.shape.on("mousedown", handleButtonEvent);
+		this.shape.on("pressup", handleButtonEvent);
 		
 		//button text shape
 		var fontSize = Math.floor(this.height - 2*this.height/5);
@@ -84,14 +54,12 @@ var Button = function(_name, _x, _y,_width,_height)
 		this.textShape.name = this.name+"-Text";
 		stage.addChild(this.textShape);
 		
-		flag = 4;
-		
 		stage.update();
 	}
 	
 	function handleButtonEvent(evt)
 	{
-		var sourceButton = evt.currentTarget.parent;
+		var sourceButton = evt.currentTarget.parentButton;
 		
 		
 		infoText = evt.type;
