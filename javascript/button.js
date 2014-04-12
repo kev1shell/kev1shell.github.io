@@ -19,12 +19,18 @@ var Button = function(_name, _x, _y,_width,_height)
 	this.draw = draw;
 	this.handleButtonEvent = handleButtonEvent;
 	
-	function draw(givenColor)
+	function draw(input)
 	{
-		var color = null;
+		var derp = null;
+		derp = typeof(input);
 		
-		if(typeof(givenColor)=="undefined") color = this.mouseOutColor;
-		else color = givenColor;
+		if(derp == "undefined")
+		{
+			infoText = "TIMMAH!";
+			updateInfoText();
+		}
+		return;
+		if(typeof(color)==='undefined') color = this.mouseOutColor;
 		
 		if(stage.getChildByName(this.name) != null)
 		{
