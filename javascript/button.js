@@ -65,7 +65,7 @@ var Button = function(_name, _x, _y,_width,_height)
 		flag = 2.4;
 		this.shape.name = this.name;
 		flag = 2.5;
-		this.shape.parent = this;
+		//this.shape.parent = this;
 		flag = 2.6;
 		stage.addChild(this.shape);
 		
