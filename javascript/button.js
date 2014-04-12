@@ -21,10 +21,10 @@ var Button = function(_name, _x, _y,_width,_height)
 	
 	function draw(input)
 	{
-		var derp = null;
-		derp = typeof(input);
+		var inputFilter = null;
+		inputFilter = typeof(input);
 		
-		if(derp == "undefined")
+		if(inputFilter == "undefined")
 		{
 			infoText = "TIMMAH!";
 			updateInfoText();
