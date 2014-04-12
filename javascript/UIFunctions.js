@@ -183,7 +183,19 @@ function displayGameScreen()
 
 function displayDemoMainMenu()
 {
+	var backgroundImage = new Image();
+	backgroundImage.src = "http://students.cse.tamu.edu/tjb33/assets/maps/survivorIsland3.png"
 	
+	backgroundImage.onload = function()
+							{
+								var backgroundShape = new creatjs.Bitmap(this);
+								backgroundShape.x = 0;
+								backgroundShape.y = 0;
+								backgroundShape.name = "demoMainBackground";
+								stage.addChild(backgroundShape);
+								
+								stage.update();
+							}
 }
 
 /*----------------------------------------------------------*/
