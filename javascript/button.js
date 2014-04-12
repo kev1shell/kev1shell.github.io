@@ -24,7 +24,9 @@ var Button = function(_name, _x, _y,_width,_height)
 	
 	function draw(color)
 	{
-		if(typeof(color)=='undefined') color = this.mouseOutColor;
+		Test = typeof(color);
+		return;
+		if(typeof(color)==='undefined') color = this.mouseOutColor;
 		
 		if(stage.getChildByName(this.name) != null)
 		{
