@@ -40,9 +40,9 @@ var Button = function(_name, _x, _y,_width,_height)
 		}
 		else
 		{
-			color = input;
+			//color = input;
 		}
-		return;
+		//return;
 		if(stage.getChildByName(this.name) != null)
 		{
 			stage.removeChild(stage.getChildByName(this.name));
@@ -58,10 +58,10 @@ var Button = function(_name, _x, _y,_width,_height)
 		this.shape.parent = this;
 		stage.addChild(this.shape);
 		
-		this.shape.on("mouseover", handleButtonEvent);
-		this.shape.on("mouseout", handleButtonEvent);
-		this.shape.on("mousedown", handleButtonEvent);
-		this.shape.on("pressup", handleButtonEvent);
+		//this.shape.on("mouseover", handleButtonEvent);
+		//this.shape.on("mouseout", handleButtonEvent);
+		//this.shape.on("mousedown", handleButtonEvent);
+		//this.shape.on("pressup", handleButtonEvent);
 		
 		//button text shape
 		var fontSize = Math.floor(this.height - 2*this.height/5);
