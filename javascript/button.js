@@ -56,11 +56,17 @@ var Button = function(_name, _x, _y,_width,_height)
 		flag = 2;
 		//button shape
 		this.shape = new createjs.Shape();
+		flag = 2.1;
 		this.shape.graphics.beginFill(color).drawRoundRect(0, 0, this.width, this.height, this.cornerRadius);
+		flag = 2.2;
 		this.shape.x = this.x;
+		flag = 2.3;
 		this.shape.y = this.y;
+		flag = 2.4;
 		this.shape.name = this.name;
+		flag = 2.5;
 		this.shape.parent = this;
+		flag = 2.6;
 		stage.addChild(this.shape);
 		
 		flag = 3;
