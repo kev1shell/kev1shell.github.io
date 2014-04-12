@@ -1,7 +1,5 @@
 //button class
 
-var Event = null;
-
 var Button = function(_name, _x, _y,_width,_height)
 {
 	this.name = _name; 
@@ -22,8 +20,10 @@ var Button = function(_name, _x, _y,_width,_height)
 	this.draw = draw;
 	this.handleButtonEvent = handleButtonEvent;
 	
-	function draw()
+	function draw(color)
 	{
+		 if(typeof(color)==='undefined') color = mouseOutColor;
+		
 		if(stage.getChildByName(this.name) != null)
 		{
 			stage.removeChild(stage.getChildByName(this.name));
@@ -32,10 +32,11 @@ var Button = function(_name, _x, _y,_width,_height)
 		
 		//button shape
 		this.shape = new createjs.Shape();
-		this.shape.graphics.beginFill(this.mouseOutColor).drawRoundRect(0, 0, this.width, this.height, this.cornerRadius);
+		this.shape.graphics.beginFill(color).drawRoundRect(0, 0, this.width, this.height, this.cornerRadius);
 		this.shape.x = this.x;
 		this.shape.y = this.y;
 		this.shape.name = this.name;
+		this.shape.parent = this;
 		stage.addChild(this.shape);
 		
 		this.shape.on("mouseover", handleButtonEvent);
@@ -56,42 +57,32 @@ var Button = function(_name, _x, _y,_width,_height)
 	
 	function handleButtonEvent(evt)
 	{
+		var sourceButton = evt.currentTarget.parent;
+		
 		
 		infoText = evt.type;
-		updateInfoText();
+		displayInfoText();
 		
-		Event = evt;
-		/*
-		if(evt.type == "pressup" && player.onTurn == true)
+		if(evt.type == "pressup")
 		{
-			displayEndTurnElement("red");
-			stage.update();
+			sourceButton.draw(sourceButton.mouseInColor);
 			
-			infoText = "Turn Ended";
-			updateInfoText();
-			
-			//startTurn();
-			endTurn();
-			var messageArray = ["endTurn", player.color];
-			updater(messageArray);
+			//call onClick function
+			sourceButton.onClick();
 		}
-		if(evt.type == "mouseover" && player.onTurn == true)
+		if(evt.type == "mouseover")
 		{
-			displayEndTurnElement("red");
-			stage.update();
+			sourceButton.draw(sourceButton.mouseInColor);
 		}
-		if(evt.type == "mouseout" && player.onTurn == true)
+		if(evt.type == "mouseout")
 		{
-			displayEndTurnElement("salmon");
-			stage.update();
+			sourceButton.draw(sourceButton.mouseOutColor);
 		}
-		if(evt.type == "mousedown" && player.onTurn == true)
+		if(evt.type == "mousedown")
 		{
-			
-			displayEndTurnElement("darkRed");
-			stage.update();
+			sourceButton.draw(sourceButton.mouseDownColor);
 		}
-		*/
+		
 	}
 }
 
