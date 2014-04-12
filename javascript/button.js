@@ -1,4 +1,7 @@
 //button class
+
+var flag = 0;
+
 var Button = function(_name, _x, _y,_width,_height)
 {
 	this.name = _name; 
@@ -42,13 +45,15 @@ var Button = function(_name, _x, _y,_width,_height)
 		{
 			//color = input;
 		}
-		//return;
+		flag = 1;
+		
 		if(stage.getChildByName(this.name) != null)
 		{
 			stage.removeChild(stage.getChildByName(this.name));
 			stage.removeChild(stage.getChildByName(this.name+"-Text"));
 		}
 		
+		flag = 2;
 		//button shape
 		this.shape = new createjs.Shape();
 		this.shape.graphics.beginFill(color).drawRoundRect(0, 0, this.width, this.height, this.cornerRadius);
@@ -57,6 +62,8 @@ var Button = function(_name, _x, _y,_width,_height)
 		this.shape.name = this.name;
 		this.shape.parent = this;
 		stage.addChild(this.shape);
+		
+		flag = 3;
 		
 		//this.shape.on("mouseover", handleButtonEvent);
 		//this.shape.on("mouseout", handleButtonEvent);
@@ -70,6 +77,8 @@ var Button = function(_name, _x, _y,_width,_height)
 		this.textShape.y = -this.height/15 + this.y + this.height/2 - this.textShape.getBounds().height/2;
 		this.textShape.name = this.name+"-Text";
 		stage.addChild(this.textShape);
+		
+		flag = 4;
 		
 		stage.update();
 	}
