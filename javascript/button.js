@@ -61,10 +61,6 @@ var Button = function(_name, _x, _y,_width,_height)
 	{
 		var sourceButton = evt.currentTarget.parentButton;
 		
-		
-		infoText = evt.type;
-		updateInfoText();
-		
 		if(evt.type == "pressup")
 		{
 			sourceButton.draw(sourceButton.mouseInColor);
