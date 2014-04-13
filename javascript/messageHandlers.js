@@ -126,12 +126,12 @@ function onLoginCommand(input)
 	updater(messageArray);
 	
 	//Echo back all this player's units
-	for(var i=0;i<player.units.length;i++)
+	/* for(var i=0;i<player.units.length;i++)
 	{
 		var unit = player.units[i];
 		messageArray = ["createUnit",unit.type,player.id,unit.id,unit.row,unit.column];
 		updater(messageArray);
-	}
+	} */
 }
 
 function createUnitCommand(input)

@@ -162,11 +162,19 @@
 				//this is player 1 (blue)
 				player.color = "blue";
 				
+				//sendLogin data:
+				messageArray = ["login",player.id,player.color,player.name];
+				updater(messageArray);
+				
 			}
 			else if(message == 2)
 			{
 				//this is player 2 (red)
 				player.color = "red";
+				
+				//sendLogin data:
+				messageArray = ["login",player.id,player.color,player.name];
+				updater(messageArray);
 			}
 			else if(message > 2)
 			{
