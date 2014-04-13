@@ -210,7 +210,7 @@ function displayDemoMainMenu()
 	titalText.name = "titalText";
 	
 	//start game button
-	var StartGameButton = new Button("StartGameButton",338,200,175,50);
+	var StartGameButton = new Button("StartGameButton",338,170,175,50);
 	StartGameButton.text = "Start Game";
 	StartGameButton.onClick = startGame;
 	
