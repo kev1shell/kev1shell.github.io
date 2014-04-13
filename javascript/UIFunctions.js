@@ -210,9 +210,12 @@ function displayDemoMainMenu()
 	titalText.name = "titalText";
 	
 	//start game button
-	var StartGameButton = new Button("StartGameButton",338,170,175,50);
-	StartGameButton.text = "Start Game";
-	StartGameButton.onClick = startGame;
+	var StartGameButton = new Button("StartGameButton",338,170,175,50); //constructor: (name,x,y,width,height)
+	StartGameButton.text = "Start Game";//the text on the button
+	StartGameButton.mouseOutColor = "yellow";
+	StartGameButton.mouseInColor = "gold";
+	StartGameButton.mouseDownColor = "orange";
+	StartGameButton.onClick = startGame;//function that the button calls when clicked.
 	
 	var backgroundImage = new Image();
 	backgroundImage.src = "http://students.cse.tamu.edu/tjb33/assets/maps/survivorIsland3.png"
