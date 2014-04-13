@@ -80,15 +80,15 @@ var Button = function(_name, _x, _y,_width,_height)
 			//call onClick function
 			sourceButton.onClick();
 		}
-		if(evt.type == "mouseover")
+		if(evt.type == "mouseover" && stage.getChildByName(sourceButton.shape.name) != null)
 		{
 			sourceButton.draw(sourceButton.mouseInColor);
 		}
-		if(evt.type == "mouseout")
+		if(evt.type == "mouseout" && stage.getChildByName(sourceButton.shape.name) != null)
 		{
 			sourceButton.draw(sourceButton.mouseOutColor);
 		}
-		if(evt.type == "mousedown")
+		if(evt.type == "mousedown" && stage.getChildByName(sourceButton.shape.name) != null)
 		{
 			sourceButton.draw(sourceButton.mouseDownColor);
 		}
