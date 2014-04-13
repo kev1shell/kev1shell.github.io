@@ -73,7 +73,7 @@ function organizeChildren()
 	{
 		var name = children[i].name;
 		
-		if(typeof(name) == "undefined")
+		if(name == null || typeof(name) == "undefined")
 		{
 			continue;
 		}
