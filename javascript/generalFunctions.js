@@ -3,6 +3,69 @@
 
 //called by one client and FORCES all other clients to start the game.
 //Only ONE client should call this function.
+function organizeChildren()
+{
+	var children = [];
+	children = stage.children;
+	
+	//remove all
+	stage.removeAllChildren();
+	
+	//add everything that is not a unit, structure, or selection object
+	for(var i=0;i<children.length;i++)
+	{
+		var name = children[i].name;
+		
+		if(typeof(name) == "undefined")
+		{
+			stage.addChild(children[i]);
+			continue;
+		}
+		
+		if(name.indexOf("villager") == -1 && name.indexOf("warrior") == -1)
+		{
+			if(name.indexOf("farm") == -1 && name.indexOf("village") == -1)
+			{
+				if(name.indexOf("movementSquare") == -1 && name.indexOf("selectSquare") == -1)
+				{
+					stage.addChild(children[i]);
+					continue;
+				}
+			}
+		}
+	}
+	
+	//add structures
+	for(var i=0;i<children.length;i++)
+	{
+		var name = children[i].name;
+		if(name.indexOf("village") > 0 || name.indexOf("farm") > 0)
+		{
+			stage.addChild(children[i]);
+		}
+	}
+	
+	//add units
+	for(var i=0;i<children.length;i++)
+	{
+		var name = children[i].name;
+		if(name.indexOf("villager") > 0 || name.indexOf("warrior") > 0)
+		{
+			stage.addChild(children[i]);
+		}
+	}
+	
+	//add selection objects if they exist
+	for(var i=0;i<children.length;i++)
+	{
+		var name = children[i].name;
+		if(name.indexOf("movementSquare") > 0 || name.indexOf("selectSquare") > 0)
+		{
+			stage.addChild(children[i]);
+		}
+	}
+}
+
 function startGame()
 {
 	displayGameScreen();

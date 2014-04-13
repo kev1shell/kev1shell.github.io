@@ -24,6 +24,9 @@ var Player = function()
 		{
 			createWarrior(stage, map, this, row, column);
 		}
+		
+		//organize children
+		organizeChildren();
 	}
 	
 	function createStructure(stage, map, structureType, row, column)
@@ -36,6 +39,8 @@ var Player = function()
 		{
 			createVillage(stage, map, this, row, column);
 		}
+		//organize children
+		organizeChildren();
 	}
 	
 	function createVillage(stage, map, player, row, column)
