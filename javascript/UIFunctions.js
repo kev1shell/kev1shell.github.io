@@ -206,6 +206,10 @@ function displayDemoMainMenu()
 	var backgroundImage = new Image();
 	backgroundImage.src = "http://students.cse.tamu.edu/tjb33/assets/maps/survivorIsland3.png"
 	
+	var StartGameButton = new Button("StartGameButton",100,100,100,50);
+	StartGameButton.text = "Start Game";
+	StartGameButton.onClick = startGame;
+	
 	backgroundImage.onload = function()
 							{
 								var backgroundShape = new createjs.Bitmap(this);
@@ -214,13 +218,11 @@ function displayDemoMainMenu()
 								backgroundShape.name = "demoMainBackground";
 								stage.addChild(backgroundShape);
 								
+								StartGameButton.draw();
+								
 								stage.update();
 							}
 	
-	var StartGameButton = new Button("StartGameButton",100,100,100,50);
-	StartGameButton.text = "Start Game";
-	StartGameButton.onClick = startGame;
-	StartGameButton.draw();
 }
 
 /*----------------------------------------------------------*/
