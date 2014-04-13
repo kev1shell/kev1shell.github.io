@@ -6,19 +6,20 @@
 function organizeChildren()
 {
 	var children = [];
+	var result = [];
 	children = stage.children;
 	
 	//remove all
-	stage.removeAllChildren();
+	//stage.removeAllChildren();
 	
 	//add everything that is not a unit, structure, or selection object
 	for(var i=0;i<children.length;i++)
 	{
 		var name = children[i].name;
 		
-		if(typeof(name) == "undefined")
+		if(name == null || typeof(name) == "undefined")
 		{
-			stage.addChild(children[i]);
+			result.push(children[i]);
 			continue;
 		}
 		
@@ -28,7 +29,7 @@ function organizeChildren()
 			{
 				if(name.indexOf("movementSquare") == -1 && name.indexOf("selectSquare") == -1)
 				{
-					stage.addChild(children[i]);
+					result.push(children[i]);
 					continue;
 				}
 			}
@@ -40,14 +41,14 @@ function organizeChildren()
 	{
 		var name = children[i].name;
 		
-		if(typeof(name) == "undefined")
+		if(name == null || typeof(name) == "undefined")
 		{
 			continue;
 		}
 		
 		if(name.indexOf("village") > 0 || name.indexOf("farm") > 0)
 		{
-			stage.addChild(children[i]);
+			result.push(children[i]);
 		}
 	}
 	
@@ -56,14 +57,14 @@ function organizeChildren()
 	{
 		var name = children[i].name;
 		
-		if(typeof(name) == "undefined")
+		if(name == null || typeof(name) == "undefined")
 		{
 			continue;
 		}
 		
 		if(name.indexOf("villager") > 0 || name.indexOf("warrior") > 0)
 		{
-			stage.addChild(children[i]);
+			result.push(children[i]);
 		}
 	}
 	
@@ -79,9 +80,11 @@ function organizeChildren()
 		
 		if(name.indexOf("movementSquare") > 0 || name.indexOf("selectSquare") > 0)
 		{
-			stage.addChild(children[i]);
+			result.push(children[i]);
 		}
 	}
+	
+	stage.children = result;
 	
 	//update the stage
 	stage.update();
