@@ -78,7 +78,7 @@ function organizeChildren()
 			continue;
 		}
 		
-		if(name.indexOf("movementSquare") > 0 || name.indexOf("selectSquare") > 0)
+		if(name.indexOf("movementSquare") >= 0 || name.indexOf("selectSquare") >= 0)
 		{
 			result.push(children[i]);
 		}
