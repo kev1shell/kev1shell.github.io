@@ -219,7 +219,7 @@ function displayDemoMainMenu()
 	
 	var StartGameButton = new Button("StartGameButton",100,100,100,50);
 	StartGameButton.text = "Start Game";
-	StartGameButton.onClick = startGame();
+	StartGameButton.onClick = startGame;
 	StartGameButton.draw();
 }
 
