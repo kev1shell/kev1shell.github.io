@@ -46,6 +46,15 @@ function updateInfoText()
 //updates resource text
 function updateResources()
 {
+	stage.removeChild(stage.getChildByName("REfoodNum"));
+	stage.removeChild(stage.getChildByName("REfoodRate"));
+	stage.removeChild(stage.getChildByName("REtimberNum"));
+	stage.removeChild(stage.getChildByName("REstoneNum"));
+	stage.removeChild(stage.getChildByName("REfarmNum"));
+	stage.removeChild(stage.getChildByName("REvillagerNum"));
+	stage.removeChild(stage.getChildByName("REwarriorNum"));
+	
+	
 	//food text
 	if(stage.getChildByName("REfoodNum") == null)
 	{
