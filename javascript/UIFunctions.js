@@ -203,12 +203,19 @@ function displayGameScreen()
 
 function displayDemoMainMenu()
 {
-	var backgroundImage = new Image();
-	backgroundImage.src = "http://students.cse.tamu.edu/tjb33/assets/maps/survivorIsland3.png"
+	//some text
+	var titalText = new createjs.Text("Village Wars", "bold 24px Arial", "black");
+	titalText.x = 10;
+	titalText.y = 10;
+	titalText.name = "titalText";
 	
+	//start game button
 	var StartGameButton = new Button("StartGameButton",338,200,175,50);
 	StartGameButton.text = "Start Game";
 	StartGameButton.onClick = startGame;
+	
+	var backgroundImage = new Image();
+	backgroundImage.src = "http://students.cse.tamu.edu/tjb33/assets/maps/survivorIsland3.png"
 	
 	backgroundImage.onload = function()
 							{
@@ -216,8 +223,13 @@ function displayDemoMainMenu()
 								backgroundShape.x = 0;
 								backgroundShape.y = 0;
 								backgroundShape.name = "demoMainBackground";
-								stage.addChild(backgroundShape);
 								
+								/*If you're using a background image,
+								add your text and draw the buttons here.
+								Be sure to list them in the order you wish
+								them to be drawn on the canvas*/
+								stage.addChild(backgroundShape);
+								stage.addChild(titalText);
 								StartGameButton.draw();
 								
 								stage.update();
