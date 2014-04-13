@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html>
 <style src="css/UIclasses.css"></style>
-<style>h1{color:black;}</style>
 <head>
 	<title>VillageWars</title>
-	<h1 id="colorRibbon">loading...</h1>
 	<!-- Easeljs graphics package-->
 	<script src="http://code.createjs.com/easeljs-0.7.1.min.js"></script>
 	
@@ -163,37 +161,12 @@
 			{			
 				//this is player 1 (blue)
 				player.color = "blue";
-				player.onTurn = true;
-				displayEndTurnElement("salmon");
-				displayTurnCounterElement("lightGreen");
-				player.createUnit(stage,map,"villager",5,4);
-				
-				//update color ribbon:
-				document.getElementById("colorRibbon").style.color = player.color;
-				document.getElementById("colorRibbon").innerHTML = player.color+" player";
-				
-				//sendLogin data:
-				messageArray = ["login",player.id,player.color,player.name];
-				updater(messageArray);
 				
 			}
 			else if(message == 2)
 			{
 				//this is player 2 (red)
 				player.color = "red";
-				player.createUnit(stage,map,"villager",5,33);
-				
-				//update info text
-				infoText = "Waiting for other players...";
-				updateInfoText();
-				
-				//update color ribbon:
-				document.getElementById("colorRibbon").style.color = player.color;
-				document.getElementById("colorRibbon").innerHTML = player.color+" player";
-				
-				//sendLogin data:
-				messageArray = ["login",player.id,player.color,player.name];
-				updater(messageArray);
 			}
 			else if(message > 2)
 			{
@@ -202,13 +175,6 @@
 				//update info text
 				infoText = "spectating";
 				updateInfoText();
-				
-				//update color ribbon:
-				document.getElementById("colorRibbon").innerHTML = "Spectating";
-				
-				//sendLogin data:
-				messageArray = ["login",player.id,player.color,player.name];
-				updater(messageArray);
 			}
 		}
 		

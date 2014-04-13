@@ -1,6 +1,39 @@
 
 // General Functions
 
+//called by each client when a match starts
+function startGame()
+{
+	if(player.color == "blue")
+	{
+		player.onTurn = true;
+		player.createUnit(stage,map,"villager",5,4);
+		
+		//send the new villager to all clients
+		var unit = player.units[0];
+		messageArray = ["createUnit",unit.type,player.id,unit.id,unit.row,unit.column];
+		updater(messageArray);
+		
+		//update info text
+		infoText = "Begin your turn";
+		updateInfoText();
+	}
+	else if(player.color == "red")
+	{
+		player.onTurn = false;
+		player.createUnit(stage,map,"villager",6,33);
+		
+		//send the new villager to all clients
+		var unit = player.units[0];
+		messageArray = ["createUnit",unit.type,player.id,unit.id,unit.row,unit.column];
+		updater(messageArray);
+		
+		//update info text
+		infoText = "Waiting for other players...";
+		updateInfoText();
+	}
+}
+
 function canBuild(object)
 {
 	
@@ -418,6 +451,7 @@ function getDistance(row1,column1,row2,column2)
 	return distance
 }
 
+//called when a player ends a turn
 function endTurn()
 {
 	
@@ -430,7 +464,7 @@ function endTurn()
 	
 }
 
-//this is mainly a place holder
+//called when a player begins a turn.
 function startTurn()
 {
 	//deSelect units

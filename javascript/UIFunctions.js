@@ -174,9 +174,20 @@ function displayGameScreen()
 	
 	displayMapElement();
 	
-	displayEndTurnElement("lightSlateGrey");
+	startGame();
 	
-	displayTurnCounterElement("salmon");
+	if(player.onTurn == true)
+	{
+		displayEndTurnElement("salmon");
+		
+		displayTurnCounterElement("lightGreen");
+	}
+	else
+	{
+		displayEndTurnElement("lightSlateGrey");
+	
+		displayTurnCounterElement("salmon");
+	}
 	
 	stage.update();
 }
