@@ -94,7 +94,7 @@ function organizeChildren()
 		}
 	}
 	
-	result = [other,structures,units,selectionObjects];
+	result = other + structures + units + selectionObjects;
 	
 	//stage.children = result;
 	//reset stage children
