@@ -206,7 +206,7 @@ function displayDemoMainMenu()
 	//some text
 	var titalText = new createjs.Text("Village Wars", "bold 72px Arial", "black");
 	titalText.x = 200;
-	titalText.y = 20;
+	titalText.y = 30;
 	titalText.name = "titalText";
 	
 	//start game button
