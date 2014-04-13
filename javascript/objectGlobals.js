@@ -25,7 +25,7 @@ var villagerMaxHealth = 1;
 var villagerDefense = 0;
 var villagerAttack = 0;
 
-var warriorMaxMovementPoints = 2;
+var warriorMaxMovementPoints = 4;
 var warriorMaxHealth = 10;
 var warriorDefense = 2;
 var warriorAttack = 5;
