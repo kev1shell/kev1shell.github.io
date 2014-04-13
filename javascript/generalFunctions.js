@@ -39,6 +39,12 @@ function organizeChildren()
 	for(var i=0;i<children.length;i++)
 	{
 		var name = children[i].name;
+		
+		if(typeof(name) == "undefined")
+		{
+			continue;
+		}
+		
 		if(name.indexOf("village") > 0 || name.indexOf("farm") > 0)
 		{
 			stage.addChild(children[i]);
@@ -49,6 +55,12 @@ function organizeChildren()
 	for(var i=0;i<children.length;i++)
 	{
 		var name = children[i].name;
+		
+		if(typeof(name) == "undefined")
+		{
+			continue;
+		}
+		
 		if(name.indexOf("villager") > 0 || name.indexOf("warrior") > 0)
 		{
 			stage.addChild(children[i]);
@@ -59,6 +71,12 @@ function organizeChildren()
 	for(var i=0;i<children.length;i++)
 	{
 		var name = children[i].name;
+		
+		if(typeof(name) == "undefined")
+		{
+			continue;
+		}
+		
 		if(name.indexOf("movementSquare") > 0 || name.indexOf("selectSquare") > 0)
 		{
 			stage.addChild(children[i]);
