@@ -216,6 +216,10 @@ function displayDemoMainMenu()
 								
 								stage.update();
 							}
+	
+	var StartGameButton = Button("StartGameButton",100,100,100,50);
+	StartGameButton.text = "Start Game";
+	StartGameButton.onClick = startGame();
 }
 
 /*----------------------------------------------------------*/

@@ -120,6 +120,9 @@ function organizeChildren()
 
 function startGame()
 {
+	//remove all children from stage
+	stage.removeAllChildren();
+	
 	//tell other clients to start the game
 	messageArray = ["startGame"];
 	updater(messageArray);
