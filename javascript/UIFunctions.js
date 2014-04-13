@@ -254,7 +254,7 @@ function displayDemoMainMenu()
 	StartGameButton.onClick = startGame;//function that the button calls when clicked.
 	
 	//help button
-	var helpButton = new Button("helpButton",338,220,175,50); //constructor: (name,x,y,width,height)
+	var helpButton = new Button("helpButton",338,220,185,50); //constructor: (name,x,y,width,height)
 	helpButton.text = "help";//the text on the button
 	helpButton.mouseOutColor = "yellow";
 	helpButton.mouseInColor = "gold";
