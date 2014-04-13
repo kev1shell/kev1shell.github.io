@@ -120,11 +120,12 @@ function organizeChildren()
 
 function startGame()
 {
-	displayGameScreen();
-	
 	//tell other clients to start the game
 	messageArray = ["startGame"];
 	updater(messageArray);
+	
+	displayGameScreen();
+	
 }
 
 //called by each client when a match starts
