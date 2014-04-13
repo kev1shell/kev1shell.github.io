@@ -84,7 +84,7 @@ function organizeChildren()
 		}
 	}
 	
-	stage.children = result;
+	//stage.children = result;
 	
 	//update the stage
 	stage.update();
