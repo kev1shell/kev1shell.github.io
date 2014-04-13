@@ -3,20 +3,16 @@
 
 //called by one client and FORCES all other clients to start the game.
 //Only ONE client should call this function.
-var result = [];
-var units = [];
-var structures = [];
-var other = [];
-var selectionObjects = [];
 
 function organizeChildren()
 {
 	var children = [];
-	result = [];
-	units = [];
-	structures = [];
-	other = [];
-	selectionObjects = [];
+	var result = [];
+	var units = [];
+	var structures = [];
+	var other = [];
+	var selectionObjects = [];
+	
 	children = stage.children;
 	
 	//remove all
@@ -114,7 +110,7 @@ function organizeChildren()
 		result.push(selectionObjects[i]);
 	}
 	
-	//stage.children = result;
+	stage.children = result;
 	//reset stage children
 	//for(var i=0;i<stage.children.length;i++){stage.children[i] = result[i];}
 	
