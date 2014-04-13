@@ -201,8 +201,44 @@ function displayGameScreen()
 	stage.update();
 }
 
+function displayDemoHelpScreen()
+{
+	//clear all existing children from the stage
+	stage.removeAllChildren();
+	
+	//plain background
+	var background = new createjs.Shape();
+	background.graphics.beginFill("DarkSlateGray").drawRect(0, 0, stage.getBounds().width, stage.getBounds().height);
+	background.x = 0;
+	background.y = 0;
+	background.name = "background";
+	stage.addChild(background);
+	
+	//some text
+	var titalText = new createjs.Text("Help", "bold 72px Arial", "black");
+	titalText.x = 200;
+	titalText.y = 30;
+	titalText.name = "titalText";
+	stage.addChild(titalText);
+	
+	//back button
+	var backButton = new Button("backButton",338,170,175,50); //constructor: (name,x,y,width,height)
+	backButton.text = "Back";//the text on the button
+	backButton.mouseOutColor = "yellow";
+	backButton.mouseInColor = "gold";
+	backButton.mouseDownColor = "orange";
+	backButton.onClick = displayDemoMainMenu;//function that the button calls when clicked.
+	backButton.draw();
+	
+	//update stage
+	stage.update();
+}
+
 function displayDemoMainMenu()
 {
+	//clear all existing children from the stage
+	stage.removeAllChildren();
+	
 	//some text
 	var titalText = new createjs.Text("Village Wars", "bold 72px Arial", "black");
 	titalText.x = 200;
@@ -217,6 +253,15 @@ function displayDemoMainMenu()
 	StartGameButton.mouseDownColor = "orange";
 	StartGameButton.onClick = startGame;//function that the button calls when clicked.
 	
+	//help button
+	var helpButton = new Button("helpButton",338,170,175,50); //constructor: (name,x,y,width,height)
+	helpButton.text = "help";//the text on the button
+	helpButton.mouseOutColor = "yellow";
+	helpButton.mouseInColor = "gold";
+	helpButton.mouseDownColor = "orange";
+	helpButton.onClick = displayDemoHelpScreen;//function that the button calls when clicked.
+	
+	//background image
 	var backgroundImage = new Image();
 	backgroundImage.src = "http://students.cse.tamu.edu/tjb33/assets/maps/survivorIsland3.png"
 	
@@ -230,10 +275,11 @@ function displayDemoMainMenu()
 								/*If you're using a background image,
 								add your text and draw the buttons here.
 								Be sure to list them in the order you wish
-								them to be drawn on the canvas*/
+								them to be drawn on the canvas!*/
 								stage.addChild(backgroundShape);
 								stage.addChild(titalText);
 								StartGameButton.draw();
+								helpButton.draw();
 								
 								stage.update();
 							}
