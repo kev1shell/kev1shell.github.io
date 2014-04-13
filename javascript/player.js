@@ -40,7 +40,7 @@ var Player = function()
 			createVillage(stage, map, this, row, column);
 		}
 		//organize children
-		organizeChildren();
+		organizeChildren();organizeChildren();
 	}
 	
 	function createVillage(stage, map, player, row, column)
