@@ -4,6 +4,7 @@
 function startGameCommand(input)
 {
 	//message format: ["startGame"]
+	stage.removeAllChildren();
 	displayGameScreen();
 }
 
