@@ -208,7 +208,7 @@ function displayDemoHelpScreen()
 	
 	//plain background
 	var background = new createjs.Shape();
-	background.graphics.beginFill("DarkSlateGray").drawRect(0, 0, stage.getBounds().width, stage.getBounds().height);
+	background.graphics.beginFill("DarkSlateGray").drawRect(0, 0, stage.canvas.width, stage.canvas.height);
 	background.x = 0;
 	background.y = 0;
 	background.name = "background";
