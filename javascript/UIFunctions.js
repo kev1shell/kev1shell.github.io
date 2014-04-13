@@ -206,7 +206,7 @@ function displayDemoMainMenu()
 	var backgroundImage = new Image();
 	backgroundImage.src = "http://students.cse.tamu.edu/tjb33/assets/maps/survivorIsland3.png"
 	
-	var StartGameButton = new Button("StartGameButton",300,150,150,50);
+	var StartGameButton = new Button("StartGameButton",300,200,175,50);
 	StartGameButton.text = "Start Game";
 	StartGameButton.onClick = startGame;
 	
