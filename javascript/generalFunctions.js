@@ -94,7 +94,25 @@ function organizeChildren()
 		}
 	}
 	
-	result = other + structures + units + selectionObjects;
+	for(var i=0;i<other.length;i++)
+	{
+		result.push(other[i]);
+	}
+	
+	for(var i=0;i<structures.length;i++)
+	{
+		result.push(structures[i]);
+	}
+	
+	for(var i=0;i<units.length;i++)
+	{
+		result.push(units[i]);
+	}
+	
+	for(var i=0;i<selectionObjects.length;i++)
+	{
+		result.push(selectionObjects[i]);
+	}
 	
 	//stage.children = result;
 	//reset stage children
