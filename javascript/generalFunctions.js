@@ -46,7 +46,7 @@ function organizeChildren()
 			continue;
 		}
 		
-		if(name.indexOf("village") > 0 || name.indexOf("farm") > 0)
+		if(name.indexOf("village") >= 0 || name.indexOf("farm") >= 0 && name.indexOf("villager") == -1)
 		{
 			result.push(children[i]);
 		}
@@ -62,7 +62,7 @@ function organizeChildren()
 			continue;
 		}
 		
-		if(name.indexOf("villager") > 0 || name.indexOf("warrior") > 0)
+		if(name.indexOf("villager") >= 0 || name.indexOf("warrior") >= 0)
 		{
 			result.push(children[i]);
 		}
