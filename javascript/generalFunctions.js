@@ -87,10 +87,7 @@ function organizeChildren()
 	//stage.children = result;
 	
 	//reset stage children
-	for(var i=0;i<stage.children.length;i++)
-	{
-		stage.children[i] = result[i];
-	}
+	//for(var i=0;i<stage.children.length;i++){stage.children[i] = result[i];}
 	
 	//update the stage
 	stage.update();
