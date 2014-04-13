@@ -3,10 +3,20 @@
 
 //called by one client and FORCES all other clients to start the game.
 //Only ONE client should call this function.
+var result = [];
+var units = [];
+var structures = [];
+var other = [];
+var selectionObjects = [];
+
 function organizeChildren()
 {
 	var children = [];
-	var result = [];
+	result = [];
+	units = [];
+	structures = [];
+	other = [];
+	selectionObjects = [];
 	children = stage.children;
 	
 	//remove all
@@ -19,7 +29,7 @@ function organizeChildren()
 		
 		if(name == null || typeof(name) == "undefined")
 		{
-			result.push(children[i]);
+			other.push(children[i]);
 			continue;
 		}
 		
@@ -29,7 +39,7 @@ function organizeChildren()
 			{
 				if(name.indexOf("movementSquare") == -1 && name.indexOf("selectSquare") == -1)
 				{
-					result.push(children[i]);
+					other.push(children[i]);
 					continue;
 				}
 			}
@@ -48,7 +58,7 @@ function organizeChildren()
 		
 		if(name.indexOf("village") == 0 || name.indexOf("farm") == 0 && name.indexOf("villager") == -1)
 		{
-			result.push(children[i]);
+			structures.push(children[i]);
 		}
 	}
 	
@@ -64,7 +74,7 @@ function organizeChildren()
 		
 		if(name.indexOf("villager") == 0 || name.indexOf("warrior") == 0)
 		{
-			result.push(children[i]);
+			units.push(children[i]);
 		}
 	}
 	
@@ -80,12 +90,13 @@ function organizeChildren()
 		
 		if(name.indexOf("movementSquare") == 0 || name.indexOf("selectSquare") == 0)
 		{
-			result.push(children[i]);
+			selectionObjects.push(children[i]);
 		}
 	}
 	
-	//stage.children = result;
+	result = [other,structures,units,other];
 	
+	//stage.children = result;
 	//reset stage children
 	//for(var i=0;i<stage.children.length;i++){stage.children[i] = result[i];}
 	
