@@ -23,9 +23,9 @@ function organizeChildren()
 			continue;
 		}
 		
-		if(name.indexOf("villager") == -1 && name.indexOf("warrior") == -1)
+		if(name.indexOf("villager") != 0 && name.indexOf("warrior") != 0)
 		{
-			if(name.indexOf("farm") == -1 && name.indexOf("village") == -1)
+			if(name.indexOf("farm") == -1 && name.indexOf("village") != 0)
 			{
 				if(name.indexOf("movementSquare") == -1 && name.indexOf("selectSquare") == -1)
 				{
