@@ -1,8 +1,19 @@
 
 // General Functions
 
-//called by each client when a match starts
+//called by one client and FORCES all other clients to start the game.
+//Only ONE client should call this function.
 function startGame()
+{
+	displayGameScreen();
+	
+	//tell other clients to start the game
+	messageArray = ["startGame"];
+	updater(messageArray);
+}
+
+//called by each client when a match starts
+function joinGame()
 {
 	if(player.color == "blue")
 	{

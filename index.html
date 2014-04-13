@@ -118,9 +118,8 @@
 
 		function reciever(message)
 		{
-			//alert(message);
+		
 			var input = message;
-			//alert(Passer);
 			
 			if(input[0] == "login")
 			{
@@ -128,9 +127,7 @@
 			}
 			else if(input[0] == "move")
 			{
-				//alert('move');
 				moveCommand(input);
-				
 			}
 			else if(input[0] == "createUnit")
 			{
@@ -151,6 +148,10 @@
 			else if(input[0] == "updateUnit")
 			{
 				updateUnitCommand(input);
+			}
+			else if(input[0] == "startGame")
+			{
+				startGameCommand(input);
 			}
 		}
 		

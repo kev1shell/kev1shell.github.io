@@ -183,7 +183,7 @@ function displayGameScreen()
 	
 	displayMapElement();
 	
-	startGame();
+	joinGame();
 	
 	if(player.onTurn == true)
 	{

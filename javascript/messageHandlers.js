@@ -1,6 +1,12 @@
 
 //Message Handlers
 
+function startGameCommand(input)
+{
+	//message format: ["startGame"]
+	displayGameScreen();
+}
+
 function updateUnitCommand(input)
 {
 	/*
