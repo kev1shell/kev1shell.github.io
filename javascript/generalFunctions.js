@@ -64,6 +64,9 @@ function organizeChildren()
 			stage.addChild(children[i]);
 		}
 	}
+	
+	//update the stage
+	stage.update();
 }
 
 function startGame()
