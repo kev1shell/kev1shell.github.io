@@ -56,7 +56,7 @@ function organizeChildren()
 			continue;
 		}
 		
-		if(name.indexOf("village") == 0 || name.indexOf("farm") == 0 && name.indexOf("villager") == -1)
+		if((name.indexOf("village") == 0 || name.indexOf("farm") == 0) && name.indexOf("villager") == -1)
 		{
 			structures.push(children[i]);
 		}
@@ -94,7 +94,7 @@ function organizeChildren()
 		}
 	}
 	
-	result = [other,structures,units,other];
+	result = [other,structures,units,selectionObjects];
 	
 	//stage.children = result;
 	//reset stage children
