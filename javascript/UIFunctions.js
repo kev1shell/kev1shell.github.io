@@ -400,13 +400,13 @@ function displayStackSelectionBox(row,column)
 		SSBButton.onClick = function()
 							{
 								var tile = map[this.row][this.column]
-								selectedObject = tile.stack[this.target];
+								selectedObject = this.target;
 								displaySelectBox(this.row,this.column);
 								selectedObject.displayInfo(stage, player);
 								
-								if(isUnit(tile.stack[this.target]) == true)
+								if(isUnit(this.target) == true)
 								{
-									selectedUnit = tile.stack[this.target];
+									selectedUnit = this.target;
 									
 									if(selectedUnit.movementPoints > 0 && selectedUnit.color == player.color && player.onTurn == true)
 									{
