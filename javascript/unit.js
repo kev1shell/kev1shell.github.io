@@ -37,7 +37,13 @@ var Unit = function()
 			if(tile.stack[i].id == this.id)
 			{
 				tile.stack.splice(i,1);
+				
+				if(map[this.row][this.column].stack.length < 2)
+				{
+					removeStackSymbol(this.row,this.column);
+				}
 			}
+			
 		}
 		
 		//update player data
@@ -126,6 +132,7 @@ var Unit = function()
 			if(map[newRow][newColumn].stack.length > 1)
 			{
 				addStackSymbol(newRow,newColumn);
+				organizeChildren();
 			}
 			
 			this.row = newRow;
