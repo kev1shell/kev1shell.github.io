@@ -391,6 +391,7 @@ function displayStackSelectionBox(row,column)
 	{
 		//add button
 		var SSBButton = new Button("SSBButton",24*(column+1)+20,52+24*row+22*i,20,20);
+		SSBButton.name = "SSBButton"+i;
 		SSBButton.text = "<";
 		SSBButton.row = row;
 		SSBButton.column = column;
