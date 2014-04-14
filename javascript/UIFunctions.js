@@ -290,6 +290,44 @@ function displayDemoMainMenu()
 /*----------------------------------------------------------*/
 /*-------------------display functions----------------------*/
 
+function displaySSBInfo(object,row,column)
+{
+	//background
+	var SSBInfoBackground = new createjs.Shape();
+	SSBInfoBackground.graphics.beginFill("DarkSlateGray").drawRect(0, 0, 75, 75);
+	SSBInfoBackground.x = 24*(column+1)+46;
+	SSBInfoBackground.y = 50+24*row;
+	SSBInfoBackground.name = "SSBInfoBackground";
+	stage.addChild(SSBInfoBackground);
+}
+
+function handleSSBBEvent(evt)
+{
+	var sourceButton = evt.currentTarget.parentButton;
+		
+	if(evt.type == "pressup")
+	{
+		sourceButton.draw(sourceButton.mouseInColor);
+		
+		//call onClick function
+		sourceButton.onClick();
+	}
+	if(evt.type == "mouseover" && stage.getChildByName(sourceButton.shape.name) != null)
+	{
+		sourceButton.draw(sourceButton.mouseInColor);
+		displaySSBInfo(sourceButton.target,sourceButton.row,sourceButton.column);
+	}
+	if(evt.type == "mouseout" && stage.getChildByName(sourceButton.shape.name) != null)
+	{
+		sourceButton.draw(sourceButton.mouseOutColor);
+		stage.removeChild(stage.getChildByName("SSBInfoBackground"));
+	}
+	if(evt.type == "mousedown" && stage.getChildByName(sourceButton.shape.name) != null)
+	{
+		sourceButton.draw(sourceButton.mouseDownColor);
+	}
+}
+
 function displayStackSelectionBox(row,column)
 {
 	var tile = map[row][column];
@@ -310,6 +348,10 @@ function displayStackSelectionBox(row,column)
 			//add button
 			var SSBButton = new Button("SSBButton",24*(column+1)+20,52+24*row+2*i,20,20);
 			SSBButton.text = "<";
+			SSBButton.row = row;
+			SSBButton.column = column;
+			SSBButton.target = stack[i];
+			SSBButton.handleButtonEvent = handleSSBBEvent;
 			SSBButton.draw();
 			
 			//add image
