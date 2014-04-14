@@ -419,6 +419,7 @@ function displayStackSelectionBox(row,column)
 								}
 								
 								removeStackSelectionBox();
+								stage.update();
 							}
 		SSBButton.draw();
 		
