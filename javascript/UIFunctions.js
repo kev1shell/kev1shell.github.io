@@ -185,6 +185,9 @@ function displayGameScreen()
 	background.name = "background";
 	stage.addChild(background);
 	
+	stage.update();
+	return;
+	
 	displayResourceElement();
 			
 	displayInfoElement();
