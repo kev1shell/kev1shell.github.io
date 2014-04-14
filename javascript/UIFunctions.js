@@ -290,6 +290,46 @@ function displayDemoMainMenu()
 /*----------------------------------------------------------*/
 /*-------------------display functions----------------------*/
 
+function displayObjectCost(object)
+{
+	
+	//background
+	var costBackground = new createjs.Shape();
+	costBackground.graphics.beginFill("LightSlateGray").drawRect(0, 0, 100, 30);
+	costBackground.x = 401;
+	costBackground.y = 30;
+	costBackground.name = "costBackground";
+	stage.addChild(costBackground);
+	
+	var text = "";
+	
+	if(object == "village")
+	{
+		text = "Timber: "+villageTimberCost+" Stone: "+villageStoneCost;
+	}
+	else if(object == "farm")
+	{
+		text = "Timber: "+farmTimberCost;
+	}
+	else if(object == "villager")
+	{
+		text = "Food: "+villagerFoodCost;
+	}
+	else if(object == "warrior")
+	{
+		text = "Food: "+warriorFoodCost+" Timber: "+warriorTimberCost+" Stone: "+warriorStoneCost;
+	}
+	
+	//cost text
+	var costText = new createjs.Text(text, "bold 14px Arial", "black");
+	costText.x = 401;
+	costText.y = 30;
+	costText.name = "costText";
+	stage.addChild(costText);
+	
+	stage.update();
+}
+
 function displaySSBInfo(object,row,column)
 {
 	//background

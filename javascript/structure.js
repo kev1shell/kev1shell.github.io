@@ -150,11 +150,13 @@ function handleBWMouseEvent(evt)
 	if(evt.type == "mouseover")
 	{
 		displayBuildWarriorButton(stage, "blue");
+		displayObjectCost("warrior");
 		stage.update();
 	}
 	if(evt.type == "mouseout")
 	{
 		displayBuildWarriorButton(stage, "lightBlue");
+		removeObjectCost();
 		stage.update();
 	}
 	

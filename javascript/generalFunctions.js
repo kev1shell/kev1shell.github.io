@@ -676,6 +676,14 @@ function startTurn()
 	
 }
 
+function removeObjectCost()
+{
+	stage.removeChild(stage.getChildByName("costBackground"));
+	stage.removeChild(stage.getChildByName("costText"));
+	
+	stage.update();
+}
+
 function removeStackSelectionBox()
 {
 	stage.removeChild(stage.getChildByName("stackSelectionBox"));
