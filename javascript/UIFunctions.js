@@ -305,7 +305,7 @@ function displaySSBInfo(object,row,column)
 	objectName.x = 24*(column+1)+50;
 	objectName.y = 52+24*row;
 	objectName.name = "objectName";
-	objectName.addChild(IEtext);
+	objectName.addChild(objectName);
 	
 	stage.update();
 }
