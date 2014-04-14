@@ -313,10 +313,10 @@ function displayStackSelectionBox(row,column)
 			SSBButton.draw();
 			
 			//add image
-			var image = new Image();
-			image.src = "http://students.cse.tamu.edu/tjb33/assets/sprites/units/blue/Villager_1_blue.png";
+			var objectImage = new Image();
+			objectImage.src = "http://kev1shell.github.io/assets/sprites/other/stackSymbol.png"
 			
-			image.onload = function()
+			objectImage.onload = function()
 									{
 										var SSBImage = new createjs.Bitmap(this);
 										SSBImage.x = 2+24*column;
