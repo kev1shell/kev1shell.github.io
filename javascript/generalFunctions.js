@@ -591,6 +591,7 @@ function unitHandler(row,column)
 		else
 		{
 			deSelectAll();
+			selectObject(row,column);
 		}
 	}
 }
