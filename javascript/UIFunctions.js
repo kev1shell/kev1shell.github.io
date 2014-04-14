@@ -299,6 +299,8 @@ function displaySSBInfo(object,row,column)
 	SSBInfoBackground.y = 50+24*row;
 	SSBInfoBackground.name = "SSBInfoBackground";
 	stage.addChild(SSBInfoBackground);
+	
+	stage.update();
 }
 
 function handleSSBBEvent(evt)
@@ -321,6 +323,7 @@ function handleSSBBEvent(evt)
 	{
 		sourceButton.draw(sourceButton.mouseOutColor);
 		stage.removeChild(stage.getChildByName("SSBInfoBackground"));
+		stage.update();
 	}
 	if(evt.type == "mousedown" && stage.getChildByName(sourceButton.shape.name) != null)
 	{
