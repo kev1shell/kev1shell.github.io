@@ -177,13 +177,6 @@ function updateResources()
 /*-------------------display screen----------------------*/
 function displayGameScreen()
 {
-	//background
-	var background = new createjs.Shape();
-	background.graphics.beginFill(player.color).drawRect(0, 0, stage.canvas.width, stage.canvas.height);
-	background.x = 0;
-	background.y = 0;
-	background.name = "background";
-	stage.addChild(background);
 	
 	displayResourceElement();
 			

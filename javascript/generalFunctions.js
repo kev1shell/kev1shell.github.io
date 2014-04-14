@@ -145,7 +145,7 @@ function joinGame()
 		updater(messageArray);
 		
 		//update info text
-		infoText = "Begin your turn";
+		infoText = "You are blue, begin your turn";
 		updateInfoText();
 	}
 	else if(player.color == "red")
@@ -159,7 +159,7 @@ function joinGame()
 		updater(messageArray);
 		
 		//update info text
-		infoText = "Waiting for other players...";
+		infoText = "You are red, Waiting for other players...";
 		updateInfoText();
 	}
 }
