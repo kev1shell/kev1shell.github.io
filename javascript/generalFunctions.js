@@ -686,6 +686,7 @@ function removeStackSelectionBox()
 	{
 		stage.removeChild(stage.getChildByName("SSBImage"));
 	}
+	stage.update();
 }
 
 //removes all selection and movement graphics
@@ -733,6 +734,9 @@ function selectObject(row,column)
 		//display tile type
 		infoText = tile.type;
 		updateInfoText();
+		
+		//remove stack selection box if necessary
+		removeStackSelectionBox();
 	}
 	else if(tile.stack.length == 1)
 	{
