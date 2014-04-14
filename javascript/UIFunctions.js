@@ -471,6 +471,16 @@ function displayStackSelectionBox(row,column)
 		moveHereButton.onClick = function()
 							{
 								moveSelectedUnit(this.row,this.column);
+					
+								if(selectedUnit.movementPoints > 0)
+								{
+									displayMovementSquares(selectedUnit.row,selectedUnit.column);
+								}
+								else
+								{
+									removeMovementSquares();
+									stage.update();
+								}
 								
 								removeStackSelectionBox();
 								stage.update();
