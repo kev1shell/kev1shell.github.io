@@ -314,7 +314,7 @@ function displayStackSelectionBox(row,column)
 			
 			//add image
 			var image = new Image();
-			image.src = stack[i].image.src;
+			image.src = "http://students.cse.tamu.edu/tjb33/assets/sprites/units/blue/Villager_1_blue.png";
 			
 			image.onload = function()
 									{
