@@ -469,11 +469,16 @@ function addStackSymbol(row,column)
 								var stackSymbolImage = new createjs.Bitmap(this);
 								stackSymbolImage.x = 17+24*column;
 								stackSymbolImage.y = 50 + 24*row;
-								stackSymbolImage.name = "stackSymbol"+Math.floor(Math.random()*1000000000);
+								stackSymbolImage.name = "stackSymbol"+row+column;
 								stage.addChild(stackSymbolImage);
 								
 								stage.update();
 							}
+}
+
+function removeStackSymbol(row,column)
+{
+	stage.removeChild(stage.getChildByName("stackSymbol"+row+column));
 }
 
 //handles the nitty gritty of unit movement
