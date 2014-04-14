@@ -87,6 +87,12 @@ var Unit = function()
 					//found unit
 					//remove the unit from the stack
 					map[this.row][this.column].stack.splice(i,1);
+					
+					//check to see if stack is less than 2, if so remove stack symbol
+					if(map[this.row][this.column].stack.length < 2)
+					{
+						removeStackSymbol(this.row,this.column);
+					}
 				}
 			}
 			
@@ -116,6 +122,11 @@ var Unit = function()
 			//add self to new tile's stack
 			map[newRow][newColumn].stack.push(this);
 			
+			//check to see if a new stack has been created:
+			if(map[newRow][newColumn].stack.length > 1)
+			{
+				addStackSymbol(newRow,newColumn);
+			}
 			
 			this.row = newRow;
 			this.column = newColumn;

@@ -479,6 +479,7 @@ function addStackSymbol(row,column)
 function removeStackSymbol(row,column)
 {
 	stage.removeChild(stage.getChildByName("stackSymbol"+row+column));
+	stage.update();
 }
 
 //handles the nitty gritty of unit movement
