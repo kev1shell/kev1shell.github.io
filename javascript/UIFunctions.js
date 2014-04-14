@@ -398,7 +398,6 @@ function displayStackSelectionBox(row,column)
 		SSBButton.target = stack[i];
 		SSBButton.handleButtonEvent = handleSSBBEvent;
 		SSBButton.draw();
-		SSBButtons.push(SSBButton);
 		
 		//add image
 		var objectImage = new Image();
