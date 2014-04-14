@@ -686,7 +686,11 @@ function removeStackSelectionBox()
 	stage.removeChild(stage.getChildByName("SSBinfoLine3"));
 	stage.removeChild(stage.getChildByName("SSBinfoLine4"));
 	
-	stage.getChildByName("moveHereButton").parentButton.remove();
+	if(stage.getChildByName("moveHereButton") != null)
+	{
+		stage.getChildByName("moveHereButton").parentButton.remove();
+	}
+	
 	stage.removeChild(stage.getChildByName("MHImage"));
 	
 	
