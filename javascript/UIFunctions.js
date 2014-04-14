@@ -664,6 +664,11 @@ function handleMapMouseEvent(evt)
 					deSelectAll();
 					selectObject(row,column);
 				}
+				else
+				{
+					deSelectAll();
+					selectObject(row,column);
+				}
 			}
 		}
 		
