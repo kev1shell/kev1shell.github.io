@@ -458,6 +458,8 @@ function moveSelectedUnit(row,column)
 	removeMovementSquares();
 }
 
+function addStackSymbol(row,column){}
+
 //handles the nitty gritty of unit movement
 function unitHandler(row,column)
 {
