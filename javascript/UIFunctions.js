@@ -410,9 +410,7 @@ function displayStackSelectionBox(row,column)
 		SSBButton.target = stack[i];
 		SSBButton.handleButtonEvent = handleSSBBEvent;
 		SSBButton.onClick = function()
-							{
-								deSelectAll();
-								
+							{	
 								var tile = map[this.row][this.column]
 								selectedObject = this.target;
 								displaySelectBox(this.row,this.column);

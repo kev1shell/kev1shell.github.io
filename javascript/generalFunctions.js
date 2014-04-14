@@ -499,6 +499,7 @@ function unitHandler(row,column)
 				{
 					if(tile.stack.length > 0)
 					{
+						deSelectAll();
 						displayStackSelectionBox(row,column);
 					}
 					else
