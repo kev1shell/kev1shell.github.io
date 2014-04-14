@@ -314,12 +314,12 @@ function displayStackSelectionBox(row,column)
 			
 			//add image
 			var objectImage = new Image();
-			objectImage.src = "http://kev1shell.github.io/assets/sprites/other/stackSymbol.png"
+			objectImage.src = stack[i].image.src;
 			
 			objectImage.onload = function()
 									{
 										var SSBImage = new createjs.Bitmap(this);
-										SSBImage.x = 2+24*column;
+										SSBImage.x = 24*(column+1)+2;
 										SSBImage.y = 52 + 24*row+2*i;
 										SSBImage.name = "SSBImage";
 										stage.addChild(SSBImage);
