@@ -453,7 +453,7 @@ function displayStackSelectionBox(row,column)
 		index = i;
 	}
 	
-	if(addMoveButton == 1)
+	if(addMoveButton == 10)
 	{
 		//add move here button
 		var moveHereButton = new Button("moveHereButton",24*(column+1)+20,52+24*row+24*index,20,20);
