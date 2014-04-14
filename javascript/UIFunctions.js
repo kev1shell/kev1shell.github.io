@@ -308,7 +308,7 @@ function displayStackSelectionBox(row,column)
 		if(stack[i].type == "villager")
 		{
 			//add button
-			var SSBButton1 = new Button("SSBButton1",24*(column+1)+2,52+24*row,40,40);
+			var SSBButton1 = new Button("SSBButton1",24*(column+1)+28,52+24*row,20,20);
 			SSBButton1.text = "<";
 			SSBButton1.draw();
 		}
