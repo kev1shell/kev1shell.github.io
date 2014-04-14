@@ -295,7 +295,7 @@ function displayStackSelectionBox(row,column)
 	var tile = map[row][column];
 	var stack = tile.stack;
 	
-	//plain background
+	//background
 	var stackSelectionBox = new createjs.Shape();
 	stackSelectionBox.graphics.beginFill("DarkSlateGray").drawRect(0, 0, 52, 25*stack.length);
 	stackSelectionBox.x = 24*(column+1);
@@ -308,9 +308,24 @@ function displayStackSelectionBox(row,column)
 		if(stack[i].type == "villager")
 		{
 			//add button
-			var SSBButton1 = new Button("SSBButton1",24*(column+1)+28,52+24*row,20,20);
-			SSBButton1.text = "<";
-			SSBButton1.draw();
+			var SSBButton = new Button("SSBButton",24*(column+1)+28,52+24*row+2*i,20,20);
+			SSBButton.text = "<";
+			SSBButton.draw();
+			
+			//add image
+			var image = new Image();
+			image.src = stack[i].image.src;
+			
+			image.onload = function()
+									{
+										var SSBImage = new createjs.Bitmap(this);
+										SSBImage.x = 2+24*column;
+										SSBImage.y = 52 + 24*row+2*i;
+										SSBImage.name = "SSBImage";
+										stage.addChild(SSBImage);
+										
+										stage.update();
+									}
 		}
 	}
 	
