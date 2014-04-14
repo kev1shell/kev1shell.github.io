@@ -297,7 +297,7 @@ function displayStackSelectionBox(row,column)
 	
 	//plain background
 	var stackSelectionBox = new createjs.Shape();
-	stackSelectionBox.graphics.beginFill("DarkSlateGray").drawRect(0, 0, 75, 25*stack.length);
+	stackSelectionBox.graphics.beginFill("DarkSlateGray").drawRect(0, 0, 52, 25*stack.length);
 	stackSelectionBox.x = 24*(column+1);
 	stackSelectionBox.y = 50+24*row;
 	stackSelectionBox.name = "stackSelectionBox";
