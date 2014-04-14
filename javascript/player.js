@@ -80,6 +80,14 @@ var Player = function()
 		player.bank.stone -= villageStoneCost;
 		updateResources();
 		map[row][column].stack.push(village);
+		
+		//check to see if a new stack has been created:
+		if(map[row][column].stack.length > 1)
+		{
+			addStackSymbol(row,column);
+			organizeChildren();
+		}
+			
 	}
 	
 	function createFarm(stage, map, player, row, column)
@@ -120,6 +128,13 @@ var Player = function()
 		player.bank.stone -= farmStoneCost;
 		updateResources();
 		map[row][column].stack.push(farm);
+		
+		//check to see if a new stack has been created:
+		if(map[row][column].stack.length > 1)
+		{
+			addStackSymbol(row,column);
+			organizeChildren();
+		}
 	}
 	
 	function createWarrior(stage, map, player, row, column)
@@ -170,6 +185,13 @@ var Player = function()
 		player.bank.stone -= warriorStoneCost;
 		updateResources();
 		map[row][column].stack.push(warrior);
+		
+		//check to see if a new stack has been created:
+		if(map[row][column].stack.length > 1)
+		{
+			addStackSymbol(row,column);
+			organizeChildren();
+		}
 	}
 	
 	function createVillager(stage, map, player, row, column)
@@ -220,5 +242,12 @@ var Player = function()
 		player.bank.stone -= villagerStoneCost;
 		updateResources();
 		map[row][column].stack.push(villager);
+		
+		//check to see if a new stack has been created:
+		if(map[row][column].stack.length > 1)
+		{
+			addStackSymbol(row,column);
+			organizeChildren();
+		}
 	}
 }
