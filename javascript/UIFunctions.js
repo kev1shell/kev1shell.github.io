@@ -290,6 +290,14 @@ function displayDemoMainMenu()
 /*----------------------------------------------------------*/
 /*-------------------display functions----------------------*/
 
+function displayStackSelectionBox(row,column)
+{
+	var tile = map[row][column];
+	var stack = tile.stack;
+	
+	
+}
+
 //displays movement squares around the specified tile.
 //only displays squares on tiles that can be moved to.
 function displayMovementSquares(row,column)
