@@ -379,9 +379,21 @@ function displayStackSelectionBox(row,column)
 	var tile = map[row][column];
 	var stack = tile.stack;
 	
+	var addMoveButton = 0;
+	var index = 0;
+	//check to see if there's a select square here
+	for(var i=0;i<movementSquares.length;i++)
+	{
+		if(movementSquares[i].row == row && movementSquars[i].column == column)
+		{
+			addMoveButton = 1;
+			
+		}
+	}
+	
 	//background
 	var stackSelectionBox = new createjs.Shape();
-	stackSelectionBox.graphics.beginFill("DarkSlateGray").drawRect(0, 0, 44, 25*stack.length);
+	stackSelectionBox.graphics.beginFill("DarkSlateGray").drawRect(0, 0, 44, 25*(stack.length+addMoveButton));
 	stackSelectionBox.x = 24*(column+1);
 	stackSelectionBox.y = 50+24*row;
 	stackSelectionBox.name = "stackSelectionBox";
@@ -438,6 +450,45 @@ function displayStackSelectionBox(row,column)
 								stage.update();
 							}
 		
+		index = i;
+	}
+	
+	if(addMoveButton == 1)
+	{
+		//add move here button
+		var moveHereButton = new Button("moveHereButton",24*(column+1)+20,52+24*row+24*index,20,20);
+		moveHereButton.name = "moveHereButton";
+		moveHereButton.text = "<";
+		moveHereButton.row = row;
+		moveHereButton.column = column;
+		
+		var placeHolder = [];placeHolder.type = "Move Here";
+		
+		moveHereButton.target = placeHolder;
+		moveHereButton.handleButtonEvent = handleSSBBEvent;
+		moveHereButton.onClick = function()
+							{
+								moveSelectedUnit(this.row,this.column);
+								
+								removeStackSelectionBox();
+								stage.update();
+							}
+		moveHereButton.draw();
+		
+		//add image
+		var moveHereImage = new Image();
+		moveHereImage.src = "";
+		moveHereImage.yOffset = i;
+		moveHereImage.onload = function()
+							{
+								var SSBImage = new createjs.Bitmap(this);
+								SSBImage.x = 24*(column+1)+2;
+								SSBImage.y = 54 + 24*row+24*this.yOffset;
+								SSBImage.name = "SSBImage";
+								stage.addChild(SSBImage);
+								
+								stage.update();
+							}
 	}
 	
 	stage.update();
@@ -468,6 +519,8 @@ function displayMovementSquares(row,column)
 				}
 				movementSquare.x = 24*c;
 				movementSquare.y = 50 + 24*r;
+				movementSquare.row = r;
+				movementSquare.column = c;
 				movementSquare.name = "movementSquare"+movementSquares.length;
 				stage.addChild(movementSquare);
 				movementSquares.push(movementSquare);

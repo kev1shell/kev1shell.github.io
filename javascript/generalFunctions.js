@@ -497,17 +497,24 @@ function unitHandler(row,column)
 				
 				if(enemyObject == null)
 				{
-					//no worries here
-					moveSelectedUnit(row,column);
-				
-					if(selectedUnit.movementPoints > 0)
+					if(tile.stack.length > 0)
 					{
-						displayMovementSquares(selectedUnit.row,selectedUnit.column);
+						//enhanced selection
 					}
 					else
 					{
-						removeMovementSquares();
-						stage.update();
+						//no worries here
+						moveSelectedUnit(row,column);
+					
+						if(selectedUnit.movementPoints > 0)
+						{
+							displayMovementSquares(selectedUnit.row,selectedUnit.column);
+						}
+						else
+						{
+							removeMovementSquares();
+							stage.update();
+						}
 					}
 				}
 				else
@@ -678,6 +685,8 @@ function removeStackSelectionBox()
 	stage.removeChild(stage.getChildByName("SSBinfoLine2"));
 	stage.removeChild(stage.getChildByName("SSBinfoLine3"));
 	stage.removeChild(stage.getChildByName("SSBinfoLine4"));
+	stage.removeChild(stage.getChildByName("moveHereButton"));
+	
 	
 	//remove all stack selection buttons
 	var index = 0;
