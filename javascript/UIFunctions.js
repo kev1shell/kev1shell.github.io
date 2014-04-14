@@ -301,7 +301,7 @@ function displayObjectCost(object)
 	
 	//background
 	var costBackground = new createjs.Shape();
-	costBackground.graphics.beginFill("LightSlateGray").drawRect(0, 0, stage.getChildByName("costText").getBounds().width, 30);
+	costBackground.graphics.beginFill("LightSlateGray").drawRect(0, 0, costText.getBounds().width, 30);
 	costBackground.x = 401;
 	costBackground.y = 30;
 	costBackground.name = "costBackground";
