@@ -390,7 +390,7 @@ function displayStackSelectionBox(row,column)
 	for(var i=0;i<stack.length;i++)
 	{
 		//add button
-		var SSBButton = new Button("SSBButton",24*(column+1)+20,52+24*row+2*i,20,20);
+		var SSBButton = new Button("SSBButton",24*(column+1)+20,52+24*row+22*i,20,20);
 		SSBButton.text = "<";
 		SSBButton.row = row;
 		SSBButton.column = column;
@@ -406,7 +406,7 @@ function displayStackSelectionBox(row,column)
 							{
 								var SSBImage = new createjs.Bitmap(this);
 								SSBImage.x = 24*(column+1)+2;
-								SSBImage.y = 50 + 24*row+2*i;
+								SSBImage.y = 50 + 24*row+22*i;
 								SSBImage.name = "SSBImage";
 								stage.addChild(SSBImage);
 								
