@@ -301,7 +301,7 @@ function displaySSBInfo(object,row,column)
 	stage.addChild(SSBInfoBackground);
 	
 	//Object name text
-	var objectName = new createjs.Text(object.type, "bold 14px Arial", "white");
+	var objectName = new createjs.Text(object.type, "bold 14px Arial", "black");
 	objectName.x = 24*(column+1)+52;
 	objectName.y = 52+24*row;
 	objectName.name = "objectName";
@@ -312,28 +312,28 @@ function displaySSBInfo(object,row,column)
 		//line 1
 		var infoLine1 = new createjs.Text("MP: "+object.movementPoints+"/"+object.maxMovementPoints, "bold 9px Arial", "black");
 		infoLine1.x = 24*(column+1)+52;15 + stage.getChildByName("IEtext").x + stage.getChildByName("IEtext").getMeasuredWidth();
-		infoLine1.y = 52+24*row + 18*1;
+		infoLine1.y = 60+24*row + 10*1;
 		infoLine1.name = "SSBinfoLine1";
 		stage.addChild(infoLine1);
 		
 		//line 2
 		var infoLine2 = new createjs.Text("Health: "+object.health+"/"+object.maxHealth, "bold 9px Arial", "black");
 		infoLine2.x = 24*(column+1)+52;
-		infoLine2.y = 52+24*row + 18*2;
+		infoLine2.y = 60+24*row + 10*2;
 		infoLine2.name = "SSBinfoLine2";
 		stage.addChild(infoLine2);
 		
 		//line 3
 		var infoLine3 = new createjs.Text("Attack: "+object.attack, "bold 9px Arial", "black");
 		infoLine3.x = 24*(column+1)+52;
-		infoLine3.y = 52+24*row + 18*3;
+		infoLine3.y = 60+24*row + 10*3;
 		infoLine3.name = "SSBinfoLine3";
 		stage.addChild(infoLine3);
 		
 		//line 4
 		var infoLine4 = new createjs.Text("Defense: "+object.defense, "bold 9px Arial", "black");
 		infoLine4.x = 24*(column+1)+52;
-		infoLine4.y = 52+24*row + 18*4;
+		infoLine4.y = 60+24*row + 10*4;
 		infoLine4.name = "SSBinfoLine4";
 		stage.addChild(infoLine4);
 	}
