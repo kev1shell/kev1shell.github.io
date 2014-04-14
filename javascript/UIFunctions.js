@@ -662,6 +662,7 @@ function handleMapMouseEvent(evt)
 				{
 					//if selectedObject is not at (row, column)
 					deSelectAll();
+					selectObject(row,column);
 				}
 			}
 		}
