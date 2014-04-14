@@ -406,7 +406,7 @@ function displayStackSelectionBox(row,column)
 							{
 								var SSBImage = new createjs.Bitmap(this);
 								SSBImage.x = 24*(column+1)+2;
-								SSBImage.y = 50 + 24*row+14*this.yOffset;
+								SSBImage.y = 52 + 24*row+14*this.yOffset;
 								SSBImage.name = "SSBImage";
 								stage.addChild(SSBImage);
 								
