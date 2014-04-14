@@ -384,7 +384,7 @@ function displayStackSelectionBox(row,column)
 	//check to see if there's a select square here
 	for(var i=0;i<movementSquares.length;i++)
 	{
-		if(movementSquares[i].row == row && movementSquars[i].column == column)
+		if(movementSquares[i].row == row && movementSquares[i].column == column)
 		{
 			addMoveButton = 1;
 			
