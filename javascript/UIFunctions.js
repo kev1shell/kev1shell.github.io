@@ -295,6 +295,13 @@ function displayStackSelectionBox(row,column)
 	var tile = map[row][column];
 	var stack = tile.stack;
 	
+	//plain background
+	var stackSelectionBox = new createjs.Shape();
+	stackSelectionBox.graphics.beginFill("DarkSlateGray").drawRect(0, 0, 75, 50*stack.length);
+	stackSelectionBox.x = 24*(column+1);
+	stackSelectionBox.y = 50+24*row;
+	stackSelectionBox.name = "stackSelectionBox";
+	stage.addChild(stackSelectionBox);
 	
 }
 

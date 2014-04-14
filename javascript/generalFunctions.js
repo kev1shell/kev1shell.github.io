@@ -756,6 +756,6 @@ function selectObject(row,column)
 				i = tile.stack.length;
 			}
 		}
-		//selectedObject = tile;
+		displayStackSelectionBox(row,column);
 	}
 }
