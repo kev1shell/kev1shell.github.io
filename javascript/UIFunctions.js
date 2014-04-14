@@ -293,13 +293,18 @@ function displayDemoMainMenu()
 function displayObjectCost(object)
 {
 	
+	//cost text
+	var costText = new createjs.Text(text, "bold 14px Arial", "black");
+	costText.x = 401;
+	costText.y = 30;
+	costText.name = "costText";
+	
 	//background
 	var costBackground = new createjs.Shape();
-	costBackground.graphics.beginFill("LightSlateGray").drawRect(0, 0, 100, 30);
+	costBackground.graphics.beginFill("LightSlateGray").drawRect(0, 0, stage.getChildByName("costText").getBounds().width, 30);
 	costBackground.x = 401;
 	costBackground.y = 30;
 	costBackground.name = "costBackground";
-	stage.addChild(costBackground);
 	
 	var text = "";
 	
@@ -320,11 +325,7 @@ function displayObjectCost(object)
 		text = "Food: "+warriorFoodCost+" Timber: "+warriorTimberCost+" Stone: "+warriorStoneCost;
 	}
 	
-	//cost text
-	var costText = new createjs.Text(text, "bold 14px Arial", "black");
-	costText.x = 401;
-	costText.y = 30;
-	costText.name = "costText";
+	stage.addChild(costBackground);
 	stage.addChild(costText);
 	
 	stage.update();
