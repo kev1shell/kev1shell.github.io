@@ -416,6 +416,8 @@ function displayStackSelectionBox(row,column)
 								{
 									selectedUnit = null;
 								}
+								
+								removeStackSelectionBox();
 							}
 		SSBButton.draw();
 		

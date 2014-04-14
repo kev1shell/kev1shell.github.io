@@ -663,26 +663,8 @@ function startTurn()
 	
 }
 
-//removes all selection and movement graphics
-//and resets all selection pointers to null
-function deSelectAll()
+function removeStackSelectionBox()
 {
-	selectedObject = null;
-	selectedUnit = null;
-	
-	stage.removeChild(stage.getChildByName("infoLine1"));
-	stage.removeChild(stage.getChildByName("infoLine2"));
-	stage.removeChild(stage.getChildByName("infoLine3"));
-	stage.removeChild(stage.getChildByName("infoLine4"));
-	stage.removeChild(stage.getChildByName("selectSquare"));
-	stage.removeChild(stage.getChildByName("BFtext"));
-	stage.removeChild(stage.getChildByName("BuildFarmButton"));
-	stage.removeChild(stage.getChildByName("BVtext"));
-	stage.removeChild(stage.getChildByName("BuildVillageButton"));
-	stage.removeChild(stage.getChildByName("buildVillagertext"));
-	stage.removeChild(stage.getChildByName("BuildVillagerButton"));
-	stage.removeChild(stage.getChildByName("buildWarriortext"));
-	stage.removeChild(stage.getChildByName("BuildWarriorButton"));
 	stage.removeChild(stage.getChildByName("stackSelectionBox"));
 	stage.removeChild(stage.getChildByName("SSBInfoBackground"));
 	stage.removeChild(stage.getChildByName("objectName"));
@@ -704,6 +686,30 @@ function deSelectAll()
 	{
 		stage.removeChild(stage.getChildByName("SSBImage"));
 	}
+}
+
+//removes all selection and movement graphics
+//and resets all selection pointers to null
+function deSelectAll()
+{
+	selectedObject = null;
+	selectedUnit = null;
+	
+	stage.removeChild(stage.getChildByName("infoLine1"));
+	stage.removeChild(stage.getChildByName("infoLine2"));
+	stage.removeChild(stage.getChildByName("infoLine3"));
+	stage.removeChild(stage.getChildByName("infoLine4"));
+	stage.removeChild(stage.getChildByName("selectSquare"));
+	stage.removeChild(stage.getChildByName("BFtext"));
+	stage.removeChild(stage.getChildByName("BuildFarmButton"));
+	stage.removeChild(stage.getChildByName("BVtext"));
+	stage.removeChild(stage.getChildByName("BuildVillageButton"));
+	stage.removeChild(stage.getChildByName("buildVillagertext"));
+	stage.removeChild(stage.getChildByName("BuildVillagerButton"));
+	stage.removeChild(stage.getChildByName("buildWarriortext"));
+	stage.removeChild(stage.getChildByName("BuildWarriorButton"));
+	
+	removeStackSelectionBox();
 	
 	removeMovementSquares();
 	
@@ -759,24 +765,7 @@ function selectObject(row,column)
 	}
 	else
 	{
-		//select first unit on stack
-		for(var i=0;i<tile.stack.length;i++)
-		{
-			if(isUnit(tile.stack[i]) == true)
-			{
-				selectedObject = tile.stack[i];
-				selectedUnit = tile.stack[i];
-				displaySelectBox(row,column);
-				selectedObject.displayInfo(stage, player);
-				
-				if(selectedUnit.movementPoints > 0 && selectedUnit.color == player.color)
-				{
-					displayMovementSquares(row,column);
-				}
-				
-				i = tile.stack.length;
-			}
-		}
+		//stack selection
 		displayStackSelectionBox(row,column);
 	}
 }
