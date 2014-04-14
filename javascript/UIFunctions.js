@@ -397,6 +397,26 @@ function displayStackSelectionBox(row,column)
 		SSBButton.column = column;
 		SSBButton.target = stack[i];
 		SSBButton.handleButtonEvent = handleSSBBEvent;
+		SSBButton.onClick = function()
+							{
+								selectedObject = tile.stack[i];
+								displaySelectBox(row,column);
+								selectedObject.displayInfo(stage, player);
+								
+								if(isUnit(tile.stack[i]) == true)
+								{
+									selectedUnit = tile.stack[i];
+									
+									if(selectedUnit.movementPoints > 0 && selectedUnit.color == player.color && player.onTurn == true)
+									{
+										displayMovementSquares(row,column);
+									}
+								}
+								else
+								{
+									selectedUnit = null;
+								}
+							}
 		SSBButton.draw();
 		
 		//add image
