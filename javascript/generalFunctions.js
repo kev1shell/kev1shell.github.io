@@ -462,7 +462,7 @@ function addStackSymbol(row,column)
 {
 	
 	var stackSymbol = new Image();
-	stackSymbol.src = "http://students.cse.tamu.edu/tjb33/assets/maps/survivorIsland3.png"
+	stackSymbol.src = "http://kev1shell.github.io/assets/sprites/other/stackSymbol.png"
 	
 	stackSymbol.onload = function()
 							{
