@@ -683,6 +683,27 @@ function deSelectAll()
 	stage.removeChild(stage.getChildByName("BuildVillagerButton"));
 	stage.removeChild(stage.getChildByName("buildWarriortext"));
 	stage.removeChild(stage.getChildByName("BuildWarriorButton"));
+	stage.removeChild(stage.getChildByName("stackSelectionBox"));
+	stage.removeChild(stage.getChildByName("SSBInfoBackground"));
+	stage.removeChild(stage.getChildByName("objectName"));
+	stage.removeChild(stage.getChildByName("SSBinfoLine1"));
+	stage.removeChild(stage.getChildByName("SSBinfoLine2"));
+	stage.removeChild(stage.getChildByName("SSBinfoLine3"));
+	stage.removeChild(stage.getChildByName("SSBinfoLine4"));
+	
+	//remove all stack selection buttons
+	var index = 0;
+	while(stage.getChildByName("SSBButton"+index) != null)
+	{
+		stage.removeChild(stage.getChildByName("SSBButton"+index));
+		index++;
+	}
+	
+	//remove all stack selection images
+	while(stage.getChildByName("SSBImage") != null)
+	{
+		stage.removeChild(stage.getChildByName("SSBImage"));
+	}
 	
 	removeMovementSquares();
 	
