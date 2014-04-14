@@ -294,7 +294,7 @@ function displaySSBInfo(object,row,column)
 {
 	//background
 	var SSBInfoBackground = new createjs.Shape();
-	SSBInfoBackground.graphics.beginFill("DarkSlateGray").drawRect(0, 0, 75, 75);
+	SSBInfoBackground.graphics.beginFill("LightSlateGray").drawRect(0, 0, 75, 75);
 	SSBInfoBackground.x = 24*(column+1)+46;
 	SSBInfoBackground.y = 50+24*row;
 	SSBInfoBackground.name = "SSBInfoBackground";
