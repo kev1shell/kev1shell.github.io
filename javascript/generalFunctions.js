@@ -594,6 +594,11 @@ function unitHandler(row,column)
 			selectObject(row,column);
 		}
 	}
+	else
+	{
+		deSelectAll();
+		selectObject(row,column);
+	}
 }
 
 //returns the distance between two tiles.
