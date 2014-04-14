@@ -499,7 +499,7 @@ function unitHandler(row,column)
 				{
 					if(tile.stack.length > 0)
 					{
-						//enhanced selection
+						displayStackSelectionBox(row,column);
 					}
 					else
 					{

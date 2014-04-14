@@ -477,15 +477,15 @@ function displayStackSelectionBox(row,column)
 		
 		//add image
 		var moveHereImage = new Image();
-		moveHereImage.src = "";
-		moveHereImage.yOffset = i;
+		moveHereImage.src = "http://kev1shell.github.io/assets/sprites/other/moveHereSymbol.png";
+		moveHereImage.yOffset = index;
 		moveHereImage.onload = function()
 							{
-								var SSBImage = new createjs.Bitmap(this);
-								SSBImage.x = 24*(column+1)+2;
-								SSBImage.y = 54 + 24*row+24*this.yOffset;
-								SSBImage.name = "SSBImage";
-								stage.addChild(SSBImage);
+								var MHImage = new createjs.Bitmap(this);
+								MHImage.x = 24*(column+1)+2;
+								MHImage.y = 54 + 24*row+24*this.yOffset;
+								MHImage.name = "MHImage";
+								stage.addChild(MHImage);
 								
 								stage.update();
 							}
