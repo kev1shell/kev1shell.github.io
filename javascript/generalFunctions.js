@@ -695,7 +695,7 @@ function deSelectAll()
 	var index = 0;
 	while(stage.getChildByName("SSBButton"+index) != null)
 	{
-		stage.removeChild(stage.getChildByName("SSBButton"+index));
+		stage.getChildByName("SSBButton"+index).parentButton.remove();
 		index++;
 	}
 	

@@ -19,6 +19,14 @@ var Button = function(_name, _x, _y,_width,_height)
 	this.onClick = null;
 	this.draw = draw;
 	this.handleButtonEvent = handleButtonEvent;
+	this.remove = remove;
+	
+	function remove()
+	{
+		stage.removeChild(this.shape);
+		stage.removeChild(this.textShape);
+		stage.removeChild(this.outlineshape);
+	}
 	
 	function draw(color)
 	{
