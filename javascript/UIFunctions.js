@@ -300,6 +300,13 @@ function displaySSBInfo(object,row,column)
 	SSBInfoBackground.name = "SSBInfoBackground";
 	stage.addChild(SSBInfoBackground);
 	
+	//Object name text
+	var objectName = new createjs.Text(object.type, "bold 14px Arial", "black");
+	objectName.x = 24*(column+1)+50;
+	objectName.y = 52+24*row;
+	objectName.name = "objectName";
+	objectName.addChild(IEtext);
+	
 	stage.update();
 }
 
@@ -323,6 +330,7 @@ function handleSSBBEvent(evt)
 	{
 		sourceButton.draw(sourceButton.mouseOutColor);
 		stage.removeChild(stage.getChildByName("SSBInfoBackground"));
+		stage.removeChild(stage.getChildByName("objectName"));
 		stage.update();
 	}
 	if(evt.type == "mousedown" && stage.getChildByName(sourceButton.shape.name) != null)
