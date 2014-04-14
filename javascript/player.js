@@ -82,7 +82,7 @@ var Player = function()
 		map[row][column].stack.push(village);
 		
 		//check to see if a new stack has been created:
-		if(map[row][column].stack.length > 1)
+		if(map[row][column].stack.length == 2)
 		{
 			addStackSymbol(row,column);
 			organizeChildren();
@@ -130,7 +130,7 @@ var Player = function()
 		map[row][column].stack.push(farm);
 		
 		//check to see if a new stack has been created:
-		if(map[row][column].stack.length > 1)
+		if(map[row][column].stack.length == 2)
 		{
 			addStackSymbol(row,column);
 			organizeChildren();
@@ -187,7 +187,7 @@ var Player = function()
 		map[row][column].stack.push(warrior);
 		
 		//check to see if a new stack has been created:
-		if(map[row][column].stack.length > 1)
+		if(map[row][column].stack.length == 2)
 		{
 			addStackSymbol(row,column);
 			organizeChildren();
@@ -244,7 +244,7 @@ var Player = function()
 		map[row][column].stack.push(villager);
 		
 		//check to see if a new stack has been created:
-		if(map[row][column].stack.length > 1)
+		if(map[row][column].stack.length == 2)
 		{
 			addStackSymbol(row,column);
 			organizeChildren();

@@ -129,7 +129,7 @@ var Unit = function()
 			map[newRow][newColumn].stack.push(this);
 			
 			//check to see if a new stack has been created:
-			if(map[newRow][newColumn].stack.length > 1)
+			if(map[newRow][newColumn].stack.length == 2)
 			{
 				addStackSymbol(newRow,newColumn);
 				organizeChildren();
