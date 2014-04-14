@@ -399,17 +399,18 @@ function displayStackSelectionBox(row,column)
 		SSBButton.handleButtonEvent = handleSSBBEvent;
 		SSBButton.onClick = function()
 							{
-								selectedObject = tile.stack[i];
-								displaySelectBox(row,column);
+								var tile = map[this.row][this.column]
+								selectedObject = tile.stack[this.target];
+								displaySelectBox(this.row,this.column);
 								selectedObject.displayInfo(stage, player);
 								
-								if(isUnit(tile.stack[i]) == true)
+								if(isUnit(tile.stack[this.target]) == true)
 								{
-									selectedUnit = tile.stack[i];
+									selectedUnit = tile.stack[this.target];
 									
 									if(selectedUnit.movementPoints > 0 && selectedUnit.color == player.color && player.onTurn == true)
 									{
-										displayMovementSquares(row,column);
+										displayMovementSquares(this.row,this.column);
 									}
 								}
 								else
