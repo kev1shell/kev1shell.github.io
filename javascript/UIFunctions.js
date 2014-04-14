@@ -387,7 +387,7 @@ function displayStackSelectionBox(row,column)
 	stackSelectionBox.name = "stackSelectionBox";
 	stage.addChild(stackSelectionBox);
 	
-	for(var i=0;i<stack.length-1;i++)
+	for(var i=0;i<stack.length;i++)
 	{
 		//add button
 		var SSBButton = new Button("SSBButton",24*(column+1)+20,52+24*row+22*i,20,20);
