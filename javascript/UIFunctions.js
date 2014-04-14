@@ -297,11 +297,24 @@ function displayStackSelectionBox(row,column)
 	
 	//plain background
 	var stackSelectionBox = new createjs.Shape();
-	stackSelectionBox.graphics.beginFill("DarkSlateGray").drawRect(0, 0, 75, 50*stack.length);
+	stackSelectionBox.graphics.beginFill("DarkSlateGray").drawRect(0, 0, 75, 25*stack.length);
 	stackSelectionBox.x = 24*(column+1);
 	stackSelectionBox.y = 50+24*row;
 	stackSelectionBox.name = "stackSelectionBox";
 	stage.addChild(stackSelectionBox);
+	
+	for(var i=0;i<stack.length;i++)
+	{
+		if(stack[i].type == "villager")
+		{
+			//add button
+			var SSBButton1 = new Button("SSBButton1",24*(column+1)+2,52+24*row,40,40);
+			SSBButton1.text = "<";
+			SSBButton1.draw();
+		}
+	}
+	
+	stage.update();
 	
 }
 
