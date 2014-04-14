@@ -458,7 +458,23 @@ function moveSelectedUnit(row,column)
 	removeMovementSquares();
 }
 
-function addStackSymbol(row,column){}
+function addStackSymbol(row,column)
+{
+	
+	var stackSymbol = new Image();
+	stackSymbol.src = "http://students.cse.tamu.edu/tjb33/assets/maps/survivorIsland3.png"
+	
+	stackSymbol.onload = function()
+							{
+								var stackSymbolImage = new createjs.Bitmap(this);
+								stackSymbolImage.x = 17+24*column;
+								stackSymbolImage.y = 50 + 24*row;
+								stackSymbolImage.name = "stackSymbol"+Math.floor(Math.random()*1000000000);
+								stage.addChild(stackSymbolImage);
+								
+								stage.update();
+							}
+}
 
 //handles the nitty gritty of unit movement
 function unitHandler(row,column)
