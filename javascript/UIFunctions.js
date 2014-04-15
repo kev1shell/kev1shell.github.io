@@ -300,12 +300,12 @@ function displayObjectCost(object)
 	if(object == "village")
 	{
 		text = "Timber: "+villageTimberCost+" Stone: "+villageStoneCost;
-		xOffset = 50;
+		xOffset = 75;
 	}
 	else if(object == "farm")
 	{
 		text = "Timber: "+farmTimberCost;
-		xOffset = 50;
+		xOffset = 75;
 	}
 	else if(object == "villager")
 	{
