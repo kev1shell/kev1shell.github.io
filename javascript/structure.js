@@ -187,11 +187,13 @@ function handleBVgrMouseEvent(evt)
 	if(evt.type == "mouseover")
 	{
 		displayBuildVillagerButton(stage, "blue");
+		displayObjectCost("villager");
 		stage.update();
 	}
 	if(evt.type == "mouseout")
 	{
 		displayBuildVillagerButton(stage, "lightBlue");
+		removeObjectCost();
 		stage.update();
 	}
 	

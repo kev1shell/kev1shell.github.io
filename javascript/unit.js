@@ -288,11 +288,13 @@ function handleBVMouseEvent(evt)
 	if(evt.type == "mouseover")
 	{
 		displayBuildVillageButton(stage, "blue");
+		displayObjectCost("village");
 		stage.update();
 	}
 	if(evt.type == "mouseout")
 	{
 		displayBuildVillageButton(stage, "lightBlue");
+		removeObjectCost();
 		stage.update();
 	}
 	
@@ -323,11 +325,13 @@ function handleBFMouseEvent(evt)
 	if(evt.type == "mouseover")
 	{
 		displayBuildFarmButton(stage, "blue");
+		displayObjectCost("farm");
 		stage.update();
 	}
 	if(evt.type == "mouseout")
 	{
 		displayBuildFarmButton(stage, "lightBlue");
+		removeObjectCost();
 		stage.update();
 	}
 	
