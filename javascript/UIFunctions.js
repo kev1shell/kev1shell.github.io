@@ -294,13 +294,19 @@ function displayObjectCost(object)
 {
 	
 	var text = "";
-	
+	var color = "salmon";
 	var xOffset = 0;
+	
+	if(canBuild(object) == true)
+	{
+		color = "lightGreen";
+	}
 	
 	if(object == "village")
 	{
 		text = "Timber: "+villageTimberCost+" Stone: "+villageStoneCost;
 		xOffset = 75;
+		
 	}
 	else if(object == "farm")
 	{
@@ -324,7 +330,7 @@ function displayObjectCost(object)
 	
 	//background
 	var costBackground = new createjs.Shape();
-	costBackground.graphics.beginFill("LightSlateGray").drawRect(0, 0, costText.getBounds().width+10, 18);
+	costBackground.graphics.beginFill("color").drawRect(0, 0, costText.getBounds().width+10, 18);
 	costBackground.x = 401+xOffset;
 	costBackground.y = 35;
 	costBackground.name = "costBackground";
