@@ -249,17 +249,17 @@ function displayDemoMainMenu()
 	//start game button
 	var StartGameButton = new Button("StartGameButton",338,170,175,50); //constructor: (name,x,y,width,height)
 	StartGameButton.text = "Start Game";//the text on the button
-	StartGameButton.mouseOutColor = "yellow";
-	StartGameButton.mouseInColor = "gold";
-	StartGameButton.mouseDownColor = "orange";
+	//StartGameButton.mouseOutColor = "yellow";
+	//StartGameButton.mouseInColor = "gold";
+	//StartGameButton.mouseDownColor = "orange";
 	StartGameButton.onClick = startGame;//function that the button calls when clicked.
 	
 	//help button
 	var helpButton = new Button("helpButton",338,230,175,50); //constructor: (name,x,y,width,height)
 	helpButton.text = "help";//the text on the button
-	helpButton.mouseOutColor = "yellow";
-	helpButton.mouseInColor = "gold";
-	helpButton.mouseDownColor = "orange";
+	//helpButton.mouseOutColor = "yellow";
+	//helpButton.mouseInColor = "gold";
+	//helpButton.mouseDownColor = "orange";
 	helpButton.onClick = displayDemoHelpScreen;//function that the button calls when clicked.
 	
 	//background image
@@ -280,7 +280,7 @@ function displayDemoMainMenu()
 								stage.addChild(backgroundShape);
 								stage.addChild(titalText);
 								StartGameButton.draw();
-								helpButton.draw();
+								//helpButton.draw();
 								
 								stage.update();
 							}
