@@ -132,6 +132,10 @@ function handleBWMouseEvent(evt)
 	
 	if(evt.type == "click")
 	{
+		
+		removeObjectCost();
+		displayObjectCost("warrior");
+		
 		if(canBuild("warrior"))
 		{
 			//build warrior
@@ -169,6 +173,9 @@ function handleBVgrMouseEvent(evt)
 	
 	if(evt.type == "click")
 	{
+		removeObjectCost();
+		displayObjectCost("villager");
+		
 		if(canBuild("villager"))
 		{
 			//build villager

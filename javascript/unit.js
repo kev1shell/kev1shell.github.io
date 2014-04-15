@@ -270,6 +270,9 @@ function handleBVMouseEvent(evt)
 	
 	if(evt.type == "click")
 	{
+		removeObjectCost();
+		displayObjectCost("village");
+		
 		if(canBuild("village"))
 		{
 			//build village
@@ -307,6 +310,10 @@ function handleBFMouseEvent(evt)
 	
 	if(evt.type == "click")
 	{
+		
+		removeObjectCost();
+		displayObjectCost("farm");
+		
 		if(canBuild("farm"))
 		{
 			//build farm
