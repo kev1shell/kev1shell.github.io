@@ -314,15 +314,15 @@ function displayObjectCost(object)
 	
 	//cost text
 	var costText = new createjs.Text(text, "bold 14px Arial", "black");
-	costText.x = 401;
-	costText.y = 30;
+	costText.x = 406;
+	costText.y = 35;
 	costText.name = "costText";
 	
 	//background
 	var costBackground = new createjs.Shape();
-	costBackground.graphics.beginFill("LightSlateGray").drawRect(0, 0, costText.getBounds().width, 30);
+	costBackground.graphics.beginFill("LightSlateGray").drawRect(0, 0, costText.getBounds().width+10, 18);
 	costBackground.x = 401;
-	costBackground.y = 30;
+	costBackground.y = 35;
 	costBackground.name = "costBackground";
 	
 	stage.addChild(costBackground);
