@@ -295,13 +295,17 @@ function displayObjectCost(object)
 	
 	var text = "";
 	
+	var xOffset = 0;
+	
 	if(object == "village")
 	{
 		text = "Timber: "+villageTimberCost+" Stone: "+villageStoneCost;
+		xOffset = 50;
 	}
 	else if(object == "farm")
 	{
 		text = "Timber: "+farmTimberCost;
+		xOffset = 50;
 	}
 	else if(object == "villager")
 	{
@@ -314,14 +318,14 @@ function displayObjectCost(object)
 	
 	//cost text
 	var costText = new createjs.Text(text, "bold 14px Arial", "black");
-	costText.x = 406;
+	costText.x = 406+xOffset;
 	costText.y = 35;
 	costText.name = "costText";
 	
 	//background
 	var costBackground = new createjs.Shape();
 	costBackground.graphics.beginFill("LightSlateGray").drawRect(0, 0, costText.getBounds().width+10, 18);
-	costBackground.x = 401;
+	costBackground.x = 401+xOffset;
 	costBackground.y = 35;
 	costBackground.name = "costBackground";
 	
