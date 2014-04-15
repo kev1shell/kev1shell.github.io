@@ -330,7 +330,7 @@ function displayObjectCost(object)
 	
 	//background
 	var costBackground = new createjs.Shape();
-	costBackground.graphics.beginFill("color").drawRect(0, 0, costText.getBounds().width+10, 18);
+	costBackground.graphics.beginFill(color).drawRect(0, 0, costText.getBounds().width+10, 18);
 	costBackground.x = 401+xOffset;
 	costBackground.y = 35;
 	costBackground.name = "costBackground";
