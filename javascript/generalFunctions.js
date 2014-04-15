@@ -4,6 +4,8 @@
 //called by one client and FORCES all other clients to start the game.
 //Only ONE client should call this function.
 
+//this function organizes the graphics children into the order
+//we want them to be drawn in.
 function organizeChildren()
 {
 	var children = [];
@@ -118,6 +120,7 @@ function organizeChildren()
 	stage.update();
 }
 
+//This function is called once by one client and starts the game for all clients
 function startGame()
 {
 	//remove all children from stage
@@ -164,6 +167,7 @@ function joinGame()
 	}
 }
 
+//returns true if the player can build this object (unit or structure)
 function canBuild(object)
 {
 	
@@ -268,6 +272,8 @@ function canBuild(object)
 	}
 }
 
+//returns a structure at the given row & column
+//returns null if no structure was found
 function getStructureAt(row, column)
 {
 	var tile = map[row][column];
@@ -282,6 +288,7 @@ function getStructureAt(row, column)
 	return null;
 }
 
+//returns true if the given tile contains an enemy object
 function tileContainsEnemy(row, column)
 {
 	var tile = map[row][column];
@@ -295,6 +302,8 @@ function tileContainsEnemy(row, column)
 	return false;
 }
 
+//returns an enemy in a given tile. returns null
+//if no enemy was found.
 function getEnemyAt(row,column)
 {
 	var tile = map[row][column];
@@ -319,6 +328,7 @@ function getEnemyAt(row,column)
 	return null;
 }
 
+//This function takes in two combatants and returns the survivor.
 function combaty(attackingUnit, defendingUnit)
 {
 	while( attackingUnit.health > 0 && defendingUnit.health > 0)
@@ -339,6 +349,7 @@ function combaty(attackingUnit, defendingUnit)
 	}
 }
 
+//decremented function
 function combat(unitA, unitB)
 { 
 	//-----Combat-specific helper functions-----
@@ -409,6 +420,7 @@ function killRandomUnit()
 	alert("Your villages starving! you have lost a "+unit.type+"!");
 }
 
+//removes movement squares from graphics stage.
 function removeMovementSquares()
 {
 	while(movementSquares.length > 0)
@@ -449,6 +461,7 @@ function moveUnit(unit,row,column)
 	updater(messageArray);
 }
 
+//moves the selected unit to the specified tile.
 function moveSelectedUnit(row,column)
 {
 	//selectedUnit.move(stage, map, row, column);
@@ -458,6 +471,7 @@ function moveSelectedUnit(row,column)
 	removeMovementSquares();
 }
 
+//adds a stack symbol at the specified tile
 function addStackSymbol(row,column)
 {
 	
@@ -476,6 +490,7 @@ function addStackSymbol(row,column)
 							}
 }
 
+//removes a stack symbol from the specified tile.
 function removeStackSymbol(row,column)
 {
 	stage.removeChild(stage.getChildByName("stackSymbol"+row+column));
@@ -676,6 +691,7 @@ function startTurn()
 	
 }
 
+//removes the object cost tool tip
 function removeObjectCost()
 {
 	stage.removeChild(stage.getChildByName("costBackground"));
@@ -684,6 +700,7 @@ function removeObjectCost()
 	stage.update();
 }
 
+//removes the stack selection box
 function removeStackSelectionBox()
 {
 	stage.removeChild(stage.getChildByName("stackSelectionBox"));
