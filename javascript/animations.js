@@ -74,7 +74,12 @@ function animateSnow()
 				stage.removeChild(shape);
 			}
 		}
-		stage.update();
+		
+		if(snowRender)
+		{
+			stage.update();
+		}
+		snowRender = !snowRender;
 		//window.setTimeout(animateSnow, refreshPeriod);
 	}
 	else
