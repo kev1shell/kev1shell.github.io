@@ -21,8 +21,9 @@ function createSnowParticle()
 	//particle shape
 	var particle = new createjs.Shape();
 	particle.graphics.beginFill("white").drawCircle(0, 0, radius);
-	particle.x = Math.floor(Math.random()*840);;
+	particle.x = Math.floor(Math.random()*840);
 	particle.y = 50;
+	particle.xDirection = Math.floor(Math.random()*3) -1;
 	particle.name = "particle"+particles.length;
 	stage.addChild(particle);
 	particles.push(particle);
@@ -58,8 +59,9 @@ function animateSnow()
 		for(var i=0;i<particles.length;i++)
 		{
 			particles[i].y = particles[i].y + fallRate;
+			particles[i].x = particles[i].x + fallRate*particles[i].xDirection;
 			
-			if(particles[i].y >= stage.getBounds().height)
+			if(particles[i].y >= stage.getBounds().height || particles[i].x >= stage.getBounds().width || particles[i].x < 0)
 			{
 				particles[i].y = 50;
 			}
