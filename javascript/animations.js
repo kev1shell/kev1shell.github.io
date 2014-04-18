@@ -39,11 +39,14 @@ function snow()
 	//release snow variable
 	snowing = true;
 	
-	/* for(var i=0;i<stage.children.length;i++)
+	 for(var i=0;i<stage.children.length;i++)
 	{
 		var shape = stage.getChildAt(i);
-		shape.cache(-6, -6, 6 * 2, 6 * 2);
-	} */
+		if(shape.getBounds != null)
+		{
+			shape.cache(0, 0, shape.getBounds.width, shape.getBounds.height);
+		}
+	} 
 	
 	//generate snow particles
 	/* for(var i=0;i<numParticles;i++)
