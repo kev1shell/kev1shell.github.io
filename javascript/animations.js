@@ -42,6 +42,7 @@ function cacheStage()
 			shape.cache(0, 0, shape.getBounds().width, shape.getBounds().height);
 		}
 	}
+	stage.update();
 }
 
 function snow()

@@ -342,6 +342,7 @@ function displayObjectCost(object)
 	stage.addChild(costBackground);
 	stage.addChild(costText);
 	
+	cacheStage();
 	stage.update();
 }
 
@@ -430,6 +431,7 @@ function handleSSBBEvent(evt)
 	{
 		sourceButton.draw(sourceButton.mouseDownColor);
 	}
+	cacheStage();
 }
 
 //This function displays the stack selection box
@@ -562,6 +564,7 @@ function displayStackSelectionBox(row,column)
 							}
 	}
 	
+	cacheStage();
 	stage.update();
 	
 }
@@ -713,12 +716,6 @@ function displayTurnCounterElement(color)
 
 /*--------------------------------------------------------------*/
 /*-------------------mouse event functions----------------------*/
-
-function handleStageMouseEvent(evt)
-{
-	cacheStage();
-	stage.update();
-}
 
 //handles End turn mouse events
 function handleETEMouseEvent(evt)
