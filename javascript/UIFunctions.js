@@ -714,6 +714,12 @@ function displayTurnCounterElement(color)
 /*--------------------------------------------------------------*/
 /*-------------------mouse event functions----------------------*/
 
+function handleStageMouseEvent(evt)
+{
+	cacheStage();
+	stage.update();
+}
+
 //handles End turn mouse events
 function handleETEMouseEvent(evt)
 {

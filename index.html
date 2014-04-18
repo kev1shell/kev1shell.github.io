@@ -113,6 +113,11 @@
 			
 			createjs.Ticker.addEventListener("tick", tick);
             createjs.Ticker.setFPS(50);
+			
+			stage.addEventListener("mouseover", handleStageMouseEvent);
+			stage.addEventListener("mouseout", handleStageMouseEvent);
+			stage.addEventListener("mousedown", handleStageMouseEvent);
+			stage.addEventListener("pressup", handleStageMouseEvent);
 		}
 	
 		function tick()
