@@ -300,7 +300,7 @@ function handleBVMouseEvent(evt)
 		removeObjectCost();
 		stage.update();
 	}
-	
+	cacheStage();
 }
 
 function handleBFMouseEvent(evt)
@@ -341,7 +341,7 @@ function handleBFMouseEvent(evt)
 		removeObjectCost();
 		stage.update();
 	}
-	
+	cacheStage();
 }
 
 

@@ -750,6 +750,7 @@ function handleETEMouseEvent(evt)
 		displayEndTurnElement("darkRed");
 		stage.update();
 	}
+	cacheStage();
 }
 
 //handles map mouse events.
