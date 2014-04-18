@@ -14,8 +14,7 @@ function organizeChildren()
 	var structures = [];
 	var other = [];
 	var selectionObjects = [];
-	var mapShape = null;
-	var mapBackground = null;
+	var particleShapes = [];
 	
 	children = stage.children;
 	
@@ -33,10 +32,9 @@ function organizeChildren()
 			continue;
 		}
 		
-		if(name == "mapShape")
+		if(name.indexOf("particle") == 0)
 		{
-			mapShape = children[i];
-			continue;
+			particleShapes.push(children[i]);
 		}
 		
 		if(name.indexOf("villager") != 0 && name.indexOf("warrior") != 0)
@@ -94,20 +92,10 @@ function organizeChildren()
 			continue;
 		}
 		
-		if(name.indexOf("movementSquare") == 0 || name.indexOf("selectSquare") == 0)
+		if(name.indexOf("movementSquare") == 0 || name.indexOf("selectSquare") == 0 ||  name.indexOf("stackSymbol") == 0)
 		{
 			selectionObjects.push(children[i]);
 		}
-	}
-	
-	if(mapBackground != null)
-	{
-		result.push(mapBackground);
-	}
-	
-	if(mapShape != null)
-	{
-		result.push(mapShape);
 	}
 	
 	for(var i=0;i<other.length;i++)
@@ -128,6 +116,11 @@ function organizeChildren()
 	for(var i=0;i<selectionObjects.length;i++)
 	{
 		result.push(selectionObjects[i]);
+	}
+	
+	for(var i=0;i<particleShapes.length;i++)
+	{
+		result.push(particleShapes[i]);
 	}
 	
 	stage.children = result;
