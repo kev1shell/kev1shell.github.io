@@ -48,6 +48,8 @@ function snow()
 	//animateSnow();
 }
 
+var snowRender = true;
+
 function animateSnow()
 {
 	var fallRate = 1;
@@ -71,7 +73,15 @@ function animateSnow()
 				particles.splice(i,1);
 			}
 		}
-		stage.update();
+		if(snowRender)
+		{
+			stage.update();
+			snowRender = false;
+		}
+		else
+		{
+			snowRender = true;
+		}
 		//window.setTimeout(animateSnow, refreshPeriod);
 	}
 	else
