@@ -30,10 +30,10 @@ function snow()
 	snowing = true;
 	
 	//generate snow particles
-	for(var i=0;i<numParticles;i++)
+	/* for(var i=0;i<numParticles;i++)
 	{
 		createSnowParticle();
-	}
+	} */
 	
 	animateSnow();
 }
@@ -44,7 +44,12 @@ function animateSnow()
 	
 	if(snowing == true)
 	{
-		for(var i=0;i<numParticles;i++)
+		if(particles.length < numParticles && Math.floor(Math.random()*100) >= 50)
+		{
+			createSnowParticle();
+		}
+		
+		for(var i=0;i<particles.length;i++)
 		{
 			particles[i].y = particles[i].y + fallRate;
 			
