@@ -17,7 +17,7 @@ function createSnowParticle()
 	particle.graphics.beginFill("white").drawCircle(0, 0, radius);
 	particle.x = Math.floor(Math.random()*840);;
 	particle.y = 50;
-	particle.name = "particle"+i;
+	particle.name = "particle"+particles.length;
 	stage.addChild(particle);
 	particles.push(particle);
 }
