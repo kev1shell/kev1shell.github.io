@@ -30,10 +30,10 @@ function snow()
 		particles.push(particle);
 	}
 	
-	animateSnow(particles);
+	animateSnow();
 }
 
-function animateSnow(particles)
+function animateSnow()
 {
 	var fallRate = 1;
 	
