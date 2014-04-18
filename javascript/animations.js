@@ -8,6 +8,20 @@ function stopSnow()
 	snowing = false;
 }
 
+function createSnowParticle()
+{
+	//particle radius
+	var radius = Math.floor(Math.random()*5) + 5;
+	//particle shape
+	var particle = new createjs.Shape();
+	particle.graphics.beginFill("white").drawCircle(0, 0, radius);
+	particle.x = Math.floor(Math.random()*840);;
+	particle.y = 50;
+	particle.name = "particle"+i;
+	stage.addChild(particle);
+	particles.push(particle);
+}
+
 function snow()
 {
 	particles = [];
@@ -18,16 +32,7 @@ function snow()
 	//generate snow particles
 	for(var i=0;i<numParticles;i++)
 	{
-		//particle radius
-		var radius = Math.floor(Math.random()*5) + 5;
-		//particle shape
-		var particle = new createjs.Shape();
-		particle.graphics.beginFill("white").drawCircle(0, 0, radius);
-		particle.x = Math.floor(Math.random()*840);;
-		particle.y = 50;
-		particle.name = "particle"+i;
-		stage.addChild(particle);
-		particles.push(particle);
+		createSnowParticle();
 	}
 	
 	animateSnow();
