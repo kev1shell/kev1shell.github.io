@@ -37,11 +37,14 @@ function animateSnow()
 {
 	var fallRate = 1;
 	
-	for(var i=0;i<numParticles;i++)
+	if(snowing == true)
 	{
-		particles[i].y = particles[i].y - fallRate;
+		for(var i=0;i<numParticles;i++)
+		{
+			particles[i].y = particles[i].y - fallRate;
+		}
+		stage.update();
+		window.setTimeout(animateSnow, refreshPeriod);
 	}
-	stage.update();
-	//window.setTimeout(animateSnow, refreshPeriod);
 	
 }
