@@ -1,7 +1,7 @@
 var snowing = false;
 var particles = [];
 var refreshPeriod = 42;
-var numParticles = 20;
+var numParticles = 100;
 
 function stopSnow()
 {
@@ -44,7 +44,7 @@ function animateSnow()
 	
 	if(snowing == true)
 	{
-		if(particles.length < numParticles && Math.floor(Math.random()*100) >= 50)
+		if(particles.length < numParticles && Math.floor(Math.random()*100) <= 20)
 		{
 			createSnowParticle();
 		}
