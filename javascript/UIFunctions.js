@@ -834,6 +834,7 @@ function handleMapLoad()
 	stage.addChild(mapBackground);
 	stage.addChild(bitmap);
 	
+	organizeChildren();
 	stage.update();
 }
 

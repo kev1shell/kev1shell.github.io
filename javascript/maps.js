@@ -45,19 +45,19 @@ function loadMapLightSnow()
 {
 	mapElement.src = "http://kev1shell.github.io/assets/maps/survivorIsland3_snow_light.png";
 	
-	window.setTimeout(organizeChildren, 500);
+	//window.setTimeout(organizeChildren, 500);
 }
 
 function loadMapMediumSnow()
 {
 	mapElement.src = "http://kev1shell.github.io/assets/maps/survivorIsland3_snow_medium.png";
 	
-	window.setTimeout(organizeChildren, 500);
+	//window.setTimeout(organizeChildren, 500);
 }
 
 function loadMapHeavySnow()
 {
 	mapElement.src = "http://kev1shell.github.io/assets/maps/survivorIsland3_snow_heavy.png";
 	
-	window.setTimeout(organizeChildren, 500);
+	//window.setTimeout(organizeChildren, 500);
 }
