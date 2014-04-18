@@ -74,10 +74,10 @@ function animateSnow()
 			
 			if(particles[i].y >= stage.getBounds().height || particles[i].x >= stage.getBounds().width || particles[i].x < 0)
 			{
-				//particles[i].y = 50;
-				shape = particles[i];
-				particles.splice(i,1);
-				stage.removeChild(shape);
+				var particle = particles[i];
+				particle.x = Math.floor(Math.random()*840);
+				particle.y = 50;
+				particle.xDirection = Math.floor(Math.random()*3) -1;
 			}
 		}
 		
