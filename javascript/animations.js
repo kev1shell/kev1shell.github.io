@@ -73,7 +73,7 @@ function animateSnow()
 				particles.splice(i,1);
 			}
 		}
-		if(snowRender)
+		if(snowRender)//
 		{
 			stage.update();
 			snowRender = false;
