@@ -1,7 +1,7 @@
 var snowing = false;
 var particles = [];
 var refreshPeriod = 42;
-var numParticles = 100;
+var numParticles = 75;
 
 function stopSnow()
 {
@@ -11,7 +11,7 @@ function stopSnow()
 function createSnowParticle()
 {
 	//particle radius
-	var radius = Math.floor(Math.random()*5) + 5;
+	var radius = Math.floor(Math.random()*5) + 1;
 	//particle shape
 	var particle = new createjs.Shape();
 	particle.graphics.beginFill("white").drawCircle(0, 0, radius);
