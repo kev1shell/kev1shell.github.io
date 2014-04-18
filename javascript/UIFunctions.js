@@ -799,8 +799,8 @@ function handleMapMouseEvent(evt)
 		}
 		
 	}
-	
-	//stage.update();
+	cacheStage();
+	stage.update();
 }
 
 /*-------------------------------------------------------------*/
