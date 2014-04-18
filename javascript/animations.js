@@ -21,7 +21,7 @@ function createSnowParticle()
 	var radius = Math.floor(Math.random()*5) + 1;
 	//particle shape
 	var particle = new createjs.Shape();
-	particle.graphics.beginFill("white").drawCircle(0, 0, radius);
+	particle.graphics.beginFill("lightBlue").drawCircle(0, 0, radius);
 	particle.x = Math.floor(Math.random()*840);
 	particle.y = 50;
 	particle.xDirection = Math.floor(Math.random()*3) -1;
