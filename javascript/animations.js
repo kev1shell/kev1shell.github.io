@@ -51,5 +51,14 @@ function animateSnow()
 		stage.update();
 		window.setTimeout(animateSnow, refreshPeriod);
 	}
+	else
+	{
+		//remove particles
+		for(var i=0;i<particles.length;i++)
+		{
+			stage.removeChild(particles[i]);
+		}
+		stage.update();
+	}
 	
 }
