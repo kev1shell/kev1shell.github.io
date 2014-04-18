@@ -44,6 +44,6 @@ function animateSnow(particles)
 			particles[i].y = particles[i].y - fallRate;
 		}
 		stage.update();
-		window.setTimeout(animateSnow, refreshPeriod);
+		//window.setTimeout(animateSnow, refreshPeriod);
 	}
 }
