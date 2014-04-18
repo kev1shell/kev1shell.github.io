@@ -1,7 +1,7 @@
 var snowing = false;
 var particles = [];
 var refreshPeriod = 42;
-var numParticles = 100;
+var numParticles = 80;
 
 function stopSnow()
 {
