@@ -15,6 +15,61 @@ function stopSnow()
 	stage.update();
 }
 
+function pauseSnow()
+{
+	var result = [];
+	var xPositions = [];
+	var yPositions = [];
+	var radii = [];
+	var xDirections = [];
+	
+	for(var i=0;i<particles.length;i++)
+	{
+		xPositions.push(particles[i].x);
+		yPositions.push(particles[i].y);
+		radii.push(particles[i].radius);
+		xDirections.push(particles[i].xDirection);
+	}
+	
+	result = [xPositions,yPositions,radii,xDirections];
+	stopSnowing();
+	return result;
+}
+
+function resumeSnow(pausedParticles)
+{
+	var xPositions = pausedParticles[0];
+	var yPositions = pausedParticles[1];
+	var radii = pausedParticles[2];
+	var xDirections = pausedParticles[3];
+	
+	particles = [];
+	for(var i=0;i<xPositions.length;i++)
+	{
+		resumeSnowParticle(xPositions[i],yPositions[i],radii[i],xDirections[i]);
+	}
+	cacheStage();
+	snowing = true;
+}
+
+function resumeSnowParticle(x,y,radius,dir)
+{
+	//particle radius
+	//var radius = radius;
+	//particle shape
+	var particle = new createjs.Shape();
+	particle.graphics.beginFill("white").drawCircle(0, 0, radius);
+	particle.x = x;
+	particle.y = y;
+	particle.xDirection = dir;
+	//particle.yStop =  Math.floor(Math.random()*422) + 10;
+	particle.name = "particle"+particles.length;
+	stage.addChild(particle);
+	particles.push(particle);
+	
+	//particle.cache(-radius, -radius, radius * 2, radius * 2);
+}
+
 function createSnowParticle()
 {
 	//particle radius
@@ -24,6 +79,7 @@ function createSnowParticle()
 	particle.graphics.beginFill("white").drawCircle(0, 0, radius);
 	particle.x = Math.floor(Math.random()*840);
 	particle.y = 50;
+	particle.radius = radius;
 	particle.xDirection = Math.floor(Math.random()*3) -1;
 	//particle.yStop =  Math.floor(Math.random()*422) + 10;
 	particle.name = "particle"+particles.length;

@@ -14,6 +14,8 @@ function organizeChildren()
 	var structures = [];
 	var other = [];
 	var selectionObjects = [];
+	var mapShape = null;
+	var mapBackground = null;
 	
 	children = stage.children;
 	
@@ -28,6 +30,12 @@ function organizeChildren()
 		if(name == null || typeof(name) == "undefined")
 		{
 			other.push(children[i]);
+			continue;
+		}
+		
+		if(name == "mapShape")
+		{
+			mapShape = children[i];
 			continue;
 		}
 		
@@ -90,6 +98,16 @@ function organizeChildren()
 		{
 			selectionObjects.push(children[i]);
 		}
+	}
+	
+	if(mapBackground != null)
+	{
+		result.push(mapBackground);
+	}
+	
+	if(mapShape != null)
+	{
+		result.push(mapShape);
 	}
 	
 	for(var i=0;i<other.length;i++)
