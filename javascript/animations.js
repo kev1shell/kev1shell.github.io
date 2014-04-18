@@ -32,6 +32,18 @@ function createSnowParticle()
 	//particle.cache(-radius, -radius, radius * 2, radius * 2);
 }
 
+function cacheStage()
+{
+	for(var i=0;i<stage.children.length;i++)
+	{
+		var shape = stage.getChildAt(i);
+		if(shape.getBounds() != null)
+		{
+			shape.cache(0, 0, shape.getBounds().width, shape.getBounds().height);
+		}
+	}
+}
+
 function snow()
 {
 	particles = [];
@@ -39,14 +51,7 @@ function snow()
 	//release snow variable
 	snowing = true;
 	
-	 for(var i=0;i<stage.children.length;i++)
-	{
-		var shape = stage.getChildAt(i);
-		if(shape.getBounds() != null)
-		{
-			shape.cache(0, 0, shape.getBounds().width, shape.getBounds().height);
-		}
-	} 
+	cacheStage();
 	
 	//generate snow particles
 	/* for(var i=0;i<numParticles;i++)
