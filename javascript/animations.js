@@ -20,6 +20,7 @@ function createSnowParticle()
 	particle.name = "particle"+particles.length;
 	stage.addChild(particle);
 	particles.push(particle);
+	particle.cache(-radius, -radius, radius * 2, radius * 2);
 }
 
 function snow()
@@ -66,6 +67,7 @@ function animateSnow()
 		//remove particles
 		for(var i=0;i<particles.length;i++)
 		{
+			particles[i].uncache();
 			stage.removeChild(particles[i]);
 		}
 		stage.update();
