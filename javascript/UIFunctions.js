@@ -823,6 +823,7 @@ function handleMapLoad()
 	bitmap = new createjs.Bitmap(mapElement);
 	bitmap.x = 0;
 	bitmap.y = 50;
+	bitmap.name = "mapShape";
 	
 	var mapBackground = new createjs.Shape();
 	mapBackground.graphics.beginFill("white").drawRect(0, 0, 840, 432);
