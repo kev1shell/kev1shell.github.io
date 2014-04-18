@@ -44,7 +44,7 @@ function snow()
 		var shape = stage.getChildAt(i);
 		if(shape.getBounds != null)
 		{
-			shape.cache(-shape.getBounds.width, -shape.getBounds.height, shape.getBounds.width*2, shape.getBounds.height*2);
+			shape.cache(0, 0, shape.getBounds().width, shape.getBounds().height);
 		}
 	} 
 	
