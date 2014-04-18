@@ -29,7 +29,7 @@ function createSnowParticle()
 	stage.addChild(particle);
 	particles.push(particle);
 	
-	particle.cache(-radius, -radius, radius * 2, radius * 2);
+	//particle.cache(-radius, -radius, radius * 2, radius * 2);
 }
 
 function snow()
