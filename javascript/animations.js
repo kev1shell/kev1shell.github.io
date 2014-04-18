@@ -41,7 +41,12 @@ function animateSnow()
 	{
 		for(var i=0;i<numParticles;i++)
 		{
-			particles[i].y = particles[i].y - fallRate;
+			particles[i].y = particles[i].y + fallRate;
+			
+			if(particles[i].y >= stage.getBounds().height)
+			{
+				particles[i].y = 50;
+			}
 		}
 		stage.update();
 		window.setTimeout(animateSnow, refreshPeriod);
