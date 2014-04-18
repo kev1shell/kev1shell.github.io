@@ -30,7 +30,7 @@ function snow()
 		particles.push(particle);
 	}
 	
-	animateSnow();
+	//animateSnow();
 }
 
 function animateSnow()
