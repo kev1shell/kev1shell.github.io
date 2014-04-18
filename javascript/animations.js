@@ -1,6 +1,7 @@
 var snowing = false;
 var particles = [];
 var refreshPeriod = 42;
+var numParticles = 20;
 
 function stopSnow()
 {
@@ -9,7 +10,6 @@ function stopSnow()
 
 function snow()
 {
-	var numParticles = 20;
 	particles = [];
 	
 	//release snow variable
@@ -30,20 +30,18 @@ function snow()
 		particles.push(particle);
 	}
 	
-	//animateSnow();
+	animateSnow();
 }
 
 function animateSnow()
 {
 	var fallRate = 1;
 	
-	while(snowing == true)
+	for(var i=0;i<numParticles;i++)
 	{
-		for(var i=0;i<particles.length;i++)
-		{
-			particles[i].y = particles[i].y - fallRate;
-		}
-		stage.update();
-		//window.setTimeout(animateSnow, refreshPeriod);
+		particles[i].y = particles[i].y - fallRate;
 	}
+	stage.update();
+	//window.setTimeout(animateSnow, refreshPeriod);
+	
 }
