@@ -9,7 +9,7 @@ function stopSnow()
 	//remove particles
 	for(var i=0;i<particles.length;i++)
 	{
-		particles[i].uncache();
+		//particles[i].uncache();
 		stage.removeChild(particles[i]);
 	}
 	stage.update();
@@ -68,20 +68,12 @@ function animateSnow()
 			
 			if(particles[i].y >= stage.getBounds().height || particles[i].x >= stage.getBounds().width || particles[i].x < 0)
 			{
-				particles[i].uncache();
+				//particles[i].y = 50;
 				stage.removeChild(particles[i]);
 				particles.splice(i,1);
 			}
 		}
-		if(snowRender)//
-		{
-			stage.update();
-			snowRender = false;
-		}
-		else
-		{
-			snowRender = true;
-		}
+		stage.update();
 		//window.setTimeout(animateSnow, refreshPeriod);
 	}
 	else
