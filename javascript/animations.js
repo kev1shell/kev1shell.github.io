@@ -63,7 +63,8 @@ function animateSnow()
 			
 			if(particles[i].y >= stage.getBounds().height || particles[i].x >= stage.getBounds().width || particles[i].x < 0)
 			{
-				particles[i].y = 50;
+				stage.removeChild(particles[i]);
+				particles.splice(i,1);
 			}
 		}
 		stage.update();
