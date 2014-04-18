@@ -82,7 +82,7 @@ function animateSnow()
 			particles[i].y = particles[i].y + fallRate;
 			particles[i].x = particles[i].x + fallRate*particles[i].xDirection;
 			
-			if(particles[i].y >= stage.getBounds().height || particle.y >= particle.yStop || particles[i].x >= stage.getBounds().width || particles[i].x < 0)
+			if(particles[i].y >= stage.getBounds().height || particles[i].y >= particles[i].yStop || particles[i].x >= stage.getBounds().width || particles[i].x < 0)
 			{
 				var particle = particles[i];
 				particle.x = Math.floor(Math.random()*840);
