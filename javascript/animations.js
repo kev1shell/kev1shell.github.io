@@ -6,6 +6,12 @@ var numParticles = 100;
 function stopSnow()
 {
 	snowing = false;
+	//remove particles
+	for(var i=0;i<particles.length;i++)
+	{
+		stage.removeChild(particles[i]);
+	}
+	stage.update();
 }
 
 function createSnowParticle()
@@ -20,7 +26,6 @@ function createSnowParticle()
 	particle.name = "particle"+particles.length;
 	stage.addChild(particle);
 	particles.push(particle);
-	particle.cache(-radius, -radius, radius * 2, radius * 2);
 }
 
 function snow()
@@ -36,7 +41,7 @@ function snow()
 		createSnowParticle();
 	} */
 	
-	animateSnow();
+	//animateSnow();
 }
 
 function animateSnow()
@@ -60,14 +65,13 @@ function animateSnow()
 			}
 		}
 		stage.update();
-		window.setTimeout(animateSnow, refreshPeriod);
+		//window.setTimeout(animateSnow, refreshPeriod);
 	}
 	else
 	{
 		//remove particles
 		for(var i=0;i<particles.length;i++)
 		{
-			particles[i].uncache();
 			stage.removeChild(particles[i]);
 		}
 		stage.update();

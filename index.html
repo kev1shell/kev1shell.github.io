@@ -111,7 +111,16 @@
 
 			displayDemoMainMenu();
 			
-			//displayGameScreen();
+			createjs.Ticker.addEventListener("tick", tick);
+            createjs.Ticker.setFPS(50);
+		}
+	
+		function tick()
+		{
+			if(snowing == true)
+			{
+				animateSnow();
+			}
 		}
 	
 		function updater(Array)
