@@ -320,13 +320,40 @@ function displayDemoMainMenu()
 /*----------------------------------------------------------*/
 /*-------------------display functions----------------------*/
 
+//remove warning message
+function removeWarning()
+{
+	//remove background
+	stage.removeChild(stage.getChildByName("warningBackground"));
+	
+	//remove text
+	var index = 0;
+	while(stage.getChildByName("warningLine"+index) != null)
+	{
+		stage.removeChild(stage.getChildByName("warningLine"+index));
+		index++;
+	}
+	
+}
+
 //display warning message
-var lines = [];
-var words = [];
+var warningDisplayed = false;
 function displayWarning(warning)
 {
+	var lines = [];
+	var words = [];
 	var lineLength = 32;
 	var numLines = Math.floor(warning.length/lineLength);
+	
+	//check to ensure a warning is not already up
+	if(warningDisplayed == true)
+	{
+		return;
+	}
+	else
+	{
+		warningDisplayed = true;
+	}
 	
 	//populate words array
 	for(var i=0;i<warning.length;i++)
@@ -362,25 +389,12 @@ function displayWarning(warning)
 		}
 	}
 	
-	//break message up into lines of 40 characters
-	/* for(var i=0;i<=numLines;i+=lineLength)
-	{
-		if(i+lineLength < warning.length)
-		{
-			lines.push(warning.substring(i,i+lineLength));
-		}
-		else
-		{
-			lines.push(warning.substring(i,warning.length));
-		}
-	} */
-	
 	//plain background
 	var background = new createjs.Shape();
 	background.graphics.beginFill("DarkSlateGray").drawRoundRect(0, 0, 200, 100, 20);
 	background.x = 300;
 	background.y = 200;
-	background.name = "background";
+	background.name = "warningBackground";
 	stage.addChild(background);
 	
 	//warning text
@@ -394,9 +408,13 @@ function displayWarning(warning)
 	}
 	
 	//back button
-	var backButton = new Button("backButton",360,270,80,20); //constructor: (name,x,y,width,height)
+	var backButton = new Button("warningButton",360,270,80,20); //constructor: (name,x,y,width,height)
 	backButton.text = "Okay";//the text on the button
-	backButton.onClick = displayDemoMainMenu;//function that the button calls when clicked.
+	backButton.onClick = function()
+						{
+							removeWarning();
+							this.remove();
+						}
 	backButton.draw();
 	
 	//update stage
