@@ -200,6 +200,8 @@ function displayGameScreen()
 		displayTurnCounterElement("salmon");
 	}
 	
+	gameStarted = true;
+	
 	stage.update();
 }
 

@@ -62,6 +62,8 @@
 		player.color = "blue";
 		player.onTurn = false;
 		
+		var gameStarted = false;
+		
 		//2D array of tile objects representing the
 		//current state of the game "board"
 		var map = loadSurvivorIslandMap();
@@ -119,7 +121,7 @@
 		function tick()
 		{
 			
-			if(isDefeated == true)
+			if(isDefeated() == true && gameStarted == true)
 			{
 				player.defeated = true;
 				
