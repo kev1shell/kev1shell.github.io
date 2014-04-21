@@ -320,6 +320,54 @@ function displayDemoMainMenu()
 /*----------------------------------------------------------*/
 /*-------------------display functions----------------------*/
 
+//display warning message
+function displayWarning(warning)
+{
+	var lines = [];
+	var lineLength = 40;
+	var numLines = Math.floor(warning.length/lineLength);
+	
+	//break message up into lines of 40 characters
+	for(var i=0;i<=numLines;i+=lineLength)
+	{
+		if(i+linelength < warning.length)
+		{
+			lines.push(warning.substring(i,i+linelength));
+		}
+		else
+		{
+			lines.push(warning.substring(i,warning.length));
+		}
+	}
+	
+	//plain background
+	var background = new createjs.Shape();
+	background.graphics.beginFill("DarkSlateGray").drawRoundRect(0, 0, 200, 100, 20);
+	background.x = 200;
+	background.y = 100;
+	background.name = "background";
+	stage.addChild(background);
+	
+	//warning text
+	for(var i=0;i<lines.length;i++)
+	{
+		var warningLine = new createjs.Text(lines[i], "bold 12px Arial", "black");
+		warningLine.x = 200;
+		warningLine.y = 100 + 14*i;
+		warningLine.name = "warningLine"+i;
+		stage.addChild(warningLine);
+	}
+	
+	//back button
+	var backButton = new Button("backButton",338,170,175,50); //constructor: (name,x,y,width,height)
+	backButton.text = "Okay";//the text on the button
+	backButton.onClick = displayDemoMainMenu;//function that the button calls when clicked.
+	backButton.draw();
+	
+	//update stage
+	stage.update();
+}
+
 //displays tool tip showing the cost of an object
 function displayObjectCost(object)
 {
