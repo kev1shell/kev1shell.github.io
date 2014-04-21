@@ -347,6 +347,8 @@ function displayWarning(warning)
 	var words = [];
 	var lineLength = 32;
 	var numLines = Math.floor(warning.length/lineLength);
+	var x = 300;
+	var y = 175;
 	
 	//check to ensure a warning is not already up
 	if(warningDisplayed == true)
@@ -395,8 +397,8 @@ function displayWarning(warning)
 	//plain background
 	var background = new createjs.Shape();
 	background.graphics.beginFill("DarkSlateGray").drawRoundRect(0, 0, 200, 100, 20);
-	background.x = 285;
-	background.y = 200;
+	background.x = x;
+	background.y = y;
 	background.name = "warningBackground";
 	stage.addChild(background);
 	
@@ -404,14 +406,14 @@ function displayWarning(warning)
 	for(var i=0;i<lines.length;i++)
 	{
 		var warningLine = new createjs.Text(lines[i], "bold 12px Arial", "black");
-		warningLine.x = 300;
-		warningLine.y = 207 + 14*i;
+		warningLine.x = x+15;
+		warningLine.y = y+5 + 14*i;
 		warningLine.name = "warningLine"+i;
 		stage.addChild(warningLine);
 	}
 	
 	//back button
-	var backButton = new Button("warningButton",345,270,80,20); //constructor: (name,x,y,width,height)
+	var backButton = new Button("warningButton",x+60,y+70,80,20); //constructor: (name,x,y,width,height)
 	backButton.text = "Okay";//the text on the button
 	backButton.onClick = function()
 						{
