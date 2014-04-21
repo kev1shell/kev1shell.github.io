@@ -345,7 +345,7 @@ var lines = [];
 var words = [];
 function displayWarning(warning)
 {
-	var lineLength = 32;
+	var lineLength = 30;
 	var numLines = Math.floor(warning.length/lineLength);
 	var x = 300;
 	var y = 175;
@@ -405,7 +405,7 @@ function displayWarning(warning)
 	//warning text
 	for(var i=0;i<lines.length;i++)
 	{
-		var warningLine = new createjs.Text(lines[i], "bold 12px Arial", "black");
+		var warningLine = new createjs.Text(lines[i], "bold 12px Courier", "black");
 		warningLine.x = x+15;
 		warningLine.y = y+5 + 14*i;
 		warningLine.name = "warningLine"+i;
