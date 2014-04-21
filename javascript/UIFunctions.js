@@ -180,8 +180,8 @@ function displayDefeatScreen()
 {
 	//some text
 	var titalText = new createjs.Text("You have been defeated!", "bold 54px Arial", "black");
-	titalText.x = 200;
-	titalText.y = 30;
+	titalText.x = 100;
+	titalText.y = 100;
 	titalText.name = "titalText";
 	stage.addChild(titalText);
 	
