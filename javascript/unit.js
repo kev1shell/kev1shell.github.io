@@ -180,6 +180,13 @@ var Unit = function()
 			infoLine4.y = stage.getChildByName("infoLine3").y + stage.getChildByName("infoLine3").getMeasuredHeight();
 			infoLine4.name = "infoLine4";
 			stage.addChild(infoLine4);
+			
+			//line 5
+			var infoLine5 = new createjs.Text("Food/turn: "+this.foodUpKeep, "bold 9px Arial", "black");
+			infoLine5.x = stage.getChildByName("infoLine4").x;
+			infoLine5.y = stage.getChildByName("infoLine4").y + stage.getChildByName("infoLine4").getMeasuredHeight();
+			infoLine5.name = "infoLine5";
+			stage.addChild(infoLine5);
 		}
 		else
 		{

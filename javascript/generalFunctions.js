@@ -807,6 +807,7 @@ function deSelectAll()
 	stage.removeChild(stage.getChildByName("infoLine2"));
 	stage.removeChild(stage.getChildByName("infoLine3"));
 	stage.removeChild(stage.getChildByName("infoLine4"));
+	stage.removeChild(stage.getChildByName("infoLine5"));
 	stage.removeChild(stage.getChildByName("selectSquare"));
 	stage.removeChild(stage.getChildByName("BFtext"));
 	stage.removeChild(stage.getChildByName("BuildFarmButton"));
