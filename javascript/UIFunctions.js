@@ -785,7 +785,7 @@ function displayInfoElement()
 {
 	//info element
 	var IEsquare = new createjs.Shape();
-	IEsquare.graphics.beginStroke("Black").drawRect(0, 0, 350, 43);
+	IEsquare.graphics.beginStroke("Black").drawRect(0, 0, 350, 45);
 	IEsquare.x = 325;
 	IEsquare.y = 0;
 	stage.addChild(IEsquare);
