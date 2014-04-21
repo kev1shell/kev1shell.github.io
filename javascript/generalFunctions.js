@@ -701,6 +701,12 @@ function endTurn()
 //called when a player begins a turn.
 function startTurn()
 {
+	//check to ensure player has not lost
+	if(player.defeated == true)
+	{
+		return;
+	}
+	
 	//deSelect units
 	deSelectAll();
 	player.onTurn = true;

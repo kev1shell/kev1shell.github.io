@@ -120,20 +120,42 @@
 	
 		function tick()
 		{
-			
-			if(isDefeated() == true && gameStarted == true)
+			//check for defeat
+			if(player.defeated == false && isDefeated() == true && gameStarted == true)
 			{
 				player.defeated = true;
-				
-				//send message informing other clients this player lost.
 				
 				infoText = "You have been Defeated";
 				updateInfoText();
 				
 				displayDefeatScreen();
+				player.onTurn = false;
+				
+				//send message informing other clients this player lost.
+				
 			}
 			
-			/*if(snowing == true)
+			//check for victory
+			var count = 0;
+			for(var i=0;i<players.length;i++)
+			{
+				if(players[i].defeated == true)
+				{
+					count++;
+				}
+			}
+			
+			if(count == players.length - 1 && player.defeated == false && gameStarted == true)
+			{
+				infoText = "Victory!";
+				updateInfoText();
+				
+				displayVictoryScreen();
+				player.onTurn = false;
+			}
+			
+			//snow stuff
+			if(snowing == true)
 			{
 				animateSnow();
 			}
@@ -150,7 +172,7 @@
 				{
 					stage.update();
 				}
-			}*/
+			}
 		}
 	
 		function updater(Array)
