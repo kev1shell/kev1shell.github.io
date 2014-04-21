@@ -3,6 +3,28 @@ var particles = [];
 var refreshPeriod = 42;
 var numParticles = 100;
 
+function snowHandler()
+{
+	if(snowing == true)
+	{
+		animateSnow();
+	}
+	else
+	{
+		var updateStage = false;
+		for(var i=0;i<particles.length;i++)
+		{
+			//particles[i].uncache();
+			updateStage = true;
+			stage.removeChild(particles[i]);
+		}
+		if (updateStage == true)
+		{
+			stage.update();
+		}
+	}
+}
+
 function stopSnow()
 {
 	snowing = false;

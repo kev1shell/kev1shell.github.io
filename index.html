@@ -121,61 +121,13 @@
 		function tick()
 		{
 			//check for defeat
-			if(player.defeated == false && isDefeated() == true && gameStarted == true)
-			{
-				//player has lost
-				player.defeated = true;
-				
-				infoText = "You have been Defeated";
-				updateInfoText();
-				
-				displayDefeatScreen();
-				player.onTurn = false;
-				
-				//send message informing other clients this player lost.
-				var messageArray = ["playerDefeated", player.id];
-				updater(messageArray);
-			}
-			
-			//check for victory
-			var count = 0;
-			for(var i=0;i<players.length;i++)
-			{
-				if(players[i].defeated == true)
-				{
-					count++;
-				}
-			}
-			
-			if(count == players.length - 1 && player.defeated == false && gameStarted == true)
-			{
-				//player has won
-				infoText = "Victory!";
-				updateInfoText();
-				
-				displayVictoryScreen();
-				player.onTurn = false;
-			}
+			checkWinLossConditions();
 			
 			//snow stuff
-			if(snowing == true)
-			{
-				animateSnow();
-			}
-			else
-			{
-				var updateStage = false;
-				for(var i=0;i<particles.length;i++)
-				{
-					//particles[i].uncache();
-					updateStage = true;
-					stage.removeChild(particles[i]);
-				}
-				if (updateStage == true)
-				{
-					stage.update();
-				}
-			}
+			snowHandler();
+			
+			//turn counter:
+			
 		}
 	
 		function updater(Array)

@@ -788,6 +788,7 @@ function displayInfoElement()
 	IEsquare.graphics.beginStroke("Black").drawRect(0, 0, 350, 46);
 	IEsquare.x = 325;
 	IEsquare.y = 0;
+	IEsquare.name = "IEsquare";
 	stage.addChild(IEsquare);
 	updateInfoText();
 }

@@ -1,6 +1,54 @@
 
 // General Functions
 
+//check for defeat
+function checkWinLossConditions()
+{
+	
+	if(player.isVictor == true)
+	{
+		return;
+	}
+	
+	if(player.defeated == false && isDefeated() == true && gameStarted == true)
+	{
+		//player has lost
+		player.defeated = true;
+		
+		infoText = "You have been Defeated";
+		updateInfoText();
+		
+		displayDefeatScreen();
+		player.onTurn = false;
+		
+		//send message informing other clients this player lost.
+		var messageArray = ["playerDefeated", player.id];
+		updater(messageArray);
+	}
+	
+	//check for victory
+	var count = 0;
+	for(var i=0;i<players.length;i++)
+	{
+		if(players[i].defeated == true)
+		{
+			count++;
+		}
+	}
+	
+	if(count == players.length - 1 && player.defeated == false && gameStarted == true)
+	{
+		//player has won
+		infoText = "Victory!";
+		updateInfoText();
+		
+		player.isVictor = true;
+		
+		displayVictoryScreen();
+		player.onTurn = false;
+	}
+}
+
 //returns true if player is defeated, false otherwise
 function isDefeated()
 {
