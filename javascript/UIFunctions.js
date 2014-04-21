@@ -359,7 +359,7 @@ function displayWarning(warning)
 	}
 	
 	//back button
-	var backButton = new Button("backButton",338,220,100,30); //constructor: (name,x,y,width,height)
+	var backButton = new Button("backButton",338,280,100,30); //constructor: (name,x,y,width,height)
 	backButton.text = "Okay";//the text on the button
 	backButton.onClick = displayDemoMainMenu;//function that the button calls when clicked.
 	backButton.draw();
