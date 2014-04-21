@@ -91,6 +91,14 @@ function createSnowParticle()
 
 function cacheStage()
 {
+	var caching = false;
+	
+	if(caching == false)
+	{
+		return;
+	}
+	
+	
 	for(var i=0;i<stage.children.length;i++)
 	{
 		var shape = stage.getChildAt(i);
