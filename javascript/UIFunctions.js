@@ -385,9 +385,9 @@ function displayWarning(warning)
 		}
 		else
 		{
-			line += words[i];
 			lines.push(line);
 			line = "";
+			line += words[i];
 			continue;
 		}
 		
@@ -407,7 +407,7 @@ function displayWarning(warning)
 	
 	//outline
 	var outline = new createjs.Shape();
-	outline.graphics.beginStroke("lightCyan").drawRoundRect(0, 0, 200, 100, 20);
+	outline.graphics.beginStroke("black").drawRoundRect(0, 0, 200, 100, 20);
 	outline.x = x;
 	outline.y = y;
 	outline.name = "warningOutline";
