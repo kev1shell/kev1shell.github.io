@@ -326,6 +326,9 @@ function removeWarning()
 	//remove background
 	stage.removeChild(stage.getChildByName("warningBackground"));
 	
+	//remove outline
+	stage.removeChild(stage.getChildByName("warningOutline"));
+	
 	//remove text
 	var index = 0;
 	while(stage.getChildByName("warningLine"+index) != null)
@@ -345,7 +348,7 @@ var lines = [];
 var words = [];
 function displayWarning(warning)
 {
-	var lineLength = 30;
+	var lineLength = 24;
 	var numLines = Math.floor(warning.length/lineLength);
 	var x = 300;
 	var y = 175;
@@ -396,11 +399,19 @@ function displayWarning(warning)
 	
 	//plain background
 	var background = new createjs.Shape();
-	background.graphics.beginFill("DarkSlateGray").drawRoundRect(0, 0, 200, 100, 20);
+	background.graphics.beginFill("lightCyan").drawRoundRect(0, 0, 200, 100, 20);
 	background.x = x;
 	background.y = y;
 	background.name = "warningBackground";
 	stage.addChild(background);
+	
+	//outline
+	var outline = new createjs.Shape();
+	outline.graphics.beginStroke("lightCyan").drawRoundRect(0, 0, 200, 100, 20);
+	outline.x = x;
+	outline.y = y;
+	outline.name = "warningOutline";
+	stage.addChild(outline);
 	
 	//warning text
 	for(var i=0;i<lines.length;i++)
