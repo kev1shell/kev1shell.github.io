@@ -341,14 +341,24 @@ function displayWarning(warning)
 	}
 	
 	//break words into lines
+	var line = "";
 	for(var i=0;i<words.length;i++)
 	{
-		var line = "";
-		while(line.length+words[i].length <= lineLength)
+		if(line.length+words[i].length <= lineLength)
 		{
-			line += words[i];
+			line += words[i] + " ";
 		}
-		lines.push(line);
+		else
+		{
+			lines.push(line);
+			line = "";
+			continue;
+		}
+		
+		if(i+1 == words.length)
+		{
+			lines.push(line);
+		}
 	}
 	
 	//break message up into lines of 40 characters
