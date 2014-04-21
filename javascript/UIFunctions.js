@@ -363,7 +363,6 @@ function displayWarning(warning)
 	if(warningDisplayed == true)
 	{
 		removeWarning();
-		return;
 	}
 	else
 	{
@@ -394,7 +393,7 @@ function displayWarning(warning)
 		{
 			lines.push(line);
 			line = "";
-			line += words[i];
+			line += words[i] + " ";
 			continue;
 		}
 		
