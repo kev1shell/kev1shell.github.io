@@ -10,9 +10,6 @@ function turnTimer()
 		return;
 	}
 	
-	turnTimeLeft--;
-	updateTurnTimer();
-	
 	//check if time's up
 	if(turnTimeLeft <= 0)
 	{
@@ -27,10 +24,12 @@ function turnTimer()
 		endTurn();
 		var messageArray = ["endTurn", player.color];
 		updater(messageArray);
+		
+		turnTimeLeft = turnTime;
 	} 
 	
-	
-	
+	turnTimeLeft--;
+	updateTurnTimer();
 	
 }
 

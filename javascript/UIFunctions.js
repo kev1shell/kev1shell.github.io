@@ -932,6 +932,9 @@ function handleETEMouseEvent(evt)
 		endTurn();
 		var messageArray = ["endTurn", player.color];
 		updater(messageArray);
+		
+		turnTimeLeft = turnTime;
+		updateTurnTimer();
 	}
 	if(evt.type == "mouseover" && player.onTurn == true)
 	{
