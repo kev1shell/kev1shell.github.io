@@ -8,7 +8,8 @@ var seconds = "";
 function turnTimer()
 {
 	var timeLeft = turnTimeLeft
-	
+	minutes = "0";
+	seconds = "";
 	//format the clock:
 	if(timeLeft >= 60)
 	{
