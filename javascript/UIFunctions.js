@@ -322,13 +322,26 @@ function displayDemoMainMenu()
 
 //display warning message
 var lines = [];
+var words = [];
 function displayWarning(warning)
 {
 	var lineLength = 32;
 	var numLines = Math.floor(warning.length/lineLength);
 	
+	//populate words array
+	for(var i=0;i<warning.length;i++)
+	{
+		var string = "";
+		while(i < warning.length && warning[i] != " ")
+		{
+			string += warning[i];
+			i++;
+		}
+		words.push(string);
+	}
+	
 	//break message up into lines of 40 characters
-	for(var i=0;i<=numLines;i+=lineLength)
+	/* for(var i=0;i<=numLines;i+=lineLength)
 	{
 		if(i+lineLength < warning.length)
 		{
@@ -338,7 +351,7 @@ function displayWarning(warning)
 		{
 			lines.push(warning.substring(i,warning.length));
 		}
-	}
+	} */
 	
 	//plain background
 	var background = new createjs.Shape();
