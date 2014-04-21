@@ -899,8 +899,8 @@ function fight(color)
                                         "images": ["http://students.cse.tamu.edu/tjb33/assets/sprites/animate/blueKillRed.png"],
                                         "frames":
                                                 {
-                                                        "height": 100,
-                                                        "width":150,
+                                                        "height": 224,
+                                                        "width": 333,
                                                         "regX": 0,
                                                         "regY": 0,
                                                         "count": 15
@@ -925,7 +925,7 @@ function fight(color)
                                         "frames":
                                                 {
                                                         "height": 224,
-                                                        "width":333,
+                                                        "width": 333,
                                                         "regX": 0,
                                                         "regY": 0,
                                                         "count": 15
