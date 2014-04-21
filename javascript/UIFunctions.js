@@ -350,6 +350,7 @@ function displayWarning(warning)
 		}
 		else
 		{
+			line += words[i];
 			lines.push(line);
 			line = "";
 			continue;
