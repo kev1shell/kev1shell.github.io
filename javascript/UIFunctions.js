@@ -4,6 +4,56 @@
 /*---------------------------------------------------------*/
 /*-------------------update functions----------------------*/
 
+//turn timer updater
+function updateTurnTimer()
+{
+	var timeLeft = turnTimeLeft
+	var minutes = "0";
+	var seconds = "";
+	
+	//format the clock:
+	if(timeLeft >= 60)
+	{
+		minutes = "1";
+		timeLeft -= 60;
+		if(timeLeft>= 10)
+		{
+			seconds += timeLeft;
+		}
+		else
+		{
+			seconds += "0" + timeLeft;
+		}
+	}
+	else
+	{
+		if(timeLeft >= 10)
+		{
+			seconds += timeLeft;
+		}
+		else
+		{
+			seconds += "0" + timeLeft;
+		}
+	}
+	
+	//timer text
+	if(stage.getChildByName("TimerMinutetext") == null)
+	{
+		var TimerMinutetext = new createjs.Text(minutes+":"+seconds, "bold 14px Arial", "black");
+		TimerMinutetext.x = stage.getChildByName("TCtext").x;
+		TimerMinutetext.y = 20;
+		TimerMinutetext.name = "TimerMinutetext";
+		stage.addChild(TimerMinutetext);
+	}
+	else
+	{
+		stage.getChildByName("TimerMinutetext").text = minutes+":"+seconds;
+	}
+	
+	stage.update();
+}
+
 //updates turn counter
 function updateTurnNum()
 {	

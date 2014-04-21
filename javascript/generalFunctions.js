@@ -1,44 +1,36 @@
 
 // General Functions
 
-var turnTimeLeft = turnTime;	//time left in active turn in seconds
 //turnTimer
-var minutes = "0";
-var seconds = "";
+var turnTimeLeft = turnTime;	//time left in active turn in seconds
 function turnTimer()
 {
-	var timeLeft = turnTimeLeft
-	minutes = "0";
-	seconds = "";
-	//format the clock:
-	if(timeLeft >= 60)
+	if(player.onTurn == false)
 	{
-		minutes = "1";
-		timeLeft -= 60;
-		if(timeLeft>= 10)
-		{
-			seconds += timeLeft;
-		}
-		else
-		{
-			seconds += "0" + timeLeft;
-		}
+		return;
 	}
-	else
-	{
-		if(timeLeft >= 10)
-		{
-			seconds += timeLeft;
-		}
-		else
-		{
-			seconds += "0" + timeLeft;
-		}
-	}
-	
-	//check if time's up
 	
 	turnTimeLeft--;
+	updateTurnTimer();
+	
+	//check if time's up
+	if(turnTimeLeft <= 0)
+	{
+		//end turn
+		displayEndTurnElement("red");
+		stage.update();
+		
+		infoText = "Turn Ended";
+		updateInfoText();
+		
+		//startTurn();
+		endTurn();
+		var messageArray = ["endTurn", player.color];
+		updater(messageArray);
+	} 
+	
+	
+	
 	
 }
 
