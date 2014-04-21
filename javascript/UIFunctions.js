@@ -180,7 +180,7 @@ function displayVictoryScreen()
 {
 	//some text
 	var titalText = new createjs.Text("Victory!", "bold 54px Arial", "black");
-	titalText.x = 250;
+	titalText.x = 300;
 	titalText.y = 150;
 	titalText.name = "titalText";
 	stage.addChild(titalText);
