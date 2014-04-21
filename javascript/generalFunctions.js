@@ -1,6 +1,38 @@
 
 // General Functions
 
+var turnTimeLeft = turnTime;	//time left in active turn in seconds
+//turnTimer
+var minutes = "0";
+var seconds = "";
+function turnTimer()
+{
+	var timeLeft = turnTimeLeft
+	
+	//format the clock:
+	if(timeLeft >= 60)
+	{
+		minutes = "1";
+		seconds += timeLeft - 60;
+	}
+	else
+	{
+		if(timeLeft >= 10)
+		{
+			seconds += timeLeft;
+		}
+		else
+		{
+			seconds += "0" + timeLeft;
+		}
+	}
+	
+	//check if time's up
+	
+	turnTimeLeft--;
+	
+}
+
 //check for defeat
 function checkWinLossConditions()
 {

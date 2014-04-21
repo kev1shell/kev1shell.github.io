@@ -1,5 +1,8 @@
 //Global variables used by villageWars objects
 
+//turn time limmit (seconds)
+var turnTime = 60;
+
 //Unit/Structure costs"
 var villagerFoodCost = 4;
 var villagerTimberCost = 0;
