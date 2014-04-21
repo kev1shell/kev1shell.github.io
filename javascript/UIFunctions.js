@@ -364,10 +364,8 @@ function displayWarning(warning)
 	{
 		removeWarning();
 	}
-	else
-	{
-		warningDisplayed = true;
-	}
+	
+	warningDisplayed = true;
 	
 	//populate words array
 	for(var i=0;i<warning.length;i++)
