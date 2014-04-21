@@ -324,7 +324,7 @@ function displayDemoMainMenu()
 function displayWarning(warning)
 {
 	var lines = [];
-	var lineLength = 40;
+	var lineLength = 32;
 	var numLines = Math.floor(warning.length/lineLength);
 	
 	//break message up into lines of 40 characters
