@@ -414,6 +414,7 @@ function displayWarning(warning)
 						{
 							removeWarning();
 							this.remove();
+							stage.update();
 						}
 	backButton.draw();
 	
