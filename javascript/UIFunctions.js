@@ -41,7 +41,7 @@ function updateTurnTimer()
 	//timer text
 	if(stage.getChildByName("TimerText") != null)
 	{
-		stage.removeChild(getChildByName("TimerText"));
+		stage.removeChild(stage.getChildByName("TimerText"));
 	}
 	
 	var TimerText = new createjs.Text(minutes+":"+seconds, "bold 14px Arial", "black");
