@@ -790,6 +790,10 @@ function startTurn()
 		return;
 	}
 	
+	//reset timer
+	turnTimeLeft = turnTime;
+	updateTurnTimer();
+	
 	//deSelect units
 	deSelectAll();
 	player.onTurn = true;
