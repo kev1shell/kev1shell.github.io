@@ -6,6 +6,7 @@ var Player = function()
 	this.color = "n/a";
 	this.onTurn = false;
 	this.bank = new Bank();
+	this.defeated = false;
 	this.numFarms = 0;
 	this.numVillages = 0;
 	this.numVillagers = 0;
