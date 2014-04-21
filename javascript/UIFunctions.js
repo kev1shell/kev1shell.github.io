@@ -352,7 +352,7 @@ function displayWarning(warning)
 	for(var i=0;i<lines.length;i++)
 	{
 		var warningLine = new createjs.Text(lines[i], "bold 12px Arial", "black");
-		warningLine.x = 305;
+		warningLine.x = 315;
 		warningLine.y = 210 + 14*i;
 		warningLine.name = "warningLine"+i;
 		stage.addChild(warningLine);
