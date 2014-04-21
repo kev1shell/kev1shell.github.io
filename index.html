@@ -132,7 +132,8 @@
 				player.onTurn = false;
 				
 				//send message informing other clients this player lost.
-				
+				var messageArray = ["playerDefeated", player.id];
+				updater(messageArray);
 			}
 			
 			//check for victory
@@ -216,6 +217,10 @@
 			else if(input[0] == "startGame")
 			{
 				startGameCommand(input);
+			}
+			else if(input[0] == "playerDefeated")
+			{
+				playerDefeatedCommand(input);
 			}
 		}
 		

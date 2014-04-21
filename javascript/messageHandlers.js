@@ -1,6 +1,27 @@
 
 //Message Handlers
 
+function playerDefeatedCommand(input)
+{
+	/*
+	message format:
+	{"playerDefeated",player.id}
+	*/
+	var playerID = input[1];
+	
+	//find player
+	for(var i=0;i<players.length;i++)
+	{
+		if(players[i].id == playerID)
+		{
+			//found defeated player, update his defeated value
+			players[i].defeated = true;
+			
+		}
+	}
+	
+}
+
 function startGameCommand(input)
 {
 	//message format: ["startGame"]
