@@ -790,10 +790,6 @@ function startTurn()
 		return;
 	}
 	
-	//reset timer
-	turnTimeLeft = turnTime;
-	updateTurnTimer();
-	
 	//deSelect units
 	deSelectAll();
 	player.onTurn = true;
@@ -831,6 +827,10 @@ function startTurn()
 	//increment turn counter
 	turnNum++;
 	updateTurnNum();
+	
+	//reset timer
+	turnTimeLeft = turnTime;
+	updateTurnTimer();
 	
 	//do some other shit maybe
 	
