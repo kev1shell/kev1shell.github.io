@@ -41,7 +41,7 @@ function updateTurnTimer()
 	if(stage.getChildByName("TimerMinutetext") == null)
 	{
 		var TimerMinutetext = new createjs.Text(minutes+":"+seconds, "bold 14px Arial", "black");
-		TimerMinutetext.x = stage.getChildByName("TCtext").x;
+		TimerMinutetext.x = stage.getChildByName("TCtital").x;
 		TimerMinutetext.y = 20;
 		TimerMinutetext.name = "TimerMinutetext";
 		stage.addChild(TimerMinutetext);
