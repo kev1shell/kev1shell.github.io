@@ -321,9 +321,9 @@ function displayDemoMainMenu()
 /*-------------------display functions----------------------*/
 
 //display warning message
+var lines = [];
 function displayWarning(warning)
 {
-	var lines = [];
 	var lineLength = 32;
 	var numLines = Math.floor(warning.length/lineLength);
 	
