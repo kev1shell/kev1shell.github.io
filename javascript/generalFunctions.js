@@ -13,7 +13,15 @@ function turnTimer()
 	if(timeLeft >= 60)
 	{
 		minutes = "1";
-		seconds += timeLeft - 60;
+		
+		if(timeLeft >= 10)
+		{
+			seconds += timeLeft;
+		}
+		else
+		{
+			seconds += "0" + timeLeft;
+		}
 	}
 	else
 	{
