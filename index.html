@@ -112,13 +112,24 @@
 			displayDemoMainMenu();
 			
 			createjs.Ticker.addEventListener("tick", tick);
-            createjs.Ticker.setFPS(50);
+            createjs.Ticker.setFPS(2);
 			
 		}
 	
 		function tick()
 		{
-			if(snowing == true)
+			
+			if(isDefeated == true)
+			{
+				player.defeated = true;
+				
+				//send message informing other clients this player lost.
+				
+				infoText = "You have been Defeated";
+				updateInfoText();
+			}
+			
+			/*if(snowing == true)
 			{
 				animateSnow();
 			}
@@ -135,7 +146,7 @@
 				{
 					stage.update();
 				}
-			}
+			}*/
 		}
 	
 		function updater(Array)

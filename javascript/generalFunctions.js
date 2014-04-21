@@ -1,8 +1,49 @@
 
 // General Functions
 
-//called by one client and FORCES all other clients to start the game.
-//Only ONE client should call this function.
+//returns true if player is defeated, false otherwise
+function isDefeated()
+{
+	/*the player will lose if:
+	
+	case 1: the player has no villages and no mobile units
+	
+	case 2: the player has no mobile units, a food rate of 0, and a food stock of less than min amount required for a villager
+	*/
+	
+	//case1
+	//check for villages
+	var hasVillage = false;
+	for(var i=0;i<player.structures.length;i++)
+	{
+		if(player.structures[i].type == "village")
+		{
+			hasVillage = true;
+		}
+	}
+	
+	//check for units
+	var hasUnits = false;
+	if(player.units.length > 0)
+	{
+		hasUnits = true;
+	}
+	
+	//check for case 1
+	if(hasVillage == false && hasUnits == false)
+	{
+		return true;
+	}
+	
+	//check for case 2
+	if(hasUnits == false && player.bank.foodRate == 0 && player.bank.food < villagerFoodCost)
+	{
+		return true;
+	}
+	
+	return false;
+	
+}
 
 //this function organizes the graphics children into the order
 //we want them to be drawn in.
