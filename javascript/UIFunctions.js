@@ -334,6 +334,9 @@ function removeWarning()
 		index++;
 	}
 	
+	//release warning controller
+	warningDisplayed = false;
+	
 }
 
 //display warning message
