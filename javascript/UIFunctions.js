@@ -183,6 +183,9 @@ function displayDefeatScreen()
 	titalText.x = 200;
 	titalText.y = 30;
 	titalText.name = "titalText";
+	stage.addChild(titalText);
+	
+	stage.update();
 }
 
 //this function displays the main game screen (with map, Resources, ect.)
