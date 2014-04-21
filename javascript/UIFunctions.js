@@ -39,18 +39,16 @@ function updateTurnTimer()
 	}
 	
 	//timer text
-	if(stage.getChildByName("TimerMinutetext") == null)
+	if(stage.getChildByName("TimerText") != null)
 	{
-		var TimerMinutetext = new createjs.Text(minutes+":"+seconds, "bold 14px Arial", "black");
-		TimerMinutetext.x = stage.getChildByName("TCtital").x + 7;
-		TimerMinutetext.y = 20;
-		TimerMinutetext.name = "TimerMinutetext";
-		stage.addChild(TimerMinutetext);
+		stage.removeChild(getChildByName("TimerText"));
 	}
-	else
-	{
-		stage.getChildByName("TimerMinutetext").text = minutes+":"+seconds;
-	}
+	
+	var TimerText = new createjs.Text(minutes+":"+seconds, "bold 14px Arial", "black");
+	TimerText.x = stage.getChildByName("TCtital").x + 7;
+	TimerText.y = 20;
+	TimerText.name = "TimerText";
+	stage.addChild(TimerText);
 	
 	stage.update();
 }
