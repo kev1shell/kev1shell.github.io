@@ -330,9 +330,9 @@ function displayWarning(warning)
 	//break message up into lines of 40 characters
 	for(var i=0;i<=numLines;i+=lineLength)
 	{
-		if(i+linelength < warning.length)
+		if(i+lineLength < warning.length)
 		{
-			lines.push(warning.substring(i,i+linelength));
+			lines.push(warning.substring(i,i+lineLength));
 		}
 		else
 		{
