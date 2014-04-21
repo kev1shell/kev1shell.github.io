@@ -598,6 +598,9 @@ function unitHandler(row,column)
 							if(isUnit(enemyObject) == true)
 							{
 								var survivor = combaty(selectedUnit, enemyObject);
+								var fightArray = ["fight", survivor.color];
+								fight(survivor.color);
+								updater(fightArray);
 								if(survivor.id == selectedUnit.id)
 								{
 									//remove enemy object
@@ -877,3 +880,71 @@ function selectObject(row,column)
 		displayStackSelectionBox(row,column);
 	}
 }
+
+//Fight animation
+function fight(color)
+{
+	var backer = new createjs.Shape();
+	backer.graphics.beginFill("DarkSlateGray").drawRect(0, 0, stage.canvas.width, stage.canvas.height-50);
+	backer.x = 0;
+	backer.y = 50;
+	backer.name = "backer";
+	stage.addChild(backer);
+	stage.update();
+        if (color == 'blue'){
+                var ss = new createjs.SpriteSheet({
+                                "animations":
+                                {
+                                        "run": [0, 15,stop]},
+                                        "images": ["http://students.cse.tamu.edu/tjb33/assets/sprites/animate/blueKillRed.png"],
+                                        "frames":
+                                                {
+                                                        "height": 100,
+                                                        "width":150,
+                                                        "regX": 0,
+                                                        "regY": 0,
+                                                        "count": 15
+                                                }
+                                });
+                        var grant = new createjs.Sprite(ss, "run");
+                        grant.x = 360;
+                        grant.y = 150;
+						grant.name = "grant";
+                        // Add Grant to the stage, and add it as a listener to Ticker to get updates each frame.
+                        stage.addChild(grant);
+                        createjs.Ticker.setFPS(10);
+                        createjs.Ticker.addEventListener("tick", stage);
+                }
+        
+        else if(color == 'red'){
+                var ss = new createjs.SpriteSheet({
+                                "animations":
+                                {
+                                        "run": [0, 15,stop]},
+                                        "images": ["http://students.cse.tamu.edu/tjb33/assets/sprites/animate/redKillBlue.png"],
+                                        "frames":
+                                                {
+                                                        "height": 100,
+                                                        "width":150,
+                                                        "regX": 0,
+                                                        "regY": 0,
+                                                        "count": 15
+                                                }
+                                });
+                        var grant = new createjs.Sprite(ss, "run");
+                        grant.x = 360;
+                        grant.y = 150;
+						grant.name = "grant";
+
+                        // Add Grant to the stage, and add it as a listener to Ticker to get updates each frame.
+                        stage.addChild(grant);
+                        createjs.Ticker.setFPS(10);
+                        createjs.Ticker.addEventListener("tick", stage);
+                }
+		setTimeout(function() {
+			stage.removeChild(stage.getChildByName("grant"));
+			stage.removeChild(stage.getChildByName("backer"));
+			stage.update();
+			}, (1.5 * 1000));		
+		
+        }
