@@ -344,7 +344,7 @@ function displayWarning(warning)
 	var background = new createjs.Shape();
 	background.graphics.beginFill("DarkSlateGray").drawRoundRect(0, 0, 200, 100, 20);
 	background.x = 300;
-	background.y = 300;
+	background.y = 200;
 	background.name = "background";
 	stage.addChild(background);
 	
@@ -353,13 +353,13 @@ function displayWarning(warning)
 	{
 		var warningLine = new createjs.Text(lines[i], "bold 12px Arial", "black");
 		warningLine.x = 305;
-		warningLine.y = 310 + 14*i;
+		warningLine.y = 210 + 14*i;
 		warningLine.name = "warningLine"+i;
 		stage.addChild(warningLine);
 	}
 	
 	//back button
-	var backButton = new Button("backButton",338,170,100,30); //constructor: (name,x,y,width,height)
+	var backButton = new Button("backButton",338,220,100,30); //constructor: (name,x,y,width,height)
 	backButton.text = "Okay";//the text on the button
 	backButton.onClick = displayDemoMainMenu;//function that the button calls when clicked.
 	backButton.draw();
