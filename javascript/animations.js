@@ -89,7 +89,7 @@ function createSnowParticle()
 	//particle.cache(-radius, -radius, radius * 2, radius * 2);
 }
 
-var caching = true;
+var caching = false;
 function cacheStage()
 {
 	
