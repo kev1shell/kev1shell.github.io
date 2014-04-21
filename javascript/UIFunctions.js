@@ -340,6 +340,17 @@ function displayWarning(warning)
 		words.push(string);
 	}
 	
+	//break words into lines
+	for(var i=0;i<words.length;i++)
+	{
+		var line = "";
+		while(line.length+words[i].length <= lineLength)
+		{
+			line += words[i];
+		}
+		lines.push(line);
+	}
+	
 	//break message up into lines of 40 characters
 	/* for(var i=0;i<=numLines;i+=lineLength)
 	{
