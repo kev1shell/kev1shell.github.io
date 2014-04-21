@@ -41,6 +41,11 @@ function loadSurvivorIslandMap()
 	return outputArray;
 }
 
+function loadMapNoSnow()
+{
+	mapElement.src = "http://kev1shell.github.io/assets/maps/survivorIsland3.png";
+}
+
 function loadMapLightSnow()
 {
 	mapElement.src = "http://kev1shell.github.io/assets/maps/survivorIsland3_snow_light.png";
