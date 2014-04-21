@@ -123,6 +123,7 @@
 			//check for defeat
 			if(player.defeated == false && isDefeated() == true && gameStarted == true)
 			{
+				//player has lost
 				player.defeated = true;
 				
 				infoText = "You have been Defeated";
@@ -148,6 +149,7 @@
 			
 			if(count == players.length - 1 && player.defeated == false && gameStarted == true)
 			{
+				//player has won
 				infoText = "Victory!";
 				updateInfoText();
 				
