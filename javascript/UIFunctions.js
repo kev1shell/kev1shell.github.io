@@ -341,10 +341,10 @@ function removeWarning()
 
 //display warning message
 var warningDisplayed = false;
+var lines = [];
+var words = [];
 function displayWarning(warning)
 {
-	var lines = [];
-	var words = [];
 	var lineLength = 32;
 	var numLines = Math.floor(warning.length/lineLength);
 	var x = 300;
