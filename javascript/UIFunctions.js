@@ -846,7 +846,7 @@ function displayTurnCounterElement(color)
 	
 	//turn counter
 	var TCsquare = new createjs.Shape();
-	TCsquare.graphics.beginFill(color).drawRoundRect(0, 0, 57, 43, 10);
+	TCsquare.graphics.beginFill(color).drawRoundRect(0, 0, 59, 43, 10);
 	TCsquare.x = stage.getChildByName("ETsquare").x - 62;
 	TCsquare.y = 0;
 	TCsquare.name = "TCsquare";
