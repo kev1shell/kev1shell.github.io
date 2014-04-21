@@ -469,7 +469,7 @@ function killRandomUnit()
 	unit.remove();
 	var messageArray = ["remove", unit.id,unit.row,unit.column];
 	updater(messageArray);
-	alert("Your villages starving! you have lost a "+unit.type+"!");
+	displayWarning("Your villages starving! you have lost a "+unit.type+"!");
 }
 
 //removes movement squares from graphics stage.

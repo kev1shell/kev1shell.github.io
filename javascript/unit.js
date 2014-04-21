@@ -285,7 +285,7 @@ function handleBVMouseEvent(evt)
 		}
 		else
 		{
-			alert(error);
+			displayWarning(error);
 		}
 	}
 	if(evt.type == "mouseover")
@@ -326,7 +326,7 @@ function handleBFMouseEvent(evt)
 		}
 		else
 		{
-			alert(error);
+			displayWarning(error);
 		}
 	}
 	if(evt.type == "mouseover")
