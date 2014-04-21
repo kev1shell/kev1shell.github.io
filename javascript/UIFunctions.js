@@ -175,6 +175,16 @@ function updateResources()
 
 /*----------------------------------------------------------*/
 /*-------------------display screen----------------------*/
+
+function displayDefeatScreen()
+{
+	//some text
+	var titalText = new createjs.Text("You have been defeated!", "bold 54px Arial", "black");
+	titalText.x = 200;
+	titalText.y = 30;
+	titalText.name = "titalText";
+}
+
 //this function displays the main game screen (with map, Resources, ect.)
 function displayGameScreen()
 {
