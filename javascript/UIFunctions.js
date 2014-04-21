@@ -337,8 +337,14 @@ function removeWarning()
 		index++;
 	}
 	
+	//remove button
+	stage.getChildByName("warningButton").parentButton.remove();
+	
 	//release warning controller
 	warningDisplayed = false;
+	
+	//update stage
+	stage.update();
 	
 }
 
@@ -356,6 +362,7 @@ function displayWarning(warning)
 	//check to ensure a warning is not already up
 	if(warningDisplayed == true)
 	{
+		removeWarning();
 		return;
 	}
 	else
@@ -429,8 +436,6 @@ function displayWarning(warning)
 	backButton.onClick = function()
 						{
 							removeWarning();
-							this.remove();
-							stage.update();
 						}
 	backButton.draw();
 	
