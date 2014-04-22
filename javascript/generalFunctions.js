@@ -610,7 +610,7 @@ var stackSymbols = 0;
 var makingStackSymbol = false;
 function addStackSymbol(row,column)
 {
-	
+	return;
 	if(makingStackSymbol == true)
 	{
 		return;
