@@ -114,7 +114,7 @@ function createSnowParticle()
 var caching = false;
 function cacheStage()
 {
-	
+	return;
 	if(caching == false)
 	{
 		return;
