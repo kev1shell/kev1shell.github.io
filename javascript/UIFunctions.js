@@ -322,14 +322,14 @@ function displayHelpTwo()
 	stage.removeAllChildren();
 	
 	//back button
-	var nextButtonTwo = new Button("nextButtonTwo",550,245,175,50);
+	var nextButtonTwo = new Button("nextButtonTwo",550,345,175,50);
 	nextButtonTwo.text = "Next";
 	//nextButtonTwo.mouseOutColor = "yellow";
 	//nextButtonTwo.mouseInColor = "gold";
 	//nextButtonTwo.mouseDownColor = "orange";
 	nextButtonTwo.onClick = displayHelpThree;//function that the button calls when clicked.
 	
-	var backButtonTwo = new Button("backButtonTwo",550,300,175,50); //constructor: (name,x,y,width,height)
+	var backButtonTwo = new Button("backButtonTwo",550,400,175,50); //constructor: (name,x,y,width,height)
 	backButtonTwo.text = "Main Menu";//the text on the button
 	//backButtonTwo.mouseOutColor = "yellow";
 	//backButtonTwo.mouseInColor = "gold";
