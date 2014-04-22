@@ -654,7 +654,10 @@ function addStackSymbol(row,column)
 function removeStackSymbol(row,column)
 {
 	stackSymbols--;
-	stage.removeChild(stage.getChildByName("stackSymbol"+row+column));
+	while(stage.getChildByName("stackSymbol"+row+column) != null)
+	{
+		stage.removeChild(stage.getChildByName("stackSymbol"+row+column));
+	}
 	stage.update();
 }
 
