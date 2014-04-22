@@ -607,8 +607,18 @@ function moveSelectedUnit(row,column)
 
 //adds a stack symbol at the specified tile
 var stackSymbols = 0;
+var makingStackSymbol = false;
 function addStackSymbol(row,column)
 {
+	
+	if(makingStackSymbol == true)
+	{
+		return;
+	}
+	else
+	{
+		makingStackSymbol = true;
+	}
 	
 	if(stage.getChildByName("stackSymbol"+row+column) != null )
 	{
@@ -633,6 +643,7 @@ function addStackSymbol(row,column)
 									stage.update();
 								}
 	}
+	makingStackSymbol = false;
 }
 
 //removes a stack symbol from the specified tile.
