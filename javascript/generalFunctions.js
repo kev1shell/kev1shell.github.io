@@ -615,22 +615,24 @@ function addStackSymbol(row,column)
 		//don't freakin make another one
 		return;
 	}
+	else
+	{
+		stackSymbols++;
 	
-	stackSymbols++;
-	
-	var stackSymbol = new Image();
-	stackSymbol.src = "http://kev1shell.github.io/assets/sprites/other/stackSymbol.png"
-	
-	stackSymbol.onload = function()
-							{
-								var stackSymbolImage = new createjs.Bitmap(this);
-								stackSymbolImage.x = 17+24*column;
-								stackSymbolImage.y = 50 + 24*row;
-								stackSymbolImage.name = "stackSymbol"+row+column;
-								stage.addChild(stackSymbolImage);
-								
-								stage.update();
-							}
+		var stackSymbol = new Image();
+		stackSymbol.src = "http://kev1shell.github.io/assets/sprites/other/stackSymbol.png"
+		
+		stackSymbol.onload = function()
+								{
+									var stackSymbolImage = new createjs.Bitmap(this);
+									stackSymbolImage.x = 17+24*column;
+									stackSymbolImage.y = 50 + 24*row;
+									stackSymbolImage.name = "stackSymbol"+row+column;
+									stage.addChild(stackSymbolImage);
+									
+									stage.update();
+								}
+	}
 }
 
 //removes a stack symbol from the specified tile.
