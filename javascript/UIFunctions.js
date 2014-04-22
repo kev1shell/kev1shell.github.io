@@ -367,14 +367,14 @@ function displayDemoHelpScreen()
 	stage.removeAllChildren();
 	
 	//back button
-	var nextButton = new Button("nextButton",550,445,175,50);
+	var nextButton = new Button("nextButton",550,345,175,50);
 	nextButton.text = "Next";
 	//nextButton.mouseOutColor = "yellow";
 	//nextButton.mouseInColor = "gold";
 	//nextButton.mouseDownColor = "orange";
 	nextButton.onClick = displayHelpTwo;//function that the button calls when clicked.
 	
-	var backButton = new Button("backButton",550,500,175,50); //constructor: (name,x,y,width,height)
+	var backButton = new Button("backButton",550,400,175,50); //constructor: (name,x,y,width,height)
 	backButton.text = "Main Menu";//the text on the button
 	//backButton.mouseOutColor = "yellow";
 	//backButton.mouseInColor = "gold";
