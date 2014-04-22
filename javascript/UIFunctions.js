@@ -279,6 +279,43 @@ function displayGameScreen()
 	stage.update();
 }
 
+
+function displayHelpThree()
+{
+stage.removeAllChildren();
+	
+	var backButtoner = new Button("backButtoner",550,300,175,50); //constructor: (name,x,y,width,height)
+	backButtoner.text = "Main Menu";//the text on the button
+	backButtoner.mouseOutColor = "yellow";
+	backButtoner.mouseInColor = "gold";
+	backButtoner.mouseDownColor = "orange";
+	backButtoner.onClick = displayDemoMainMenu;//function that the button calls when clicked.
+	
+	
+	var backHelpThree = new Image();
+	backHelpThree.src = "http://students.cse.tamu.edu/tjb33/assets/tuts/tut3.png"
+	
+	backHelpThree.onload = function()
+							{
+								var backHelpThreeShape = new createjs.Bitmap(this);
+								backHelpThreeShape.x = 0;
+								backHelpThreeShape.y = 0;
+								backHelpThreeShape.name = "demoHelpBackground";
+								
+								/*If you're using a background image,
+								add your text and draw the buttons here.
+								Be sure to list them in the order you wish
+								them to be drawn on the canvas!*/
+								stage.addChild(backHelpThreeShape);
+								backButtoner.draw();
+						
+								stage.update();
+							}
+	
+	
+}
+
+
 //This function is a demo health screen, not included in FPII
 function displayHelpTwo()
 {
