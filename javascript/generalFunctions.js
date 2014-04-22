@@ -606,8 +606,17 @@ function moveSelectedUnit(row,column)
 }
 
 //adds a stack symbol at the specified tile
+var stackSymbols = 0;
 function addStackSymbol(row,column)
 {
+	
+	if(stage.getChildByName("stackSymbol"+row+column) != null )
+	{
+		//don't freakin make another one
+		return;
+	}
+	
+	stackSymbols++;
 	
 	var stackSymbol = new Image();
 	stackSymbol.src = "http://kev1shell.github.io/assets/sprites/other/stackSymbol.png"
@@ -627,6 +636,7 @@ function addStackSymbol(row,column)
 //removes a stack symbol from the specified tile.
 function removeStackSymbol(row,column)
 {
+	stackSymbols--;
 	stage.removeChild(stage.getChildByName("stackSymbol"+row+column));
 	stage.update();
 }

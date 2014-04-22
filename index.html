@@ -117,14 +117,21 @@
             createjs.Ticker.setFPS(1);
 			
 		}
-	
+		
+		var stopTicks = false
+		
 		function tick()
 		{
+			if(stopTicks == true)
+			{
+				return;
+			}
+			
 			//check for defeat
-			checkWinLossConditions();
+			//checkWinLossConditions();
 			
 			//snow stuff
-			snowHandler();
+			//snowHandler();
 			
 			//turn counter:
 			turnTimer();
