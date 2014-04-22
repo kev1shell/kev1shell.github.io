@@ -286,9 +286,9 @@ stage.removeAllChildren();
 	
 	var backButtoner = new Button("backButtoner",550,300,175,50); //constructor: (name,x,y,width,height)
 	backButtoner.text = "Main Menu";//the text on the button
-	backButtoner.mouseOutColor = "yellow";
-	backButtoner.mouseInColor = "gold";
-	backButtoner.mouseDownColor = "orange";
+	//backButtoner.mouseOutColor = "yellow";
+	//backButtoner.mouseInColor = "gold";
+	//backButtoner.mouseDownColor = "orange";
 	backButtoner.onClick = displayDemoMainMenu;//function that the button calls when clicked.
 	
 	
@@ -324,16 +324,16 @@ function displayHelpTwo()
 	//back button
 	var nextButtonTwo = new Button("nextButtonTwo",550,245,175,50);
 	nextButtonTwo.text = "Next";
-	nextButtonTwo.mouseOutColor = "yellow";
-	nextButtonTwo.mouseInColor = "gold";
-	nextButtonTwo.mouseDownColor = "orange";
+	//nextButtonTwo.mouseOutColor = "yellow";
+	//nextButtonTwo.mouseInColor = "gold";
+	//nextButtonTwo.mouseDownColor = "orange";
 	nextButtonTwo.onClick = displayHelpThree;//function that the button calls when clicked.
 	
 	var backButtonTwo = new Button("backButtonTwo",550,300,175,50); //constructor: (name,x,y,width,height)
 	backButtonTwo.text = "Main Menu";//the text on the button
-	backButtonTwo.mouseOutColor = "yellow";
-	backButtonTwo.mouseInColor = "gold";
-	backButtonTwo.mouseDownColor = "orange";
+	//backButtonTwo.mouseOutColor = "yellow";
+	//backButtonTwo.mouseInColor = "gold";
+	//backButtonTwo.mouseDownColor = "orange";
 	backButtonTwo.onClick = displayDemoMainMenu;//function that the button calls when clicked.
 	
 	
@@ -367,18 +367,18 @@ function displayDemoHelpScreen()
 	stage.removeAllChildren();
 	
 	//back button
-	var nextButton = new Button("nextButton",550,245,175,50);
+	var nextButton = new Button("nextButton",550,445,175,50);
 	nextButton.text = "Next";
-	nextButton.mouseOutColor = "yellow";
-	nextButton.mouseInColor = "gold";
-	nextButton.mouseDownColor = "orange";
+	//nextButton.mouseOutColor = "yellow";
+	//nextButton.mouseInColor = "gold";
+	//nextButton.mouseDownColor = "orange";
 	nextButton.onClick = displayHelpTwo;//function that the button calls when clicked.
 	
-	var backButton = new Button("backButton",550,300,175,50); //constructor: (name,x,y,width,height)
+	var backButton = new Button("backButton",550,500,175,50); //constructor: (name,x,y,width,height)
 	backButton.text = "Main Menu";//the text on the button
-	backButton.mouseOutColor = "yellow";
-	backButton.mouseInColor = "gold";
-	backButton.mouseDownColor = "orange";
+	//backButton.mouseOutColor = "yellow";
+	//backButton.mouseInColor = "gold";
+	//backButton.mouseDownColor = "orange";
 	backButton.onClick = displayDemoMainMenu;//function that the button calls when clicked.
 	
 	
