@@ -610,7 +610,7 @@ var stackSymbols = 0;
 var makingStackSymbol = false;
 function addStackSymbol(row,column)
 {
-	return;
+	
 	if(makingStackSymbol == true)
 	{
 		return;
@@ -638,7 +638,11 @@ function addStackSymbol(row,column)
 									stackSymbolImage.x = 17+24*column;
 									stackSymbolImage.y = 50 + 24*row;
 									stackSymbolImage.name = "stackSymbol"+row+column;
-									stage.addChild(stackSymbolImage);
+									
+									if(stage.getChildByName("stackSymbol"+row+column) == null )
+									{
+										stage.addChild(stackSymbolImage);
+									}
 									
 									stage.update();
 								}
