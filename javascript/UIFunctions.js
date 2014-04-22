@@ -280,37 +280,91 @@ function displayGameScreen()
 }
 
 //This function is a demo health screen, not included in FPII
+function displayHelpTwo()
+{
+	stage.removeAllChildren();
+	
+	//back button
+	var nextButtonTwo = new Button("nextButtonTwo",550,245,175,50);
+	nextButtonTwo.text = "Next";
+	nextButtonTwo.mouseOutColor = "yellow";
+	nextButtonTwo.mouseInColor = "gold";
+	nextButtonTwo.mouseDownColor = "orange";
+	nextButtonTwo.onClick = displayHelpThree;//function that the button calls when clicked.
+	
+	var backButtonTwo = new Button("backButtonTwo",550,300,175,50); //constructor: (name,x,y,width,height)
+	backButtonTwo.text = "Main Menu";//the text on the button
+	backButtonTwo.mouseOutColor = "yellow";
+	backButtonTwo.mouseInColor = "gold";
+	backButtonTwo.mouseDownColor = "orange";
+	backButtonTwo.onClick = displayDemoMainMenu;//function that the button calls when clicked.
+	
+	
+	var backHelpTwo = new Image();
+	backHelpTwo.src = "http://students.cse.tamu.edu/tjb33/assets/tuts/tut2.png"
+	
+	backHelpTwo.onload = function()
+							{
+								var backHelpTwoShape = new createjs.Bitmap(this);
+								backHelpTwoShape.x = 0;
+								backHelpTwoShape.y = 0;
+								backHelpTwoShape.name = "demoHelpBackground";
+								
+								/*If you're using a background image,
+								add your text and draw the buttons here.
+								Be sure to list them in the order you wish
+								them to be drawn on the canvas!*/
+								stage.addChild(backHelpTwoShape);
+								nextButtonTwo.draw();
+								backButtonTwo.draw();
+								stage.update();
+								
+							}
+	
+}
+
+
 function displayDemoHelpScreen()
 {
 	//clear all existing children from the stage
 	stage.removeAllChildren();
 	
-	//plain background
-	var background = new createjs.Shape();
-	background.graphics.beginFill("DarkSlateGray").drawRect(0, 0, stage.canvas.width, stage.canvas.height);
-	background.x = 0;
-	background.y = 0;
-	background.name = "background";
-	stage.addChild(background);
-	
-	//some text
-	var titalText = new createjs.Text("Help", "bold 72px Arial", "black");
-	titalText.x = 200;
-	titalText.y = 30;
-	titalText.name = "titalText";
-	stage.addChild(titalText);
-	
 	//back button
-	var backButton = new Button("backButton",338,170,175,50); //constructor: (name,x,y,width,height)
-	backButton.text = "Back";//the text on the button
+	var nextButton = new Button("nextButton",550,245,175,50);
+	nextButton.text = "Next";
+	nextButton.mouseOutColor = "yellow";
+	nextButton.mouseInColor = "gold";
+	nextButton.mouseDownColor = "orange";
+	nextButton.onClick = displayHelpTwo;//function that the button calls when clicked.
+	
+	var backButton = new Button("backButton",550,300,175,50); //constructor: (name,x,y,width,height)
+	backButton.text = "Main Menu";//the text on the button
 	backButton.mouseOutColor = "yellow";
 	backButton.mouseInColor = "gold";
 	backButton.mouseDownColor = "orange";
 	backButton.onClick = displayDemoMainMenu;//function that the button calls when clicked.
-	backButton.draw();
 	
-	//update stage
-	stage.update();
+	
+	var backHelp = new Image();
+	backHelp.src = "http://students.cse.tamu.edu/tjb33/assets/tuts/tut1.png"
+	
+	backHelp.onload = function()
+							{
+								var backHelpShape = new createjs.Bitmap(this);
+								backHelpShape.x = 0;
+								backHelpShape.y = 0;
+								backHelpShape.name = "demoHelpBackground";
+								
+								/*If you're using a background image,
+								add your text and draw the buttons here.
+								Be sure to list them in the order you wish
+								them to be drawn on the canvas!*/
+								stage.addChild(backHelpShape);
+								nextButton.draw();
+								backButton.draw();
+								stage.update();
+								
+							}
 }
 
 //This function displayes the main menu and is the first menu the user sees.
@@ -359,7 +413,7 @@ function displayDemoMainMenu()
 								stage.addChild(backgroundShape);
 								stage.addChild(titalText);
 								StartGameButton.draw();
-								//helpButton.draw();
+								helpButton.draw();
 								
 								stage.update();
 							}
