@@ -1001,12 +1001,7 @@ function selectObject(row,column)
 //Fight animation
 function fight(color)
 {
-	var backer = new createjs.Shape();
-	backer.graphics.beginFill("DarkSlateGray").drawRect(0, 0, stage.canvas.width, stage.canvas.height-50);
-	backer.x = 0;
-	backer.y = 50;
-	backer.name = "backer";
-	stage.addChild(backer);
+
 	stage.update();
         if (color == 'blue'){
                 var ss = new createjs.SpriteSheet({
@@ -1028,9 +1023,6 @@ function fight(color)
                         grant.y = 150;
 						grant.name = "grant";
                         // Add Grant to the stage, and add it as a listener to Ticker to get updates each frame.
-                        stage.addChild(grant);
-                        createjs.Ticker.setFPS(10);
-                        createjs.Ticker.addEventListener("tick", stage);
                 }
         
         else if(color == 'red'){
@@ -1054,14 +1046,30 @@ function fight(color)
 						grant.name = "grant";
 
                         // Add Grant to the stage, and add it as a listener to Ticker to get updates each frame.
-                        stage.addChild(grant);
-                        createjs.Ticker.setFPS(10);
-                        createjs.Ticker.addEventListener("tick", stage);
                 }
+	var fightBack = new Image();
+	fightBack.src = "http://students.cse.tamu.edu/tjb33/assets/sprites/animate/fightBack.png"
+	playBattleSounds();
+	fightBack.onload = function()
+							{
+								var fightBackShape = new createjs.Bitmap(this);
+								fightBackShape.x = 0;
+								fightBackShape.y = 0;
+								fightBackShape.name = "fightBackShape";
+								
+								/*If you're using a background image,
+								add your text and draw the buttons here.
+								Be sure to list them in the order you wish
+								them to be drawn on the canvas!*/
+								stage.addChild(fightBackShape);
+								stage.addChild(grant);
+								createjs.Ticker.setFPS(10);
+								createjs.Ticker.addEventListener("tick", stage);
+							}
 		setTimeout(function() {
 			stage.removeChild(stage.getChildByName("grant"));
-			stage.removeChild(stage.getChildByName("backer"));
+			stage.removeChild(stage.getChildByName("fightBackShape"));
 			stage.update();
 			}, (1.5 * 1000));		
 		
-        }
+}
