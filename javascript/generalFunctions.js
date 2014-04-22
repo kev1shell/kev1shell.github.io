@@ -546,10 +546,12 @@ function killRandomUnit()
 	var index = Math.floor(Math.random()*player.units.length);
 	var unit = player.units[index];
 	
+	var type = unit.type;
+	
 	unit.remove();
 	var messageArray = ["remove", unit.id,unit.row,unit.column];
 	updater(messageArray);
-	displayWarning("Your villages starving! you have lost a "+unit.type+"!");
+	displayWarning("Your villages starving! you have lost a "+type+"!");
 }
 
 //removes movement squares from graphics stage.
