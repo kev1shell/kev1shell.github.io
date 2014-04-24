@@ -640,7 +640,8 @@ function addStackSymbol(row,column)
 									stackSymbolImage.y = 50 + 24*row;
 									stackSymbolImage.name = "stackSymbol"+row+column;
 									
-									if(stage.getChildByName("stackSymbol"+row+column) == null )
+									var stackSymbolName = "stackSymbol"+row+column;
+									if(stage.getChildByName(stackSymbolName) == null )
 									{
 										stage.addChild(stackSymbolImage);
 									}
