@@ -616,10 +616,7 @@ function addStackSymbol(row,column)
 	{
 		return;
 	}
-	else
-	{
-		map[row][column].hasStackSymbol = true;
-	}
+	
 	
 	
 	if(makingStackSymbol == true)
@@ -652,11 +649,11 @@ function addStackSymbol(row,column)
 									stackSymbolImage.name = "stackSymbol"+row+column;
 									
 									var stackSymbolName = "stackSymbol"+row+column;
-									if(stage.getChildByName(stackSymbolName) == null )
+									if(stage.getChildByName(stackSymbolName) == null && map[row][column].hasStackSymbol == false)
 									{
 										stage.addChild(stackSymbolImage);
 									}
-									
+									map[row][column].hasStackSymbol = true;
 									stage.update();
 								}
 	}
