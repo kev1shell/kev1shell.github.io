@@ -611,7 +611,17 @@ var stackSymbols = 0;
 var makingStackSymbol = false;
 function addStackSymbol(row,column)
 {
-	return;
+	
+	if(map[row][column].hasStackSymbol == true)
+	{
+		return;
+	}
+	else
+	{
+		map[row][column].hasStackSymbol = true;
+	}
+	
+	
 	if(makingStackSymbol == true)
 	{
 		return;
@@ -657,6 +667,7 @@ function addStackSymbol(row,column)
 function removeStackSymbol(row,column)
 {
 	stackSymbols--;
+	map[row][column].hasStackSymbol = false;
 	while(stage.getChildByName("stackSymbol"+row+column) != null)
 	{
 		stage.removeChild(stage.getChildByName("stackSymbol"+row+column));
