@@ -1070,6 +1070,7 @@ function fight(color)
 		setTimeout(function() {
 			stage.removeChild(stage.getChildByName("grant"));
 			stage.removeChild(stage.getChildByName("fightBackShape"));
+			createjs.Ticker.setFPS(1);
 			stage.update();
 			}, (1.5 * 1000));		
 		
