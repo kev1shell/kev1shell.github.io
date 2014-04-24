@@ -636,7 +636,7 @@ function addStackSymbol(row,column)
 	}
 	else
 	{
-		stackSymbols++;
+		
 	
 		var stackSymbol = new Image();
 		stackSymbol.src = "http://kev1shell.github.io/assets/sprites/other/stackSymbol.png"
@@ -652,6 +652,7 @@ function addStackSymbol(row,column)
 									if(stage.getChildByName(stackSymbolName) == null && map[row][column].hasStackSymbol == false)
 									{
 										stage.addChild(stackSymbolImage);
+										stackSymbols++;
 									}
 									map[row][column].hasStackSymbol = true;
 									stage.update();
@@ -663,11 +664,11 @@ function addStackSymbol(row,column)
 //removes a stack symbol from the specified tile.
 function removeStackSymbol(row,column)
 {
-	stackSymbols--;
 	map[row][column].hasStackSymbol = false;
 	while(stage.getChildByName("stackSymbol"+row+column) != null)
 	{
 		stage.removeChild(stage.getChildByName("stackSymbol"+row+column));
+		stackSymbols--;
 	}
 	stage.update();
 }
