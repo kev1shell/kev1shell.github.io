@@ -162,7 +162,7 @@ function organizeChildren()
 		{
 			if(name.indexOf("farm") != 0 && name.indexOf("village") != 0)
 			{
-				if(name.indexOf("movementSquare") == -1 && name.indexOf("selectSquare") == -1)
+				if(name.indexOf("movementSquare") == -1 && name.indexOf("selectSquare") == -1 && name.indexOf("stackSymbol") == -1)
 				{
 					other.push(children[i]);
 					continue;
