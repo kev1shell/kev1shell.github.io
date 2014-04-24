@@ -117,14 +117,15 @@
 			displayDemoMainMenu();
 			
 			createjs.Ticker.addEventListener("tick", tick);
-            createjs.Ticker.setFPS(1);
+            createjs.Ticker.setFPS(50);
 			
 		}
 		
 		var stopTicks = false
-		
+		var tickCount = 0;
 		function tick()
 		{
+			tickCount++;
 			if(stopTicks == true)
 			{
 				return;
@@ -137,7 +138,11 @@
 			snowHandler();
 			
 			//turn counter:
-			turnTimer();
+			if(tickCount == 50)
+			{
+				turnTimer();
+				tickCount = 0;
+			}
 		}
 	
 		function updater(Array)
