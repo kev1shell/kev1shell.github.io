@@ -126,7 +126,7 @@ function cacheStage()
 		var shape = stage.getChildAt(i);
 		if(shape.getBounds() != null)
 		{
-			shape.cache(0, 0, shape.getBounds().width, shape.getBounds().height);
+			shape.cache(0, 0, shape.getBounds().width*2, shape.getBounds().height*2);
 		}
 	}
 	stage.update();
