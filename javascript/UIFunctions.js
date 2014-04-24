@@ -629,7 +629,7 @@ function displayObjectCost(object)
 	stage.addChild(costBackground);
 	stage.addChild(costText);
 	
-	//cacheStage();
+	cacheStage();
 	stage.update();
 }
 
@@ -718,7 +718,7 @@ function handleSSBBEvent(evt)
 	{
 		sourceButton.draw(sourceButton.mouseDownColor);
 	}
-	//cacheStage();
+	cacheStage();
 }
 
 //This function displays the stack selection box
@@ -851,7 +851,7 @@ function displayStackSelectionBox(row,column)
 							}
 	}
 	
-	//cacheStage();
+	cacheStage();
 	stage.update();
 	
 }
@@ -1041,7 +1041,7 @@ function handleETEMouseEvent(evt)
 		displayEndTurnElement("darkRed");
 		stage.update();
 	}
-	//cacheStage();
+	cacheStage();
 }
 
 //handles map mouse events.
@@ -1094,7 +1094,7 @@ function handleMapMouseEvent(evt)
 		}
 		
 	}
-	//cacheStage();
+	cacheStage();
 	stage.update();
 }
 

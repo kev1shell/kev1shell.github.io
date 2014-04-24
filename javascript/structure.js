@@ -163,7 +163,7 @@ function handleBWMouseEvent(evt)
 		removeObjectCost();
 		stage.update();
 	}
-	//cacheStage();
+	cacheStage();
 }
 
 function handleBVgrMouseEvent(evt)
@@ -203,7 +203,7 @@ function handleBVgrMouseEvent(evt)
 		removeObjectCost();
 		stage.update();
 	}
-	//cacheStage();
+	cacheStage();
 }
 
 
