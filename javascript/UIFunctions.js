@@ -50,6 +50,7 @@ function updateTurnTimer()
 	TimerText.name = "TimerText";
 	stage.addChild(TimerText);
 	
+	cacheStage();
 	stage.update();
 }
 
