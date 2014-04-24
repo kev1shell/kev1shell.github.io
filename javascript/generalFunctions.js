@@ -621,7 +621,8 @@ function addStackSymbol(row,column)
 		makingStackSymbol = true;
 	}
 	
-	if(stage.getChildByName("stackSymbol"+row+column) != null )
+	var stackSymbolName = "stackSymbol"+row+column;
+	if(stage.getChildByName(stackSymbolName) != null )
 	{
 		//don't freakin make another one
 		return;
