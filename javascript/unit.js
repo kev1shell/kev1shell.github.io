@@ -155,7 +155,7 @@ var Unit = function()
 		if(stage.getChildByName("infoLine1") == null)
 		{
 			//line 1
-			var infoLine1 = new createjs.Text("MP: "+this.movementPoints+"/"+this.maxMovementPoints, "bold 9px Arial", "black");
+			var infoLine1 = new createjs.Text("Moves: "+this.movementPoints+"/"+this.maxMovementPoints, "bold 9px Arial", "black");
 			infoLine1.x = 15 + stage.getChildByName("IEtext").x + stage.getChildByName("IEtext").getMeasuredWidth();
 			infoLine1.y = 1;
 			infoLine1.name = "infoLine1";
