@@ -13,11 +13,13 @@ function winterController()
 		{
 			//load med snow map
 			loadMapMediumSnow();
+			turnsInWinter++;
 		}
 		else if(turnsInWinter == winterLength - 1)
 		{
 			//load map light snow
 			loadMapLightSnow();
+			turnsInWinter++;
 		}
 		else if(turnsInWinter == winterLength)
 		{
@@ -40,11 +42,13 @@ function winterController()
 		{
 			//load light snow map
 			loadMapLightSnow();
+			turnsInSummer++;
 		}
 		else if(turnsInSummer == summerLength - 1)
 		{
 			//load map medium snow
 			loadMapMediumSnow();
+			turnsInSummer++;
 		}
 		else if(turnsInSummer == summerLength)
 		{
