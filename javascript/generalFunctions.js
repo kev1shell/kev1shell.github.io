@@ -31,6 +31,15 @@ function winterController()
 			player.bank.foodRate += player.numFarms*farmCollectionRate;
 			updateResources();
 			displayWarning("Winter is Over!");
+			
+			//make winters longer
+			winterLength += 2;
+			
+			//make summers shorter
+			if(summerLength > 4)
+			{
+				summerLength--;
+			}
 		}
 		else
 		{
