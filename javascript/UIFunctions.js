@@ -1117,7 +1117,7 @@ function handleRELoad()
 function handleMapLoad()
 {
 	
-	if(stage.stage.getChildByName("mapShape") != null)
+	if(stage.getChildByName("mapShape") != null)
 	{
 		stage.update();
 	}
