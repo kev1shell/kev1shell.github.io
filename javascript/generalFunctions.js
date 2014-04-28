@@ -26,6 +26,7 @@ function winterController()
 			//winter is over!
 			isWinter = false;
 			turnsInWinter = 0;
+			turnsInSummer = 0;
 			loadMapNoSnow();
 			player.bank.foodRate += player.numFarms*farmCollectionRate;
 			updateResources();
@@ -54,6 +55,7 @@ function winterController()
 		{
 			//winter is here!
 			isWinter = true;
+			turnsInWinter = 0;
 			turnsInSummer = 0;
 			loadMapHeavySnow();
 			player.bank.foodRate -= player.numFarms*farmCollectionRate;
