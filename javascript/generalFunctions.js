@@ -1,6 +1,69 @@
 
 // General Functions
 
+//call this to start winter
+var isWinter = false;
+var turnsInWinter = 0;
+var turnsInSummer = 0;
+function winterController()
+{
+	if(isWinter == true)
+	{
+		if(turnsInWinter == winterLength - 2)
+		{
+			//load med snow map
+			loadMapMediumSnow();
+		}
+		else if(turnsInWinter == winterLength - 1)
+		{
+			//load map light snow
+			loadMapLightSnow();
+		}
+		else if(turnsInWinter == winterLength)
+		{
+			//winter is over!
+			isWinter = false;
+			turnsInWinter = 0;
+			loadMapNoSnow();
+			player.bank.foodRate = player.numFarms*farmCollectionRate;
+			updateResources();
+			displayWarning("Winter is Over!");
+		}
+		else
+		{
+			turnsInWinter++;
+		}
+	}
+	else
+	{
+		if(turnsInSummer == summerLength - 2)
+		{
+			//load light snow map
+			loadMapLightSnow();
+		}
+		else if(turnsInSummer == summerLength - 1)
+		{
+			//load map medium snow
+			loadMapMediumSnow();
+		}
+		else if(turnsInSummer == summerLength)
+		{
+			//winter is here!
+			isWinter = true;
+			turnsInSummer = 0;
+			loadMapHeavySnow();
+			player.bank.foodRate = 0;
+			updateResources();
+			displayWarning("Winter is here!")
+		}
+		else
+		{
+			turnsInSummer++;
+		}
+	}
+	
+}
+
 //turnTimer
 var turnTimeLeft = turnTime;	//time left in active turn in seconds
 function turnTimer()
