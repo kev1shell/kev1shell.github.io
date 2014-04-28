@@ -27,7 +27,7 @@ function winterController()
 			isWinter = false;
 			turnsInWinter = 0;
 			loadMapNoSnow();
-			player.bank.foodRate = player.numFarms*farmCollectionRate;
+			player.bank.foodRate += player.numFarms*farmCollectionRate;
 			updateResources();
 			displayWarning("Winter is Over!");
 		}
@@ -56,7 +56,7 @@ function winterController()
 			isWinter = true;
 			turnsInSummer = 0;
 			loadMapHeavySnow();
-			player.bank.foodRate = 0;
+			player.bank.foodRate -= player.numFarms*farmCollectionRate;
 			updateResources();
 			displayWarning("Winter is here!")
 		}
@@ -396,6 +396,11 @@ function canBuild(object)
 	}
 	else if(object == "farm")
 	{
+		if(isWinter == true)
+		{
+			error = "You cannot build farms in winter!";
+			return false;
+		}
 		
 		if(player.bank.food >= farmFoodCost && player.bank.timber >= farmTimberCost & player.bank.stone >= farmStoneCost)
 		{
