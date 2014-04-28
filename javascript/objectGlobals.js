@@ -1,10 +1,10 @@
 //Global variables used by villageWars objects
 
 //turn winter starts
-summerLength = 20;
+summerLength = 8;
 
 //winter length in turns
-winterLength = 10;
+winterLength = 4;
 
 //turn time limit (seconds)
 var turnTime = 60;
