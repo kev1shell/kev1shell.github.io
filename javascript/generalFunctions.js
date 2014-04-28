@@ -939,6 +939,9 @@ function startTurn()
 	turnTimeLeft = turnTime;
 	updateTurnTimer();
 	
+	//check for winter
+	winterController();
+	
 	//do some other shit maybe
 	
 }
