@@ -1116,6 +1116,12 @@ function handleRELoad()
 //loads the map image
 function handleMapLoad()
 {
+	
+	if(stage.stage.getChildByName("mapShape") != null)
+	{
+		stage.update();
+	}
+	
 	bitmap = new createjs.Bitmap(mapElement);
 	bitmap.x = 0;
 	bitmap.y = 50;
