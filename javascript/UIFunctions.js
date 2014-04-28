@@ -1120,6 +1120,7 @@ function handleMapLoad()
 	if(stage.getChildByName("mapShape") != null)
 	{
 		stage.update();
+		return;
 	}
 	
 	bitmap = new createjs.Bitmap(mapElement);
