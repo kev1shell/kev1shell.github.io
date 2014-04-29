@@ -1,6 +1,7 @@
 //Structure object
 var Structure = function()
 {
+	this.builtUnit = false;
 	this.id = Math.floor(Math.random()*1000000000);
 	this.owner = null;
 	this.type = "n/a";
@@ -178,6 +179,7 @@ function handleBVgrMouseEvent(evt)
 		
 		if(canBuild("villager"))
 		{
+			
 			//build villager
 			player.createUnit(stage,map,"villager", selectedObject.row, selectedObject.column);
 			

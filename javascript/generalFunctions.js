@@ -927,6 +927,12 @@ function startTurn()
 	infoText = "Begin your turn"
 	updateInfoText();
 	
+	//allow all structures to build units
+	for(var i=0;i<player.structures.length();i++)
+	{
+		player.structures[i].builtUnit = false;
+	}
+	
 	//refresh movement points
 	for(var j=0;j<players.length;j++)
 	{
